@@ -2,27 +2,30 @@ package com.buoyuan.delivery.service.UserLogin;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import com.buoyuan.delivery.model.BynUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
+/**
+ * Since webSecurity cannot autowire beans, if we add cacheable annotation to any method in this class, bean conflict will occur.
+ * So move all cache methods to UserService
+ */
 public class JwtUserService implements UserDetailsService {
 	
-	private PasswordEncoder passwordEncoder;
-	
-	public JwtUserService() {
-		this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();  //默认使用 bcrypt， strength=10
-	}
+	@Autowired
+	private UserService userService;
+
+	@Value("${login.tokenExpireTime}")
+	private long tokenExpireTime;
 
 	public UserDetails getUserLoginInfo(String username) {
-		String salt = this.getSalt();
+		String salt = this.userService.getSalt();
     	/**
     	 * @todo 从数据库或者缓存中取出jwt token生成时用的salt
     	 * salt = redisTemplate.opsForValue().get("token:"+username);
@@ -33,13 +36,13 @@ public class JwtUserService implements UserDetailsService {
 	}
 	
 	public String saveUserLoginInfo(UserDetails user) {
-		String salt = this.getSalt(); //BCrypt.gensalt();  正式开发时可以调用该方法实时生成加密的salt
+		String salt = this.userService.getSalt(); //BCrypt.gensalt();  正式开发时可以调用该方法实时生成加密的salt
 		/**
     	 * @todo 将salt保存到数据库或者缓存中
     	 * redisTemplate.opsForValue().set("token:"+username, salt, 3600, TimeUnit.SECONDS);
     	 */   	
 		Algorithm algorithm = Algorithm.HMAC256(salt);
-		Date date = new Date(System.currentTimeMillis()+3600*1000);  //设置1小时后过期
+		Date date = new Date(System.currentTimeMillis()+tokenExpireTime*1000);  //设置1小时后过期
         return JWT.create()
         		.withSubject(user.getUsername())
                 .withExpiresAt(date)
@@ -54,29 +57,15 @@ public class JwtUserService implements UserDetailsService {
 	 * @return
 	 * @throws UsernameNotFoundException
 	 */
-	@Cacheable("users")
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// @todo get user from database
-		return User.builder().username("Jack").password(passwordEncoder.encode("jack-password")).roles("USER").build();
-	}
-	
-	public void createUser(String username, String password) {
-		//BCryptPasswordEncoder is default type of passwordEncoder
-		//As daoAuthenticationProvider use BCryptPasswordEncoder to compare user input password and stored password
-		//Hence, we need to use same type passwordEncoder to do password encrypt when create new user
-		String encryptPwd = passwordEncoder.encode(password);
-		/**
-		 * @todo 保存用户名和加密后密码到数据库
-		 */
-	}
-
-	@Cacheable("salt")
-	public String getSalt(){
-		return "123456ef";
+		BynUser user = this.userService.getUserByUserName(username);
+		return User.builder().username(user.getUserName()).password(user.getPassword()).roles("USER").build();
 	}
 
 
-	@CacheEvict(cacheNames = "users")
-	public void deleteUserLoginInfo(String username) {}
+
+	public void deleteUserLoginInfo(String username) {
+		this.userService.deleteUserLoginInfo(username);
+	}
 }

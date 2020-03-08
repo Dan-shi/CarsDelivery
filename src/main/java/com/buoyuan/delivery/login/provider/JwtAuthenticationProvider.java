@@ -35,7 +35,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 		UserDetails user = userService.getUserLoginInfo(username);
 
 		if(user == null || user.getPassword()==null){
-			throw new NonceExpiredException("User non-exist");
+			throw new NonceExpiredException("BynUser non-exist");
 		}
 
 		String encryptSalt = user.getPassword();

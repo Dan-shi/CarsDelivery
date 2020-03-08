@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -25,6 +28,8 @@ import com.alibaba.fastjson.JSONObject;
  * Only execute on login behaviour
  */
 public class NormalUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+
+	Logger logger = LoggerFactory.getLogger(NormalUsernamePasswordAuthenticationFilter.class);
 	
 	public NormalUsernamePasswordAuthenticationFilter() {
 		super(new AntPathRequestMatcher("/login","POST"));
@@ -57,7 +62,6 @@ public class NormalUsernamePasswordAuthenticationFilter extends AbstractAuthenti
 		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
 				username, password);
 
-		//Use DaoAuthenticationProvider to do authentication
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
 

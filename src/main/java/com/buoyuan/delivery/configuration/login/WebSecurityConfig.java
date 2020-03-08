@@ -54,7 +54,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .logout()
 //		        .logoutUrl("/logout")   //默认就是"/logout"
 		        .addLogoutHandler(tokenClearLogoutHandler()) //add logout handler
-		        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()); //logout success handler
+		        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()) //logout success handler
+			.and()
+			.sessionManagement().disable();
 	}
 
 	/**
@@ -96,14 +98,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected UserDetailsService userDetailsService() {
-		return new JwtUserService();
+		return jwtUserService();
 	}
-	
-	@Bean("jwtUserService")
+
+	@Override
+	public UserDetailsService userDetailsServiceBean() {
+		return jwtUserService();
+	}
+
+
+	@Bean
 	protected JwtUserService jwtUserService() {
 		return new JwtUserService();
 	}
-	
+
 	@Bean
 	protected LoginSuccessHandler loginSuccessHandler() {
 		return new LoginSuccessHandler(jwtUserService());
