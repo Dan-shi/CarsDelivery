@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 public class BynUser {
 
-    private long id;
+    private long user_id;
 
     private String userName;
 
