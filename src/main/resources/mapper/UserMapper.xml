@@ -2,10 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.buoyuan.delivery.mapper.UserMapper">
     <resultMap id="UserModelMap" type="com.buoyuan.delivery.model.BynUser">
-        <id column="user_id" jdbcType="BIGINT" property="user_id" />
+        <id column="user_id" jdbcType="BIGINT" property="userId" />
         <result column="user_name" jdbcType="VARCHAR" property="userName" />
         <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="phone" jdbcType="INT" property="phone" />
+        <result column="phone" jdbcType="INTEGER" property="phone" />
+        <result column="sex" jdbcType="INTEGER" property="sex" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="birthday" jdbcType="DATE" property="birthday" />
+        <result column="user_type" jdbcType="INTEGER" property="userType" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     </resultMap>
+
+    <select id="getUserByUserName" parameterType="java.lang.String" resultMap="UserModelMap">
+
+        select user_id, user_name, password, phone, sex, age, birthday,
+        user_type, create_time, update_time
+        from user
+        where user_name = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" keyProperty="userId" parameterType="com.buoyuan.delivery.model.BynUser" useGeneratedKeys="true">
+
+        insert into user (user_name, password, phone, sex, age, birthday, user_type)
+        values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER},
+        #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE},
+        #{userType,jdbcType=INTEGER}
+        )
+    </insert>
+
 
 </mapper>

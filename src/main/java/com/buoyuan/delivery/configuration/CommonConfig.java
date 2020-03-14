@@ -1,6 +1,6 @@
 package com.buoyuan.delivery.configuration;
 
-import com.buoyuan.delivery.service.UserLogin.UserService;
+import com.buoyuan.delivery.service.UserService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.CacheManager;
@@ -22,10 +22,5 @@ public class CommonConfig {
     @Bean
     @ConfigurationProperties(prefix = "login")
     public CommonConfigProperties commonConfigProperties(){return new CommonConfigProperties();}
-
-    @Bean
-    public UserService userService(){
-        return new UserService();
-    }
 
 }

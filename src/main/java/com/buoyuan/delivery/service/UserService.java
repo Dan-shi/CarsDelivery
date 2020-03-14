@@ -1,14 +1,23 @@
-package com.buoyuan.delivery.service.UserLogin;
+package com.buoyuan.delivery.service;
 
+import com.buoyuan.delivery.mapper.UserMapper;
 import com.buoyuan.delivery.model.BynUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
+@Service
 public class UserService {
 
     private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * BCryptPasswordEncoder is default type of passwordEncoder
@@ -25,8 +34,8 @@ public class UserService {
     }
 
     @Cacheable("users")
-    public BynUser getUserByUserName(String userName){
-        return BynUser.builder().userName("Jack").password(passwordEncoder.encode("jack-password")).build();
+    public BynUser getUserByUserName(String username){
+        return this.userMapper.getUserByUserName(username);
     }
 
 
