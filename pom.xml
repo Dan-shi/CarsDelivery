@@ -8,7 +8,7 @@
         <version>2.2.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.buoyuan</groupId>
+    <groupId>com.boyuan</groupId>
     <artifactId>delivery</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>delivery</name>
