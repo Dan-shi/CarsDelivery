@@ -1,5 +1,6 @@
 package com.boyuan.delivery.service;
 
+import com.boyuan.delivery.common.SecurityUtils;
 import com.boyuan.delivery.common.ValidationUtils;
 import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.mapper.UserMapper;
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     public int createUser(BynUser user) {
+        SecurityUtils.trimStringFieldOrSetNull(user);
         if(this.validatorUserInfo(user)){
             String encryptPwd = passwordEncoder.encode(user.getPassword());
             user.setPassword(encryptPwd);
@@ -57,29 +59,29 @@ public class UserServiceImpl implements UserService {
      */
     private void securityUserTransform(BynUser user){
 
-        if(StringUtils.isBlank(user.getUserName())){
-            user.setUserName(null);
-        } else {
-            user.setUserName(user.getUserName().trim());
-        }
-
-        if(StringUtils.isBlank(user.getPassword())){
-            user.setPassword(null);
-        } else {
-            user.setPassword(user.getPassword().trim());
-        }
-
-        if(StringUtils.isBlank(user.getPhone())){
-            user.setPhone(null);
-        } else {
-            user.setPhone(user.getPhone().trim());
-        }
-
-        if(StringUtils.isBlank(user.getBirthday())){
-            user.setBirthday(null);
-        } else {
-            user.setBirthday(user.getBirthday().trim());
-        }
+//        if(StringUtils.isBlank(user.getUserName())){
+//            user.setUserName(null);
+//        } else {
+//            user.setUserName(user.getUserName().trim());
+//        }
+//
+//        if(StringUtils.isBlank(user.getPassword())){
+//            user.setPassword(null);
+//        } else {
+//            user.setPassword(user.getPassword().trim());
+//        }
+//
+//        if(StringUtils.isBlank(user.getPhone())){
+//            user.setPhone(null);
+//        } else {
+//            user.setPhone(user.getPhone().trim());
+//        }
+//
+//        if(StringUtils.isBlank(user.getBirthday())){
+//            user.setBirthday(null);
+//        } else {
+//            user.setBirthday(user.getBirthday().trim());
+//        }
 
     }
 
