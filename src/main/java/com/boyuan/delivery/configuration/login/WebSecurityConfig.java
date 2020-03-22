@@ -24,7 +24,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
 import java.util.Arrays;
 
 @EnableWebSecurity
@@ -32,11 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-
 				// 忽略不需要身份验证的uri
 		web.ignoring()
 				// 如果有静态文件
-				.mvcMatchers("/css/**", "/js/**");
+				.mvcMatchers("/boyuan/**");
 	}
 
 	@Override

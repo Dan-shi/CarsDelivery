@@ -1,27 +1,82 @@
 package com.boyuan.delivery.controller;
 
+import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.model.BynUser;
+import com.boyuan.delivery.model.Result;
 import com.boyuan.delivery.service.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import com.boyuan.delivery.constant.CommonConstant.UserRole;
+
+import java.sql.Timestamp;
+
 
 @RestController
 @RequestMapping("user")
 public class UserController {
 
+    protected final Log logger = LogFactory.getLog(UserController.class);
+
+    //@TODO add init binder to secure input parameter
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+//    }
+
+    /**
+     * User service
+     */
     @Autowired
     private UserService userService;
 
-    @Secured("USER")
+    @Secured(UserRole.USER)
     @GetMapping("test")
     public String load() {
         return "This is my first blog";
     }
 
-    @Secured("USER")
+    /**
+     * Get user by user name
+     * @param userName
+     * @return
+     */
+    @Secured(UserRole.USER)
     @GetMapping("name")
-    public BynUser getUserByUserName(@RequestParam(value = "username") String username){
-        return userService.getUserByUserName(username);
+    public Result getUserByUserName(@RequestParam(value = "userName") String userName){
+
+        try {
+
+            return Result.builder().resultCode(CommonConstant.Status.SUCCESS).returnTime(new Timestamp(System.currentTimeMillis())).resultBody(userService.getUserByUserName(userName)).build();
+
+        } catch (Exception e){
+            logger.error("getUserByUserName error", e);
+            return Result.builder().resultCode(CommonConstant.Status.ERROR).returnTime(new Timestamp(System.currentTimeMillis())).build();
+
+        }
+
+    }
+
+    /**
+     * Create new user
+     * @param user
+     * @return
+     */
+    @Secured(UserRole.USER)
+    @PostMapping("create")
+    public Result createUser(@RequestBody BynUser user){
+
+        try {
+
+            return Result.builder().resultCode(userService.createUser(user)).returnTime(new Timestamp(System.currentTimeMillis())).build();
+
+        } catch (Exception e){
+            logger.error("Create User error", e);
+            return Result.builder().resultCode(CommonConstant.Status.ERROR).returnTime(new Timestamp(System.currentTimeMillis())).build();
+
+        }
+
     }
 }

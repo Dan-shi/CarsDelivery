@@ -80,11 +80,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				failed = new InsufficientAuthenticationException("JWT is Empty");
 			}
 		} catch(JWTDecodeException e) {
-			logger.error("JWT format error", e);
-			failed = new InsufficientAuthenticationException("JWT format error", failed);
+			logger.error("JWT format ERROR", e);
+			failed = new InsufficientAuthenticationException("JWT format ERROR", failed);
 		}catch (InternalAuthenticationServiceException e) {
 			logger.error(
-					"An internal error occurred while trying to authenticate the user.",
+					"An internal ERROR occurred while trying to authenticate the user.",
 					failed);
 			failed = e;
 		}catch (AuthenticationException e) {

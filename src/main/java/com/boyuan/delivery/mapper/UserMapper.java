@@ -9,9 +9,10 @@ import java.util.List;
 public interface UserMapper {
     BynUser getUserByUserName(String username);
 
-    int insert(BynUser user);
+    int insertUser(BynUser user);
 
     UserRole getUserRoleByRoleId(long roleId);
 
     List<UserPermission> getPermissionsByRoleId(long roleId);
+
 }

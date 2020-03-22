@@ -5,10 +5,10 @@
         <id column="user_id" jdbcType="BIGINT" property="userId" />
         <result column="user_name" jdbcType="VARCHAR" property="userName" />
         <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="phone" jdbcType="BIGINT" property="phone" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
         <result column="sex" jdbcType="INTEGER" property="sex" />
         <result column="age" jdbcType="INTEGER" property="age" />
-        <result column="birthday" jdbcType="DATE" property="birthday" />
+        <result column="birthday" jdbcType="VARCHAR" property="birthday" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <association column="role_id" property="userRole" select="getUserRoleByRoleId" />
@@ -42,12 +42,12 @@
         where user_name = #{username,jdbcType=VARCHAR}
     </select>
 
-    <insert id="insert" keyProperty="userId" parameterType="com.boyuan.delivery.model.BynUser" useGeneratedKeys="true">
+    <insert id="insertUser" parameterType="com.boyuan.delivery.model.BynUser" useGeneratedKeys="true" keyProperty="userId">
 
         insert into user (user_name, password, phone, sex, age, birthday, role_id)
-        values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=BIGINT},
-        #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE},
-        #{role_id,jdbcType=BIGINT}
+        values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR},
+        #{userRole.roleId,jdbcType=BIGINT}
         )
     </insert>
 
