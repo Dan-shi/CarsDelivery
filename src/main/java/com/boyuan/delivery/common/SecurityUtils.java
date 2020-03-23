@@ -25,7 +25,6 @@ public class SecurityUtils {
     public static void trimStringFieldOrSetNull(Object obj){
 
         if(obj!= null){
-            //获取所有的字段包括public,private,protected,private
             Field[] fields = obj.getClass().getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
                 Field field = fields[i];
