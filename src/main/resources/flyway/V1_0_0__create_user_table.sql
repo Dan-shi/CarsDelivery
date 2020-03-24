@@ -14,5 +14,4 @@ CREATE TABLE user (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- insert admin user
-
-INSERT INTO user (user_name, password, phone, role_id) VALUES ('admin', '{bcrypt}$2a$10$ZmhjSfYRtlIjCEM2nQqDb.XLZKMPeNpKEewdFJld50UsCtFdvoNku', '10000000000', 1);
+INSERT INTO user (user_name, password, phone, role_id) VALUES ('user', '{bcrypt}$2a$10$ZmhjSfYRtlIjCEM2nQqDb.XLZKMPeNpKEewdFJld50UsCtFdvoNku', '10000000000', 1);

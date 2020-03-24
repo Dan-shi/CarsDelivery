@@ -19,7 +19,7 @@ import java.util.Date;
 @Builder
 public class LocationHistory {
 
-    private long hisId;
+    private long locId;
 
     @NotNull
     private long orderId;
@@ -36,6 +36,8 @@ public class LocationHistory {
      * 纬度
      */
     private String latitude;
+
+    private String description;
 
     private Date createTime;
 

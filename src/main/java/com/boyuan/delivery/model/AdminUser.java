@@ -27,9 +27,10 @@ public class AdminUser {
     private String adUserName;
 
     @NotBlank(message = "Admin user password should not be null or empty")
-    private String adUserPassword;
+    private String password;
 
     @Email(message = "Admin user email format is not right")
+    @NotBlank
     private String email;
 
     @NotBlank
@@ -43,6 +44,8 @@ public class AdminUser {
     private String birthday;
 
     private UserRole userRole;
+
+    private boolean isActive;
 
     private Date createTime;
 

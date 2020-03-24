@@ -46,7 +46,7 @@ public class Order {
     @NotBlank
     private String carName;
 
-    private Money price;
+    private String price;
 
     /**
      * Source location
@@ -71,6 +71,8 @@ public class Order {
     @NotBlank
     @Pattern(regexp = "^1(3|4|5|6|7|8|9)\\d{9}$", message = "phone number format wrong")
     private String cusPhone;
+
+    private boolean isActive;
 
     /**
      * Customer name

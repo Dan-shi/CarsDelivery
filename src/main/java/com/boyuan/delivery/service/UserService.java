@@ -16,25 +16,25 @@ public interface UserService {
      * @param username
      * @return
      */
-    public BynUser getUserByUserName(String username);
+    BynUser getUserByUserName(String username);
 
     /**
      * Create user
      * @param user
      * @return
      */
-    public int createUser(BynUser user);
+    int createUser(BynUser user);
 
     /**
      * Get user password encrypt salt
      * @return
      */
-    public String getSalt();
+    String getSalt();
 
     /**
      * Delete user login cache
      * @param username
      */
-    public void deleteUserLoginInfo(String username);
+    void deleteUserLoginInfo(String username);
 
 }
