@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~  Copyright 2020 北京渤远物流. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boyuan.delivery.mapper.LocationHistoryMapper">
+
+    <insert id="createLocationHis" parameterType="com.boyuan.delivery.model.LocationHistory" useGeneratedKeys="true" keyProperty="locId">
+
+        insert into location_history (order_id, location, longitude, latitude, description)
+        values (#{orderId,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
+        #{latitude,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+        )
+    </insert>
+
+</mapper>

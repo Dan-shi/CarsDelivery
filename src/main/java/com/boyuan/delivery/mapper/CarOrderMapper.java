@@ -2,14 +2,11 @@
  *  Copyright 2020 北京渤远物流. All Rights Reserved.
  */
 
-package com.boyuan.delivery.service;
+package com.boyuan.delivery.mapper;
 
 import com.boyuan.delivery.model.Order;
 
-/**
- * Car order service
- */
-public interface CarOrderService {
+public interface CarOrderMapper {
 
     int createOrder(Order order);
 
@@ -18,5 +15,4 @@ public interface CarOrderService {
     int deleteOrderById(long orderId);
 
     Order getOrderById(long orderId);
-
 }

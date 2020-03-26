@@ -52,38 +52,6 @@ public class UserServiceImpl implements UserService {
         return CommonConstant.Status.ERROR;
     }
 
-    /**
-     * In case of malicious input from user, do security check here.
-     * Trim all string field
-     * @return
-     */
-    private void securityUserTransform(BynUser user){
-
-//        if(StringUtils.isBlank(user.getUserName())){
-//            user.setUserName(null);
-//        } else {
-//            user.setUserName(user.getUserName().trim());
-//        }
-//
-//        if(StringUtils.isBlank(user.getPassword())){
-//            user.setPassword(null);
-//        } else {
-//            user.setPassword(user.getPassword().trim());
-//        }
-//
-//        if(StringUtils.isBlank(user.getPhone())){
-//            user.setPhone(null);
-//        } else {
-//            user.setPhone(user.getPhone().trim());
-//        }
-//
-//        if(StringUtils.isBlank(user.getBirthday())){
-//            user.setBirthday(null);
-//        } else {
-//            user.setBirthday(user.getBirthday().trim());
-//        }
-
-    }
 
     /**
      * Validate user field

@@ -30,6 +30,8 @@ CREATE TABLE car_order (
   price varchar(20),
   from_location varchar(20) NOT NULL,
   to_location varchar(20) NOT NULL,
+  cus_name varchar(32),
+  cus_phone varchar(20) NOT NULL,
   is_active boolean NOT NULL,
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,

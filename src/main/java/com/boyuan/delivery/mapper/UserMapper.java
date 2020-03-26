@@ -7,6 +7,7 @@ import com.boyuan.delivery.model.UserRole;
 import java.util.List;
 
 public interface UserMapper {
+
     BynUser getUserByUserName(String username);
 
     int insertUser(BynUser user);

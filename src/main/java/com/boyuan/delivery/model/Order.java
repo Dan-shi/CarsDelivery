@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.money.Money;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -66,6 +65,11 @@ public class Order {
     private List<LocationHistory> locationHis;
 
     /**
+     * Customer name
+     */
+    private String cusName;
+
+    /**
      * Customer phone number
      */
     @NotBlank
@@ -73,11 +77,6 @@ public class Order {
     private String cusPhone;
 
     private boolean isActive;
-
-    /**
-     * Customer name
-     */
-    private String cusName;
 
     private Date createTime;
 

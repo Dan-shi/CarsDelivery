@@ -15,4 +15,6 @@ public interface AdminUserService {
     AdminUser getAdminUserByName(String adUserName);
 
     int createAdminUser(AdminUser adUser);
+
+    int deleteAdminUserById(long adUserId);
 }

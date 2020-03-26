@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~  Copyright 2020 北京渤远物流. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boyuan.delivery.mapper.CarOrderMapper">
+
+    <insert id="createOrder" parameterType="com.boyuan.delivery.model.Order" useGeneratedKeys="true" keyProperty="orderId">
+
+        insert into car_order (order_status, order_source, order_type, admin_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, is_active)
+        values (#{orderStatus,jdbcType=INTEGER}, #{orderSource,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{adminUserId,jdbcType=BIGINT},
+        #{carType,jdbcType=INTEGER}, #{carName,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{fromLocation,jdbcType=VARCHAR},#{toLocation,jdbcType=VARCHAR},
+        #{cusName,jdbcType=VARCHAR}, #{cusPhone,jdbcType=VARCHAR}, #{isActive,jdbcType=BOOLEAN}
+        )
+    </insert>
+
+    <update id="updateOrder"  parameterType="com.boyuan.delivery.model.Order">
+        UPDATE car_order
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orderStatus != null">order_status = #{orderStatus,jdbcType=INTEGER},</if>
+            <if test="orderSource != null">order_source = #{orderSource,jdbcType=INTEGER},</if>
+            <if test="orderType != null">order_type = #{orderType,jdbcType=INTEGER},</if>
+            <if test="adminUserId != null">admin_id = #{adminUserId,jdbcType=BIGINT},</if>
+            <if test="carType != null">car_type = #{carType,jdbcType=INTEGER},</if>
+            <if test="carName != null">car_name = #{carName,jdbcType=VARCHAR},</if>
+            <if test="price != null">price = #{price,jdbcType=VARCHAR},</if>
+            <if test="fromLocation != null">from_location = #{fromLocation,jdbcType=VARCHAR},</if>
+            <if test="toLocation != null">to_location = #{toLocation,jdbcType=VARCHAR},</if>
+            <if test="cusName != null">cus_name = #{cusName,jdbcType=VARCHAR},</if>
+            <if test="cusPhone != null">cus_phone = #{cusPhone,jdbcType=VARCHAR},</if>
+            <if test="isActive != null">is_active = #{isActive,jdbcType=BOOLEAN},</if>
+        </trim>
+        WHERE order_id=#{orderId, jdbcType=BIGINT}
+    </update>
+
+</mapper>
