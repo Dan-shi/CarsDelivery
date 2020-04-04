@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~  Copyright 2020 北京渤远物流. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boyuan.delivery.mapper.UserRoleMapper">
+
+    <resultMap id="UserRoleMap" type="com.boyuan.delivery.model.UserRole">
+        <id column="role_id" jdbcType="BIGINT" property="roleId" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="role_key" jdbcType="VARCHAR" property="roleKey" />
+        <result column="role_description" jdbcType="VARCHAR" property="roleDescription" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <collection column="role_id" ofType="com.boyuan.delivery.model.UserPermission" property="userPermissions" select="com.boyuan.delivery.mapper.UserPermissionMapper.getPermissionsByRoleId" />
+    </resultMap>
+
+    <select id="getUserRoleByRoleId" parameterType="java.lang.Long" resultMap="UserRoleMap">
+
+        select role_id, role_name, role_key, role_description, create_time, update_time
+        from user_role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </select>
+</mapper>

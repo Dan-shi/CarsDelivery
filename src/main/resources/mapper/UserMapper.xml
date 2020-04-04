@@ -11,28 +11,7 @@
         <result column="birthday" jdbcType="VARCHAR" property="birthday" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-        <association column="role_id" property="userRole" select="getUserRoleByRoleId" />
-    </resultMap>
-
-    <resultMap id="UserRoleMap" type="com.boyuan.delivery.model.UserRole">
-        <id column="role_id" jdbcType="BIGINT" property="roleId" />
-        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
-        <result column="role_key" jdbcType="VARCHAR" property="roleKey" />
-        <result column="role_description" jdbcType="VARCHAR" property="roleDescription" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-        <collection column="role_id" ofType="com.boyuan.delivery.model.UserPermission" property="userPermissions" select="getPermissionsByRoleId" />
-    </resultMap>
-
-    <resultMap id="UserPermissionMap" type="com.boyuan.delivery.model.UserPermission">
-        <id column="per_id" jdbcType="BIGINT" property="permissionId" />
-        <result column="per_name" jdbcType="VARCHAR" property="permissionName" />
-        <result column="per_key" jdbcType="VARCHAR" property="permissionKey" />
-        <result column="per_description" jdbcType="VARCHAR" property="permissionDescription" />
-        <result column="per_value" jdbcType="VARCHAR" property="permissionValue" />
-        <result column="role_id" jdbcType="BIGINT" property="roleId" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <association column="role_id" property="userRole" select="com.boyuan.delivery.mapper.UserRoleMapper.getUserRoleByRoleId" />
     </resultMap>
 
     <select id="getUserByUserName" parameterType="java.lang.String" resultMap="UserModelMap">
@@ -50,20 +29,5 @@
         #{userRole.roleId,jdbcType=BIGINT}
         )
     </insert>
-
-    <select id="getUserRoleByRoleId" parameterType="java.lang.Long" resultMap="UserRoleMap">
-
-        select role_id, role_name, role_key, role_description, create_time, update_time
-        from user_role
-        where role_id = #{roleId,jdbcType=BIGINT}
-    </select>
-
-    <select id="getPermissionsByRoleId" parameterType="java.lang.Long" resultMap="UserPermissionMap">
-
-        select per_id, per_name, per_key, per_description, per_value, role_id, create_time, update_time
-        from user_permission
-        where role_id = #{roleId,jdbcType=BIGINT}
-    </select>
-
 
 </mapper>

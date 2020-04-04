@@ -76,7 +76,7 @@ public class Order {
     @Pattern(regexp = "^1(3|4|5|6|7|8|9)\\d{9}$", message = "phone number format wrong")
     private String cusPhone;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     private Date createTime;
 
