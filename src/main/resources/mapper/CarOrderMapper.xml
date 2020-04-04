@@ -25,7 +25,6 @@
     </resultMap>
 
     <insert id="createOrder" parameterType="com.boyuan.delivery.model.Order" useGeneratedKeys="true" keyProperty="orderId">
-
         insert into car_order (order_status, order_source, order_type, admin_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, is_active)
         values (#{orderStatus,jdbcType=INTEGER}, #{orderSource,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{adminUserId,jdbcType=BIGINT},
         #{carType,jdbcType=INTEGER}, #{carName,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{fromLocation,jdbcType=VARCHAR},#{toLocation,jdbcType=VARCHAR},
@@ -58,7 +57,6 @@
     </delete>
 
     <select id="getOrderById" parameterType="java.lang.Long" resultMap="OrderModelMap">
-
         select user_id, user_name, password, phone, sex, age, birthday, role_id, create_time, update_time
         from user
         where user_name = #{username,jdbcType=VARCHAR}

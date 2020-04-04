@@ -6,12 +6,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.boyuan.delivery.mapper.LocationHistoryMapper">
 
-    <insert id="createLocationHis" parameterType="com.boyuan.delivery.model.LocationHistory" useGeneratedKeys="true" keyProperty="locId">
+    <resultMap id="LocHisModelMap" type="com.boyuan.delivery.model.LocationHistory">
+        <id column="loc_id" jdbcType="BIGINT" property="locId"/>
+        <result column="order_id" jdbcType="BIGINT" property="orderId" />
+        <result column="location" jdbcType="VARCHAR" property="location" />
+        <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+        <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
 
+    <insert id="createLocationHis" parameterType="com.boyuan.delivery.model.LocationHistory" useGeneratedKeys="true" keyProperty="locId">
         insert into location_history (order_id, location, longitude, latitude, description)
         values (#{orderId,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
         #{latitude,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
         )
     </insert>
+
+    <update id="updateLocationHis" parameterType="com.boyuan.delivery.model.LocationHistory">
+        update location_history
+        <trim prefix="set" suffixOverrides=",">
+            <if test="location != null">location = #{location,jdbcType=VARCHAR},</if>
+            <if test="longitude != null">longitude = #{longitude,jdbcType=VARCHAR},</if>
+            <if test="latitude != null">latitude = #{latitude,jdbcType=VARCHAR},</if>
+            <if test="description != null">description = #{description,jdbcType=VARCHAR},</if>
+        </trim>
+        WHERE loc_id=#{locId, jdbcType=BIGINT}
+    </update>
+
+    <select id="getLocationHisByOrderId" parameterType="java.lang.Long" resultMap="LocHisModelMap">
+        select loc_id, order_id, location, longitude, latitude, description, create_time, update_time
+        from location_history
+        where order_id = #{orderId,jdbcType=BIGINT}
+    </select>
 
 </mapper>

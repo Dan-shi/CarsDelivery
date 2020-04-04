@@ -8,9 +8,9 @@ import com.boyuan.delivery.model.AdminUser;
 
 public interface AdminUserMapper {
 
-//    AdminUser getAdminUserByName(String adUserName);
+    AdminUser getAdminUserByName(String adUserName);
 
     int createAdminUser(AdminUser adUser);
 
-//    int deleteAdminUserById(long adUserId);
+    int deleteAdminUserById(long adUserId);
 }

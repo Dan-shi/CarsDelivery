@@ -6,6 +6,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.boyuan.delivery.mapper.AdminUserMapper">
 
+    <resultMap id="AdminUserModelMap" type="com.boyuan.delivery.model.AdminUser">
+        <id column="admin_id" jdbcType="BIGINT" property="adUserId" />
+        <result column="admin_name" jdbcType="VARCHAR" property="adUserName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="sex" jdbcType="INTEGER" property="sex" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <association column="role_id" property="userRole" select="com.boyuan.delivery.mapper.UserRoleMapper.getUserRoleByRoleId" />
+    </resultMap>
     <insert id="createAdminUser" parameterType="com.boyuan.delivery.model.AdminUser" useGeneratedKeys="true" keyProperty="adUserId">
 
         insert into admin_user (admin_name, password, email, phone, sex, age, birthday, role_id, is_active)
@@ -13,4 +27,17 @@
         #{sex,jdbcType=INTEGER},#{age,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR}, #{userRole.roleId,jdbcType=BIGINT}, #{isActive,jdbcType=BOOLEAN}
         )
     </insert>
+
+    <update id="deleteAdminUserById" parameterType="java.lang.Long">
+        update admin_user
+        set is_active = false
+        where admin_id = #{adUserId,jdbcType=BIGINT}
+    </update>
+
+    <select id="getAdminUserByName" parameterType="java.lang.String" resultMap="AdminUserModelMap">
+
+        select admin_id, admin_name, password, email, phone, sex, age, birthday, role_id, is_active, create_time, update_time
+        from admin_user
+        where admin_name = #{adUserName,jdbcType=VARCHAR}
+    </select>
 </mapper>
