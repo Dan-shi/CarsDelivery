@@ -1,5 +1,6 @@
 package com.boyuan.delivery.controller;
 
+import com.boyuan.delivery.common.ResultUtils;
 import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.model.BynUser;
 import com.boyuan.delivery.model.Result;
@@ -48,13 +49,10 @@ public class UserController {
     public Result getUserByUserName(@RequestParam(value = "userName") String userName){
 
         try {
-
-            return Result.builder().resultCode(CommonConstant.Status.SUCCESS).returnTime(new Timestamp(System.currentTimeMillis())).resultBody(userService.getUserByUserName(userName)).build();
-
+            return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, this.userService.getUserByUserName(userName));
         } catch (Exception e){
             logger.error("getUserByUserName error", e);
-            return Result.builder().resultCode(CommonConstant.Status.ERROR).returnTime(new Timestamp(System.currentTimeMillis())).build();
-
+            return ResultUtils.buildResult(CommonConstant.Status.ERROR, null);
         }
 
     }
@@ -69,12 +67,10 @@ public class UserController {
     public Result createUser(@RequestBody BynUser user){
 
         try {
-
-            return Result.builder().resultCode(userService.createUser(user)).returnTime(new Timestamp(System.currentTimeMillis())).build();
-
+            return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, userService.createUser(user));
         } catch (Exception e){
             logger.error("Create User error", e);
-            return Result.builder().resultCode(CommonConstant.Status.ERROR).returnTime(new Timestamp(System.currentTimeMillis())).build();
+            return ResultUtils.buildResult(CommonConstant.Status.ERROR, null);
 
         }
 

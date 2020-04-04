@@ -8,5 +8,11 @@ import lombok.Setter;
 @Setter
 public class CommonConfigProperties {
 
-    private long tokenExpireTime;
+    private long loginTokenExpireTime;
+
+    private String emailSenderAddress;
+
+    private String emailAuthCode;
+
+    private String emailRecipientsAddress;
 }

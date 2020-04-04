@@ -19,7 +19,7 @@ public class CommonConfig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "login")
+    @ConfigurationProperties(prefix = "boyuan")
     public CommonConfigProperties commonConfigProperties(){return new CommonConfigProperties();}
 
 }
