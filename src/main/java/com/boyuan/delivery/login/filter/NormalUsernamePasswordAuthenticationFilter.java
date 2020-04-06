@@ -31,7 +31,7 @@ public class NormalUsernamePasswordAuthenticationFilter extends AbstractAuthenti
 	Logger logger = LoggerFactory.getLogger(NormalUsernamePasswordAuthenticationFilter.class);
 	
 	public NormalUsernamePasswordAuthenticationFilter() {
-		super(new AntPathRequestMatcher("/login","POST"));
+		super(new AntPathRequestMatcher("/user/login","POST"));
 	}
 	
 	@Override

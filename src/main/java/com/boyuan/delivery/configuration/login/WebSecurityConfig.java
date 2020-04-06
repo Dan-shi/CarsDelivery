@@ -60,7 +60,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		    .addFilterAfter(new OptionsRequestFilter(), CorsFilter.class)
 		    .apply(new LoginConfigurer<>()).loginSuccessHandler(loginSuccessHandler())
 		    .and()
-		    .apply(new JwtLoginConfigurer<>()).tokenValidSuccessHandler(jwtRefreshSuccessHandler()).permissiveRequestUrls("/logout")
+		    .apply(new JwtLoginConfigurer<>())
+				.tokenValidSuccessHandler(jwtRefreshSuccessHandler())
+				.permissiveRequestUrls("/logout")
 		    .and()
 		    .logout()
 //		        .logoutUrl("/logout")   //默认就是"/logout"

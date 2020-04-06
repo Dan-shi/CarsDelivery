@@ -10,6 +10,7 @@ import com.sun.mail.util.MailSSLSocketFactory;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.GeneralSecurityException;
@@ -41,10 +42,11 @@ public class EmailServiceImpl implements EmailService {
 
     private String authCode;
 
+    @Autowired
     public EmailServiceImpl(CommonConfigProperties configProperties) {
-        this.sender = configProperties.getEmailSenderAddress();
+        this.sender = configProperties.getEmailSender();
         this.authCode = configProperties.getEmailAuthCode();
-        this.recipients = Arrays.asList(configProperties.getEmailRecipientsAddress().split(","));
+        this.recipients = Arrays.asList(configProperties.getEmailRecipients().split(","));
         this.buildEmailSession();
     }
 
