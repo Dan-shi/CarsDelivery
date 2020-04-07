@@ -9,7 +9,7 @@ CREATE TABLE admin_user (
   age int(3),
   birthday varchar(20),
   role_id bigint NOT NULL,
-  is_active boolean NOT NULL,
+  is_active boolean NOT NULL default 1,
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
   PRIMARY KEY (admin_id)
@@ -32,7 +32,7 @@ CREATE TABLE car_order (
   to_location varchar(50) NOT NULL,
   cus_name varchar(32),
   cus_phone varchar(20) NOT NULL,
-  is_active boolean NOT NULL,
+  is_active boolean NOT NULL default 1,
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
   PRIMARY KEY (order_id),

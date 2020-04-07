@@ -9,6 +9,7 @@ import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.model.Order;
 import com.boyuan.delivery.model.Result;
 import com.boyuan.delivery.service.CarOrderService;
+import com.boyuan.delivery.service.EmailService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +23,23 @@ public class OrderController {
     @Autowired
     private CarOrderService carOrderService;
 
+    @Autowired
+    private EmailService emailService;
+
     /**
      * Create new order
      * @param order
      * @return
      */
-    @GetMapping("create")
+    @PostMapping("create")
     public Result createOrder(@RequestBody Order order){
 
         try {
             int result = this.carOrderService.createOrder(order);
+            System.out.println("order id: "+order.getOrderId());
             if(result > 0){
                 //send email
+//                this.emailService.sendOrderEmail(order);
 
             }
             return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, result);

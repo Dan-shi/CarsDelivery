@@ -36,7 +36,6 @@ public class Order {
     @NotNull
     private int orderType;
 
-    @NotNull
     private long adminUserId;
 
     @NotNull

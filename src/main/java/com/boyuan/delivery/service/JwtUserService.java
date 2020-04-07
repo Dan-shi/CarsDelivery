@@ -18,7 +18,6 @@ import java.util.Date;
  * Since webSecurity cannot autowire beans, if we add cacheable annotation to any method in this class, bean conflict will occur.
  * So move all cache methods to UserService
  */
-@Service
 public class JwtUserService implements UserDetailsService {
 	
 	@Autowired

@@ -104,7 +104,7 @@ public class EmailServiceImpl implements EmailService {
                 try {
                     ts.close();
                 } catch (MessagingException e) {
-                    logger.error("Close email transport error, phone number: " + order.getCusPhone(), e);
+                    logger.error("Close email transport error, Order id: " + order.getOrderId(), e);
                 }
             }
         }
@@ -143,7 +143,7 @@ public class EmailServiceImpl implements EmailService {
         //指明邮件的发件人
         message.setFrom(new InternetAddress(sendMail));
         //指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
-        message.setRecipients(Message.RecipientType.TO, (InternetAddress[]) recipients.toArray());
+        message.setRecipients(Message.RecipientType.TO, recipients.toArray(new InternetAddress[0]));
         //邮件的标题
         message.setSubject(subject);
         //邮件的文本内容
