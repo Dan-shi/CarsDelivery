@@ -19,16 +19,17 @@
         <result column="to_location" jdbcType="VARCHAR" property="toLocation" />
         <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
         <result column="cus_phone" jdbcType="VARCHAR" property="cusPhone" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
         <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     </resultMap>
 
     <insert id="createOrder" parameterType="com.boyuan.delivery.model.Order" useGeneratedKeys="true" keyProperty="orderId">
-        insert into car_order (order_status, order_source, order_type, admin_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, is_active)
+        insert into car_order (order_status, order_source, order_type, admin_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, description, is_active)
         values (#{orderStatus,jdbcType=INTEGER}, #{orderSource,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{adminUserId,jdbcType=BIGINT},
         #{carType,jdbcType=INTEGER}, #{carName,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{fromLocation,jdbcType=VARCHAR},#{toLocation,jdbcType=VARCHAR},
-        #{cusName,jdbcType=VARCHAR}, #{cusPhone,jdbcType=VARCHAR}, #{isActive,jdbcType=BOOLEAN}
+        #{cusName,jdbcType=VARCHAR}, #{cusPhone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{isActive,jdbcType=BOOLEAN}
         )
     </insert>
 
@@ -46,6 +47,7 @@
             <if test="toLocation != null">to_location = #{toLocation,jdbcType=VARCHAR},</if>
             <if test="cusName != null">cus_name = #{cusName,jdbcType=VARCHAR},</if>
             <if test="cusPhone != null">cus_phone = #{cusPhone,jdbcType=VARCHAR},</if>
+            <if test="description != null">description = #{description,jdbcType=VARCHAR},</if>
             <if test="isActive != null">is_active = #{isActive,jdbcType=BOOLEAN},</if>
         </trim>
         WHERE order_id=#{orderId, jdbcType=BIGINT}

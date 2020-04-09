@@ -34,7 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 忽略不需要身份验证的uri
 		web.ignoring()
 				// 如果有静态文件
-				.mvcMatchers("/boyuan/**");
+				.mvcMatchers("/boyuan/**")
+				.mvcMatchers("/static/**")
+				.mvcMatchers("/css/**")
+				.mvcMatchers("/images/**")
+				.mvcMatchers("/js/**")
+				.mvcMatchers("/");
 	}
 
 	@Override
@@ -46,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		        .antMatchers("/user/**").hasRole("USER")
 				//登录页面不用权限
 				.antMatchers(HttpMethod.GET, "/admin/login").permitAll()
+				//订单创建不用权限
 				.antMatchers(HttpMethod.POST, "/order/create").permitAll()
 		        .anyRequest().authenticated()
 		        .and()

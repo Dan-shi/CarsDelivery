@@ -21,7 +21,7 @@ import java.util.List;
 @Builder
 public class Order {
 
-    private long orderId;
+    private Long orderId;
 
     @NotNull
     private int orderStatus;
@@ -74,6 +74,8 @@ public class Order {
     @NotBlank
     @Pattern(regexp = "^1(3|4|5|6|7|8|9)\\d{9}$", message = "phone number format wrong")
     private String cusPhone;
+
+    private String description;
 
     private Boolean isActive;
 

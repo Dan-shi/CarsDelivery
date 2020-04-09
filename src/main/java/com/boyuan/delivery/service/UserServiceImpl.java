@@ -36,17 +36,18 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     public int createUser(BynUser user) {
-        SecurityUtils.trimStringFieldOrSetNull(user);
-        if(this.validatorUserInfo(user)){
-            String encryptPwd = passwordEncoder.encode(user.getPassword());
-            user.setPassword(encryptPwd);
-            //Add basic user role
-            user.setUserRole(UserRole.builder().roleId(CommonConstant.UserRole.USER_ROLE_ID).build());
-            int result = userMapper.insertUser(user);
+        if(!this.validatorUserInfo(user)){
+            return CommonConstant.Status.ERROR;
+        }
 
-            if(result > 0){
-                return CommonConstant.Status.SUCCESS;
-            }
+        String encryptPwd = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptPwd);
+        //Add basic user role
+        user.setUserRole(UserRole.builder().roleId(CommonConstant.UserRole.USER_ROLE_ID).build());
+        int result = userMapper.insertUser(user);
+
+        if(result > 0){
+            return CommonConstant.Status.SUCCESS;
         }
 
         return CommonConstant.Status.ERROR;
@@ -59,6 +60,7 @@ public class UserServiceImpl implements UserService {
      * @return true: user is legal; false: user is not legal
      */
     private boolean validatorUserInfo(BynUser user) {
+        SecurityUtils.trimStringFieldOrSetNull(user);
 
         ValidationResult result = ValidationUtils.validateEntity(user);
         if(result.isHasErrors()){

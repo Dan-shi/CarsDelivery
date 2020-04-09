@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 public class UserPermission {
     
-    private long permissionId;
+    private Long permissionId;
 
     private String permissionName;
 
@@ -23,7 +23,7 @@ public class UserPermission {
 
     private String permissionValue;
 
-    private long roleId;
+    private Long roleId;
 
     private Date createTime;
 

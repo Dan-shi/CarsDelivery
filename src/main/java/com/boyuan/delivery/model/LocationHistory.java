@@ -19,10 +19,10 @@ import java.util.Date;
 @Builder
 public class LocationHistory {
 
-    private long locId;
+    private Long locId;
 
     @NotNull
-    private long orderId;
+    private Long orderId;
 
     @NotBlank
     private String location;

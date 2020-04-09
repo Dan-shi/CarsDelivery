@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("boyuan")
 public class WebUIController {
-    @GetMapping("index")
-    public String adminLogin(Model model){
+    @GetMapping("/")
+    public String index(Model model){
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_INDEX;
     }

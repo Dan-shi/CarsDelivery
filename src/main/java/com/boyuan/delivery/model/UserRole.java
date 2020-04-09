@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class UserRole {
 
-    private long roleId;
+    private Long roleId;
 
     private String roleName;
 

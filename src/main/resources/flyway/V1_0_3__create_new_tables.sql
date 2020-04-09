@@ -33,6 +33,7 @@ CREATE TABLE car_order (
   cus_name varchar(32),
   cus_phone varchar(20) NOT NULL,
   is_active boolean NOT NULL default 1,
+  description varchar(255),
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
   PRIMARY KEY (order_id),

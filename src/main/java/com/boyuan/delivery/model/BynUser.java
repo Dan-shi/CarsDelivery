@@ -18,7 +18,7 @@ import java.util.Date;
 @Builder
 public class BynUser {
 
-    private long userId;
+    private Long userId;
 
     @NotBlank(message = "User name should not be null or empty")
     private String userName;

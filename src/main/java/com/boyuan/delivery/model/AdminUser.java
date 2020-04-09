@@ -21,7 +21,7 @@ import java.util.Date;
 @Builder
 public class AdminUser {
 
-    private long adUserId;
+    private Long adUserId;
 
     @NotBlank(message = "Admin user name should not be null or empty")
     private String adUserName;
