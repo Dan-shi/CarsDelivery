@@ -6,12 +6,14 @@ package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.ResultUtils;
 import com.boyuan.delivery.constant.CommonConstant;
+import com.boyuan.delivery.constant.CommonConstant.UserRole;
 import com.boyuan.delivery.model.Blog;
 import com.boyuan.delivery.model.Result;
 import com.boyuan.delivery.service.BlogService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,6 +31,7 @@ public class BlogController {
      * @param blog
      * @return
      */
+    @Secured(UserRole.ADMIN)
     @PostMapping("create")
     public Result createBlog(@RequestBody Blog blog) {
 
@@ -47,6 +50,7 @@ public class BlogController {
      * @param blog
      * @return
      */
+    @Secured(UserRole.ADMIN)
     @PostMapping("update")
     public Result updateBlog(@RequestBody Blog blog) {
 
@@ -65,6 +69,7 @@ public class BlogController {
      * @param blogId
      * @return
      */
+    @Secured(UserRole.ADMIN)
     @GetMapping("delete")
     public Result deleteBlog(@PathVariable(value = "blogId") Long blogId) {
 
@@ -83,12 +88,63 @@ public class BlogController {
      * @param blogId
      * @return
      */
+    @Secured(UserRole.USER)
     @GetMapping("getBlog")
     public Result getBlogById(@PathVariable(value = "blogId") Long blogId) {
         try {
             return ResultUtils.buildResultWithBody(this.blogService.getBlogById(blogId));
         } catch (Exception e) {
             logger.error("Get blog error", e);
+            return ResultUtils.buildErrorResult(e.getMessage());
+        }
+    }
+
+
+    /**
+     * Get page total number
+     *
+     * @return
+     */
+    @Secured(UserRole.USER)
+    @GetMapping("getPageCount")
+    public Result getPageCount() {
+        try {
+            return ResultUtils.buildResultWithBody(this.blogService.getPageCount(CommonConstant.Page.limit));
+        } catch (Exception e) {
+            logger.error("Get page count error", e);
+            return ResultUtils.buildErrorResult(e.getMessage());
+        }
+    }
+
+    /**
+     * Get blog list by page number
+     *
+     * @return
+     */
+    @Secured(UserRole.USER)
+    @GetMapping("getBlogListByPage")
+    public Result getBlogListByPage(@PathVariable(value = "pageNum") int pageNum) {
+        try {
+            return ResultUtils.buildResultWithBody(this.blogService.getBlogListByPage(pageNum, CommonConstant.Page.limit));
+        } catch (Exception e) {
+            logger.error("Get blog by page number error", e);
+            return ResultUtils.buildErrorResult(e.getMessage());
+        }
+    }
+
+    /**
+     * Get blog list by last blog primary id
+     *
+     * @param lastBlogId
+     * @return
+     */
+    @Secured(UserRole.USER)
+    @GetMapping("getBlogListByBlogId")
+    public Result getBlogListByBlogId(@PathVariable(value = "blogId") long lastBlogId) {
+        try {
+            return ResultUtils.buildResultWithBody(this.blogService.getBlogListByBlogId(lastBlogId, CommonConstant.Page.limit));
+        } catch (Exception e) {
+            logger.error("Get blog by last blog id error", e);
             return ResultUtils.buildErrorResult(e.getMessage());
         }
     }

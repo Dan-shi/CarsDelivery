@@ -6,6 +6,7 @@ package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.ResultUtils;
 import com.boyuan.delivery.constant.CommonConstant;
+import com.boyuan.delivery.constant.CommonConstant.UserRole;
 import com.boyuan.delivery.enumeration.CommonResult;
 import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.model.Order;
@@ -15,6 +16,7 @@ import com.boyuan.delivery.service.EmailService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,6 +36,7 @@ public class OrderController {
      * @param order
      * @return
      */
+    @Secured(UserRole.USER)
     @PostMapping("create")
     public Result createOrder(@RequestBody Order order) {
 
@@ -58,6 +61,7 @@ public class OrderController {
      * @param order
      * @return
      */
+    @Secured(UserRole.ADMIN)
     @PostMapping("update")
     public Result updateOrder(@RequestBody Order order) {
 
@@ -77,6 +81,7 @@ public class OrderController {
      * @param orderId
      * @return
      */
+    @Secured(UserRole.ADMIN)
     @GetMapping("delete")
     public Result deleteOrder(@PathVariable(value = "orderId") Long orderId) {
 
@@ -96,6 +101,7 @@ public class OrderController {
      * @param orderId
      * @return
      */
+    @Secured(UserRole.USER)
     @GetMapping("getOrder")
     public Result getOrderById(@PathVariable(value = "orderId") Long orderId) {
         try {

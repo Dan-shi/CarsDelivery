@@ -5,7 +5,6 @@
 package com.boyuan.delivery.service;
 
 import com.boyuan.delivery.common.ValidationUtils;
-import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.enumeration.CommonResult;
 import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.mapper.BlogMapper;
@@ -16,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,13 +69,27 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getBlogList(int startPage, int limitSize) {
-        return null;
+    public int getPageCount(int limit) {
+        return this.blogMapper.getPageCount(limit);
     }
 
     @Override
-    public List<Blog> getBlogList(long startBlogId, int limitSize) {
-        return null;
+    public List<Blog> getBlogListByPage(int pageNum, int limit) {
+        if (pageNum < 0 || limit < 0) {
+            this.logger.error("getBlogListByPage parameter error");
+            return new ArrayList<>();
+        }
+        return this.blogMapper.getBlogListByPage(pageNum * limit, limit);
     }
+
+    @Override
+    public List<Blog> getBlogListByBlogId(long lastBlogId, int limit) {
+        if (lastBlogId < 0 || limit < 0) {
+            this.logger.error("getBlogListByBlogId parameter error");
+            return new ArrayList<>();
+        }
+        return this.blogMapper.getBlogListByBlogId(lastBlogId, limit);
+    }
+
 }
 

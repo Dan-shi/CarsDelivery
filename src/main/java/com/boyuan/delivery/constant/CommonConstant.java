@@ -39,22 +39,20 @@ public class CommonConstant {
         public static final String USER = "USER";
 
         /**
-         * User role id
+         * Admin role
          */
-        public static final long USER_ROLE_ID = 1L;
+        public static final String ADMIN = "ADMIN";
     }
 
     /**
-     * Status code
+     * Page setting
      */
-    public static class Status{
+    public static class Page {
 
         /**
-         * Return 1001 if there is ERROR happened
+         * Page size
          */
-        public static final int ERROR = -1001;
-
-        public static final int SUCCESS = -1000;
+        public static final int limit = 10;
     }
 
 }

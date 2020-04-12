@@ -47,8 +47,30 @@
     </update>
 
     <select id="getBlogById" parameterType="java.lang.Long" resultMap="BlogModelMap">
-        select blog_id, title, description, author, imageUrl, blogType, content, create_time, update_time
+        select blog_id, title, description, author, imageUrl, blogType, is_active, content, create_time, update_time
         from user
         where blog_id = #{blogId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getBlogListByPage" resultMap="BlogModelMap">
+      select blog_id, title, description, author, imageUrl, blogType, is_active, create_time, update_time
+      from blog
+      where is_active = true
+      order by update_time desc
+      limit #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+    </select>
+
+    <select id="getBlogListByBlogId" resultMap="BlogModelMap">
+      select blog_id, title, description, author, imageUrl, blogType, is_active, create_time, update_time
+      from blog
+      where is_active = true and blog_id > #{lastBlogId,jdbcType=BIGINT}
+      order by update_time desc
+      limit #{limit,jdbcType=INTEGER}
+    </select>
+
+    <select id="getPageCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select ceil(count(*)/#{limit,jdbcType=INTEGER})
+        from blog
+        where is_active = true
     </select>
 </mapper>

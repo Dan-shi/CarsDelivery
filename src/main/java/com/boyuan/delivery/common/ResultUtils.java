@@ -41,7 +41,7 @@ public class ResultUtils {
      * @return
      */
     public static Result buildErrorResult(String message) {
-        return ResultUtils.buildResult(CommonResult.UNEXPECTED_ERROR.getCode(), message, null);
+        return buildResult(CommonResult.UNEXPECTED_ERROR.getCode(), message, null);
     }
 
     /**
@@ -51,7 +51,7 @@ public class ResultUtils {
      * @return
      */
     public static Result buildResultByResultInfo(ResultInfo result) {
-        return ResultUtils.buildResult(result.getCode(), result.getMessage(), null);
+        return buildResult(result.getCode(), result.getMessage(), null);
     }
 
     /**
@@ -61,7 +61,7 @@ public class ResultUtils {
      * @return
      */
     public static Result buildResultWithBody(Object resultBody) {
-        return ResultUtils.buildResult(CommonResult.SUCCESS.getCode(), CommonResult.SUCCESS.getMessage(), resultBody);
+        return buildResult(CommonResult.SUCCESS.getCode(), CommonResult.SUCCESS.getMessage(), resultBody);
     }
 
 }

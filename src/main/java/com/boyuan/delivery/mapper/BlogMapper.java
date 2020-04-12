@@ -14,12 +14,13 @@ public interface BlogMapper {
 
     int updateBlog(Blog blog);
 
-
     int deleteBlogById(long blogId);
 
     Blog getBlogById(long blogId);
 
-    List<Blog> getBlogList(int startPage, int limitSize);
+    int getPageCount(int limit);
 
-    List<Blog> getBlogList(long startBlogId, int limitSize);
+    List<Blog> getBlogListByPage(int offset, int limit);
+
+    List<Blog> getBlogListByBlogId(long lastBlogId, int limit);
 }

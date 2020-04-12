@@ -4,6 +4,9 @@
 
 package com.boyuan.delivery.enumeration;
 
+/**
+ * Common result code and message
+ */
 public enum CommonResult implements ResultInfo {
     SUCCESS(100, "SUCCESS"),
     CREATE_ERROR(-100, "CREATE_ERROR"),
@@ -11,7 +14,8 @@ public enum CommonResult implements ResultInfo {
     DELETE_ERROR(-102, "DELETE_ERROR"),
     RETURN_ERROR(-103, "RETURN_ERROR"),
     VALIDATION_ERROR(-104, "VALIDATION_ERROR"),
-    UNEXPECTED_ERROR(-105, "UNEXPECTED_ERROR");
+    PARAMETER_ERROR(-105, "PARAMETER_ERROR"),
+    UNEXPECTED_ERROR(-106, "UNEXPECTED_ERROR");
 
 
     private int code;
