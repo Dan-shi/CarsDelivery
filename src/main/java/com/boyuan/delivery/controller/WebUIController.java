@@ -16,4 +16,34 @@ public class WebUIController {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_INDEX;
     }
+
+    @GetMapping("/boyuan/makeOrder")
+    public String makeOrder(Model model){
+        model.addAttribute("msg", "index");
+        return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_ORDER;
+    }
+
+    @GetMapping("/boyuan/about")
+    public String about(Model model){
+        model.addAttribute("msg", "index");
+        return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_ABOUT;
+    }
+
+    @GetMapping("/boyuan/cases")
+    public String cases(Model model){
+        model.addAttribute("msg", "index");
+        return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_CASES;
+    }
+
+    @GetMapping("/boyuan/news")
+    public String news(Model model){
+        model.addAttribute("msg", "index");
+        return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS;
+    }
+
+    @GetMapping("/boyuan/newsDetail")
+    public String newsDetail(Model model){
+        model.addAttribute("msg", "index");
+        return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS_DETAIL;
+    }
 }

@@ -16,6 +16,7 @@
     <script src="/js/jquery-1.7.2.min.js"></script>
     <script src="/js/html5zoo.js"></script>
     <script src="/js/lovelygallery.js"></script>
+    <script src="/js/common.js"></script>
 
     <title>首页</title>
     <script type="text/javascript">
@@ -84,9 +85,9 @@
         <ul>
             <li><a href="#">首页</a></li>
             <li><a href="#">托运必读</a></li>
-            <li><a href="#">在线询价</a></li>
-            <li><a href="#">托运案例</a></li>
-            <li><a href="#">关于我们</a></li>
+            <li><a href="/boyuan/makeOrder">在线询价</a></li>
+            <li><a href="/boyuan/cases">托运案例</a></li>
+            <li><a href="/boyuan/about">关于我们</a></li>
         </ul>
     </div>
 </div>
@@ -102,9 +103,9 @@
         <ul>
             <li><a href="#">首页</a></li>
             <li><a href="#">托运必读</a></li>
-            <li><a href="#">15秒获取报价</a></li>
-            <li><a href="#">托运案例</a></li>
-            <li><a href="#">关于我们</a></li>
+            <li><a href="/boyuan/makeOrder">在线询价</a></li>
+            <li><a href="/boyuan/cases">托运案例</a></li>
+            <li><a href="/boyuan/about">关于我们</a></li>
         </ul>
     </div>
 </div>
@@ -135,98 +136,46 @@
             <div class="baojia_b_l">
                 <div class="baijia_nr">
                     <ul>
-                        <li><input name="请填写车型" type="text" value="请填写车型"/></li>
-                        <li><select name="请填写始发城市" type="text" value="请填写始发城市">
-                            <option>请填写始发城市</option>
-                            <option>哈尔滨</option>
-                            <option>长春</option>
-                            <option>沈阳</option>
-                            <option>大连</option>
-                            <option>呼和浩特</option>
-                            <option>三亚</option>
-                            <option>海口</option>
-                            <option>广州</option>
-                            <option>深圳</option>
-                            <option>东莞</option>
-                            <option>乌鲁木齐</option>
-                            <option>西宁</option>
-                            <option>兰州</option>
-                            <option>西安</option>
-                            <option>太原</option>
-                            <option>拉萨</option>
-                            <option>青岛</option>
-                            <option>成都</option>
-                            <option>重庆</option>
-                            <option>郑州</option>
-                            <option>昆明</option>
-                            <option>贵阳</option>
-                            <option>长沙</option>
-                            <option>武汉</option>
-                            <option>宁波</option>
-                            <option>福州</option>
-                            <option>厦门</option>
-                            <option>杭州</option>
-                            <option>上海</option>
-                            <option>济南</option>
-                            <option>南宁</option>
-                            <option>包头</option>
-                            <option>海南</option>
-                            <option>天津</option>
-                            <option>北京</option>
-                        </select><span><img src="/images/index_23.jpg"/></span></li>
-                        <li><select name="请填写到达城市" type="text" value="请填写到达城市">
-                            <option>请填写到达城市</option>
-                            <option>哈尔滨</option>
-                            <option>长春</option>
-                            <option>沈阳</option>
-                            <option>大连</option>
-                            <option>呼和浩特</option>
-                            <option>三亚</option>
-                            <option>海口</option>
-                            <option>广州</option>
-                            <option>深圳</option>
-                            <option>东莞</option>
-                            <option>乌鲁木齐</option>
-                            <option>西宁</option>
-                            <option>兰州</option>
-                            <option>西安</option>
-                            <option>太原</option>
-                            <option>拉萨</option>
-                            <option>青岛</option>
-                            <option>成都</option>
-                            <option>重庆</option>
-                            <option>郑州</option>
-                            <option>昆明</option>
-                            <option>贵阳</option>
-                            <option>长沙</option>
-                            <option>武汉</option>
-                            <option>宁波</option>
-                            <option>福州</option>
-                            <option>厦门</option>
-                            <option>杭州</option>
-                            <option>上海</option>
-                            <option>济南</option>
-                            <option>南宁</option>
-                            <option>包头</option>
-                            <option>海南</option>
-                            <option>天津</option>
-                            <option>北京</option>
-                        </select><span><img src="/images/index_23.jpg"/></span></li>
-                        <li><input name="请填写您的电话" type="text" value="请填写您的电话"/></li>
-                        <li class="yz"><input name="请填写验证码" type="text" value="请填写验证码"/></li>
-                        <div class="yzm"><a href="#">获取验证码</a></div>
+                        <li>
+                            <input  type="text" id="carName" placeholder="请填写车型"/>
+                        </li>
+                        <li>
+                            <select  type="text" id="carType" value="请选择车型">
+                                <option>请选择车型</option>
+                                <option value="0">轿车</option>
+                                <option value="1">SUV</option>
+                                <option value="2">皮卡</option>
+                                <option value="3">其他</option>
+                            </select>
+                            <span><img src="/images/index_23.jpg"/></span>
+                        </li>
+                        <li>
+                            <input type="text" id="fromLoc" placeholder="请填写出发城市"/>
+                        </li>
+                        <li>
+                            <input type="text" id="toLoc" placeholder="请填写到达城市">
+                        </li>
+                        <li>
+                            <input type="text" id="cusName" placeholder="请填写您的姓名 -- 选填">
+                        </li>
+                        <li>
+                            <input type="text" id="cusPhone" placeholder="请填写您的电话"/>
+                        </li>
+                        <li>
+                            <input type="text" id="description" placeholder="留言"/>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="zhanwei"></div>
-            <div class="baojia_b_r"><a href="#">15秒获取报价</a></div>
+            <div class="baojia_b_r"><a onclick="submitOrder()">15秒获取报价</a></div>
         </div>
     </div>
 </div>
 <!--pc  报价结束-->
 <div class="clear"></div>
 <!--pc 案例开始-->
-<div class="pcnali">
+<!-- <div class="pcnali">
     <div class="mask2">
         <div class="anlib">案例<span style=" color:#f08519;">展示</span></div>
         <div class="anliti">一对一服务全程送车险，汽车托运业内第一</div>
@@ -296,7 +245,7 @@
         </div>
         <div class="anli_more"><a href="#">MORE+</a></div>
     </div>
-</div>
+</div> -->
 <!--pc 案例结束-->
 <div class="clear"></div>
 <!--pc托运流程开始-->
@@ -306,48 +255,48 @@
         <div class="tuoyunti">标准运车流程，一站式门到门服务</div>
         <div class="tuoyunnr">
             <ul>
-                <li><a href="#">
+                <li><div>
                     <div class="dian">01</div>
                     <div class="diannr">签订运输协议</div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">02</div>
                     <div class="diannr">购买商品保险</div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">03</div>
                     <div class="diannr">专业司机装车</div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">04</div>
                     <div class="diannr">验车双方确认</div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">05</div>
                     <div class="diannr">司机与收车人<br/>
                         核实身份信息
                     </div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">06</div>
                     <div class="diannr">确认交车地点</div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">07</div>
                     <div class="diannr">完成检验<br/>
                         支付司机运费
                     </div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">08</div>
                     <div class="diannr">随同车辆合法证件<br/>
                         行驶证复印件钥匙
                     </div>
-                </a></li>
-                <li><a href="#">
+                </div></li>
+                <li><div>
                     <div class="dian">09</div>
                     <div class="diannr">完成</div>
-                </a></li>
+                </div></li>
 
             </ul>
         </div>
@@ -363,41 +312,41 @@
         <div class="choosenr">
             <ul>
                 <li>
-                    <a href="#">
+                    <div>
                         <div class="choose_tp"><img src="/images/11_13.jpg"/></div>
                         <div class="choose_xx">操作便捷</div>
                         <div class="cgoose_xz">价格极速查询,服务按需选择<br/>
                             路线智能匹配,时间智能安排
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">
+                    <div>
                         <div class="choose_tp"><img src="/images/11_13.jpg"/></div>
                         <div class="choose_xx">贴心服务</div>
                         <div class="cgoose_xz">上门接车送车,赠送20万保险<br/>
                             公开装车现场,全程GPS定位
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">
+                    <div>
                         <div class="choose_tp"><img src="/images/11_13.jpg"/></div>
                         <div class="choose_xx">收费严谨</div>
                         <div class="cgoose_xz">限时送达超期赔付100元/天
                             <br/>
                             先运车后收费,中途绝不加价
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">
+                    <div>
                         <div class="choose_tp"><img src="/images/11_13.jpg"/></div>
                         <div class="choose_xx">实力强劲</div>
                         <div class="cgoose_xz">全国省份服务接待地级以上城市<br/>
                             轿车运输专线新版合规挂车运力
                         </div>
-                    </a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -417,64 +366,64 @@
         <div class="tuoyun_nr">
             <ul>
                 <li class="fabzhuan">
-                    <a href="#">
+                    <div>
                         <div class="ty_tp"><img src="/images/icon_25.jpg"/></div>
                         <div class="ty_bt">体系专业高效</div>
                         <div class="ty_wz">十余年打磨标准化流程<br/>
                             ISO质量体系认证<br/>
                             为您提供优质的运车服务体验
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li class="fabzhuan">
-                    <a href="#">
+                    <div>
                         <div class="ty_tp"><img src="/images/icon_28.jpg"/></div>
                         <div class="ty_bt">1v1客服</div>
                         <div class="ty_wz">我们承诺无任何额外收费<br/>
                             按线路车型匹配价格<br/>
                             让您的花费物有所值
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li class="fabzhuan">
-                    <a href="#">
+                    <div>
                         <div class="ty_tp"><img src="/images/icon_30.jpg"/></div>
                         <div class="ty_bt">全程保险提前赔付</div>
                         <div class="ty_wz">与保险公司合作<br/>
                             运车全程保险<br/>
                             免除您的后顾之忧
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li class="fabzhuan">
-                    <a href="#">
+                    <div>
                         <div class="ty_tp"><img src="/images/icon_35.jpg"/></div>
                         <div class="ty_bt">全国路线覆盖</div>
                         <div class="ty_wz">全国重点城市均有服务网点<br/>
                             运输路线覆盖全国城市<br/>
                             让您运车更方便
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li class="fabzhuan">
-                    <a href="#">
+                    <div>
                         <div class="ty_tp"><img src="/images/icon_36.jpg"/></div>
                         <div class="ty_bt">安全第一原则</div>
                         <div class="ty_wz">标准化车辆入场、检查、<br/>
                             装卸、驾驶操作，、<br/>
                             用心做好每一公里服务细节
                         </div>
-                    </a>
+                    </div>
                 </li>
                 <li class="fabzhuan">
-                    <a href="#">
+                    <div>
                         <div class="ty_tp"><img src="/images/icon_37.jpg"/></div>
                         <div class="ty_bt">价格透明，绝不坐地起价</div>
                         <div class="ty_wz">我们承诺无任何额外收费<br/>
                             每一台均按车型、线路、提送、<br/>
                             仓配等服务匹配价格，让您花费物有所值
                         </div>
-                    </a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -500,7 +449,7 @@
                 <div class="ckg"><a href="#"><img src="/images/xz_47.png"/></a></div>
             </div>
         </div>
-        <div class="guanyu_more"><a href="#">MORE+</a></div>
+        <!-- <div class="guanyu_more"><a href="#">MORE+</a></div> -->
     </div>
 </div>
 <!--pc 关于我们-->
@@ -596,7 +545,7 @@
                         </a>
                         </li>
                     </ul>
-                    <li class="gengduo"><img src="/images/xz_47.png"/></li>
+                    <!-- <li class="gengduo"><img src="/images/xz_47.png"/></li> -->
                 </div>
 
                 <div>

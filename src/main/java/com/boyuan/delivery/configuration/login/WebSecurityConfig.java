@@ -40,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.mvcMatchers("/css/**")
 				.mvcMatchers("/images/**")
 				.mvcMatchers("/js/**")
-				.mvcMatchers("/");
+				.mvcMatchers("/")
+				.mvcMatchers("/boyuan/**");
 	}
 
 	@Override

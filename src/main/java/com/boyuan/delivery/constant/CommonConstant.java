@@ -27,6 +27,17 @@ public class CommonConstant {
          * Index page
          */
         public static final String WEB_INDEX = "index";
+
+        public static final String WEB_ORDER = "makeOrder";
+
+        public static final String WEB_ABOUT = "about";
+
+        public static final String WEB_CASES = "cases";
+
+        public static final String WEB_NEWS = "news";
+
+        public static final String WEB_NEWS_DETAIL = "newsDetail";
+
     }
 
     /**
