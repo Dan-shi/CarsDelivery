@@ -4,8 +4,6 @@
 
 package com.boyuan.delivery.common;
 
-import com.alibaba.fastjson.JSONObject;
-import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.enumeration.CommonResult;
 import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.model.Result;

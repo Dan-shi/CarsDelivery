@@ -1,5 +1,6 @@
 package com.boyuan.delivery.configuration.login;
 
+import com.boyuan.delivery.login.filter.NormalUsernamePasswordAuthenticationFilter;
 import com.boyuan.delivery.login.handler.LoginFailureHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.HttpSecurityBuilder;
@@ -7,7 +8,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
-import com.boyuan.delivery.login.filter.NormalUsernamePasswordAuthenticationFilter;
 
 public class LoginConfigurer<T extends LoginConfigurer<T, B>, B extends HttpSecurityBuilder<B>> extends AbstractHttpConfigurer<T, B> {
 

@@ -14,7 +14,7 @@ CREATE TABLE blog (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- blog_type
-INSERT INTO reference_category(category_id, category_name, category_key, category_description) VALUES (6, 'Blog Type', 'BLOG_TYPE', '文章类型');
+INSERT INTO reference_category(category_id, category_name, category_key, category_description) VALUES (7, 'Blog Type', 'BLOG_TYPE', '文章类型');
 
-INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('News', 'NEWS', '新闻', 0, 6);
-INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Case', 'Case', '案例', 1, 6);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('News', 'NEWS', '新闻', 0, 7);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Case', 'Case', '案例', 1, 7);

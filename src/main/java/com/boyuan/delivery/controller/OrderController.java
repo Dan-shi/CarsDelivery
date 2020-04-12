@@ -5,9 +5,10 @@
 package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.ResultUtils;
-import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.constant.CommonConstant.UserRole;
 import com.boyuan.delivery.enumeration.CommonResult;
+import com.boyuan.delivery.enumeration.OrderStatus;
+import com.boyuan.delivery.enumeration.OrderType;
 import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.model.Order;
 import com.boyuan.delivery.model.Result;
@@ -41,10 +42,14 @@ public class OrderController {
     public Result createOrder(@RequestBody Order order) {
 
         try {
+            //set default value
+            order.setOrderStatus(OrderStatus.SUBMIT.getValue());
+            order.setOrderType(OrderType.NORMAL.getValue());
+
             ResultInfo result = this.carOrderService.createOrder(order);
             if (result == CommonResult.SUCCESS) {
                 //send email
-//                this.emailService.sendOrderEmail(order);
+                this.emailService.sendOrderEmail(order);
 
             }
             return ResultUtils.buildResultByResultInfo(result);

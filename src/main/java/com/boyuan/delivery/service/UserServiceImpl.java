@@ -1,15 +1,12 @@
 package com.boyuan.delivery.service;
 
-import com.boyuan.delivery.common.SecurityUtils;
 import com.boyuan.delivery.common.ValidationUtils;
-import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.enumeration.CommonResult;
 import com.boyuan.delivery.enumeration.ResultInfo;
+import com.boyuan.delivery.enumeration.UserRoleInfo;
 import com.boyuan.delivery.mapper.UserMapper;
 import com.boyuan.delivery.model.BynUser;
 import com.boyuan.delivery.model.UserRole;
-import com.boyuan.delivery.model.ValidationResult;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +45,7 @@ public class UserServiceImpl implements UserService {
         String encryptPwd = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptPwd);
         //Add basic user role
-        user.setUserRole(UserRole.builder().roleId(CommonConstant.UserRole.USER_ROLE_ID).build());
+        user.setUserRole(UserRole.builder().roleId(UserRoleInfo.USER.getRoleId()).build());
         int result = userMapper.insertUser(user);
 
         if (result <= 0) {

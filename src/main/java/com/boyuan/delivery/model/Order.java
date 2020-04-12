@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
@@ -24,7 +23,6 @@ public class Order {
 
     private Long orderId;
 
-    @NotNull
     private Integer orderStatus;
 
     /**
@@ -34,7 +32,6 @@ public class Order {
     @NotNull
     private Integer orderSource;
 
-    @NotNull
     private Integer orderType;
 
     private Long adminUserId;

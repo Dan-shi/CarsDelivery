@@ -5,7 +5,6 @@
 package com.boyuan.delivery.service;
 
 import com.boyuan.delivery.model.AdminUser;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
 /**
  * Admin user

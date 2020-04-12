@@ -30,7 +30,7 @@ public class CommonConstant {
     }
 
     /**
-     * UserRole name
+     * UserRoleInfo name
      */
     public static class UserRole {
         /**

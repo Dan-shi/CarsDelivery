@@ -1,20 +1,13 @@
 package com.boyuan.delivery.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.boyuan.delivery.common.ResultUtils;
-import com.boyuan.delivery.constant.CommonConstant;
-import com.boyuan.delivery.model.Result;
 import com.boyuan.delivery.service.AdminUserService;
 import com.boyuan.delivery.service.JwtUserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static com.boyuan.delivery.constant.CommonConstant.AdminUrlMapping;

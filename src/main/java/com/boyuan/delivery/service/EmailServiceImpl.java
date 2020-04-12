@@ -11,13 +11,22 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.security.GeneralSecurityException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
-import javax.mail.*;
-import javax.mail.internet.*;
 
 /**
  * 使用JavaMail发送邮件的5个步骤:
@@ -82,6 +91,7 @@ public class EmailServiceImpl implements EmailService {
      * @param order
      */
     @Override
+    @Async
     public void sendOrderEmail(Order order) {
         Transport ts = null;
         try {
@@ -93,7 +103,7 @@ public class EmailServiceImpl implements EmailService {
 
             //4、创建邮件
             //创建邮件对象
-            MimeMessage message = createEmailMessage(this.sender, this.recipients, "只包含文本的简单邮件", "你好啊！");
+            MimeMessage message = createEmailMessage(this.sender, this.recipients, order);
             //5、发送邮件
             ts.sendMessage(message, message.getAllRecipients());
 
@@ -115,12 +125,10 @@ public class EmailServiceImpl implements EmailService {
      *
      * @param sendMail     from who
      * @param receiveMails recipients
-     * @param subject
-     * @param messageBody
      * @return
      * @throws MessagingException
      */
-    private MimeMessage createEmailMessage(String sendMail, List<String> receiveMails, String subject, String messageBody) throws MessagingException {
+    private MimeMessage createEmailMessage(String sendMail, List<String> receiveMails, Order order) throws MessagingException {
         //创建邮件对象
         MimeMessage message = new MimeMessage(this.session);
 
@@ -145,9 +153,125 @@ public class EmailServiceImpl implements EmailService {
         //指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
         message.setRecipients(Message.RecipientType.TO, recipients.toArray(new InternetAddress[0]));
         //邮件的标题
-        message.setSubject(subject);
+        message.setSubject(this.buildSubject(order));
         //邮件的文本内容
-        message.setContent(messageBody, "text/html;charset=UTF-8");
+        message.setContent(this.buildContent(order), "text/html;charset=UTF-8");
         return message;
+    }
+
+    /**
+     * Build email subject
+     *
+     * @param order
+     * @return
+     */
+    private String buildSubject(Order order) {
+        return "渤远物流 新的订单: 从" + order.getFromLocation() + "到" + order.getToLocation();
+    }
+
+    /**
+     * Build email content
+     *
+     * @param order
+     * @return
+     */
+    private String buildContent(Order order) {
+        String result = "<style>\n" +
+                "table{ border-collapse:collapse; border:solid 1px Black; }\n" +
+                "table td{border:solid 1px Black; padding:5px;}\n" +
+                "</style>\n" +
+                "<table>\n" +
+                "<tr>\n" +
+                "<td>订单号</td>\n" +
+                "<td>" + order.getOrderId() + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>客户电话</td>\n" +
+                "<td>" + order.getCusPhone() + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>客户姓名</td>\n" +
+                "<td>" + order.getCusName() + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>订单来源</td>\n" +
+                "<td>" + getOrderSource(order.getOrderSource()) + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>始发地</td>\n" +
+                "<td>" + order.getFromLocation() + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>目的地</td>\n" +
+                "<td>" + order.getToLocation() + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>车辆类型</td>\n" +
+                "<td>" + getCarType(order.getCarType()) + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>车辆名字</td>\n" +
+                "<td>" + order.getCarName() + "</td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td>留言</td>\n" +
+                "<td>" + order.getDescription() + "</td>\n" +
+                "</tr>\n" +
+                "</table>";
+
+        return result;
+    }
+
+    /**
+     * TODO replace this method to use reference service
+     *
+     * @param orderSource
+     * @return
+     */
+    private String getOrderSource(int orderSource) {
+        String result = null;
+        switch (orderSource) {
+            case 0:
+                result = "网页";
+                break;
+            case 1:
+                result = "小程序";
+                break;
+            case 2:
+                result = "推广";
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return result;
+    }
+
+    /**
+     * TODO replace this method to use reference service
+     *
+     * @param orderSource
+     * @return
+     */
+    private String getCarType(int orderSource) {
+        String result = null;
+        switch (orderSource) {
+            case 0:
+                result = "轿车";
+                break;
+            case 1:
+                result = "SUV";
+                break;
+            case 2:
+                result = "皮卡";
+                break;
+            case 3:
+                result = "其他";
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return result;
     }
 }

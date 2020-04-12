@@ -7,7 +7,7 @@ package com.boyuan.delivery.enumeration;
 /**
  * User role info
  */
-public enum UserRole {
+public enum UserRoleInfo {
     ADMIN(1L, "Admin", "ADMIN"),
     USER(2L, "User", "USER");
 
@@ -15,7 +15,7 @@ public enum UserRole {
     private String roleName;
     private String roleKey;
 
-    UserRole(long roleId, String roleName, String roleKey) {
+    UserRoleInfo(long roleId, String roleName, String roleKey) {
         this.roleId = roleId;
         this.roleName = roleName;
         this.roleKey = roleKey;

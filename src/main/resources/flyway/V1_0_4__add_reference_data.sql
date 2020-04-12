@@ -26,10 +26,11 @@ INSERT INTO reference_category(category_id, category_name, category_key, categor
 
 INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Car', 'CAR', '轿车', 0, 5);
 INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('SUV', 'SUV', 'SUV', 1, 5);
-INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Other', 'OTHER', '其他', 2, 5);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Truck', 'TRUCK', '皮卡', 2, 5);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Other', 'OTHER', '其他', 3, 5);
 
 -- is active
-INSERT INTO reference_category(category_id, category_name, category_key, category_description) VALUES (7, 'Is Active', 'IS_ACTIVE', '是否存在');
+INSERT INTO reference_category(category_id, category_name, category_key, category_description) VALUES (6, 'Is Active', 'IS_ACTIVE', '是否存在');
 
-INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Active', 'ACTIVE', '存在', 1, 7);
-INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Inactive', 'INACTIVE', '不存在', 0, 7);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Inactive', 'INACTIVE', '不存在', 0, 6);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Active', 'ACTIVE', '存在', 1, 6);
