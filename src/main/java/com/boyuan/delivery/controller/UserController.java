@@ -2,6 +2,7 @@ package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.ResultUtils;
 import com.boyuan.delivery.constant.CommonConstant;
+import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.model.BynUser;
 import com.boyuan.delivery.model.Result;
 import com.boyuan.delivery.service.UserService;
@@ -49,10 +50,10 @@ public class UserController {
     public Result getUserByUserName(@RequestParam(value = "userName") String userName){
 
         try {
-            return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, this.userService.getUserByUserName(userName));
+            return ResultUtils.buildResultWithBody(this.userService.getUserByUserName(userName));
         } catch (Exception e){
             logger.error("getUserByUserName error", e);
-            return ResultUtils.buildResult(CommonConstant.Status.ERROR, null);
+            return ResultUtils.buildErrorResult(e.getMessage());
         }
 
     }
@@ -67,10 +68,10 @@ public class UserController {
     public Result createUser(@RequestBody BynUser user){
 
         try {
-            return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, userService.createUser(user));
+            return ResultUtils.buildResultByResultInfo(this.userService.createUser(user));
         } catch (Exception e){
             logger.error("Create User error", e);
-            return ResultUtils.buildResult(CommonConstant.Status.ERROR, null);
+            return ResultUtils.buildErrorResult(e.getMessage());
 
         }
 

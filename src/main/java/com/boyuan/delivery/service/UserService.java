@@ -4,6 +4,7 @@
 
 package com.boyuan.delivery.service;
 
+import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.model.BynUser;
 
 /**
@@ -12,29 +13,33 @@ import com.boyuan.delivery.model.BynUser;
 public interface UserService {
 
     /**
+     * Create user
+     *
+     * @param user
+     * @return
+     */
+    ResultInfo createUser(BynUser user);
+
+    /**
      * Get user by user name
+     *
      * @param username
      * @return
      */
     BynUser getUserByUserName(String username);
 
     /**
-     * Create user
-     * @param user
-     * @return
-     */
-    int createUser(BynUser user);
-
-    /**
-     * Get user password encrypt salt
-     * @return
-     */
-    String getSalt();
-
-    /**
      * Delete user login cache
+     *
      * @param username
      */
     void deleteUserLoginInfo(String username);
+
+    /**
+     * Get user password encrypt salt
+     *
+     * @return
+     */
+    String getSalt();
 
 }

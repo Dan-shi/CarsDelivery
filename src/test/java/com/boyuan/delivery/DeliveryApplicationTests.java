@@ -10,4 +10,13 @@ class DeliveryApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    public void test() {
+        try {
+            throw new Exception("test exception");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

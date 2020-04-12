@@ -4,6 +4,7 @@
 
 package com.boyuan.delivery.service;
 
+import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.model.Order;
 
 /**
@@ -11,11 +12,11 @@ import com.boyuan.delivery.model.Order;
  */
 public interface CarOrderService {
 
-    int createOrder(Order order);
+    ResultInfo createOrder(Order order);
 
-    int updateOrder(Order order);
+    ResultInfo updateOrder(Order order);
 
-    int deleteOrderById(long orderId);
+    ResultInfo deleteOrderById(long orderId);
 
     Order getOrderById(long orderId);
 

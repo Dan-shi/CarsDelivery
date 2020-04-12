@@ -30,10 +30,10 @@ public class BynUser {
     private String phone;
 
     @Range(min=0, max=1, message = "Sex can only be 0 or 1")
-    private int sex;
+    private Integer sex;
 
     @Range(min=1, max = 99, message = "Age range is 1 to 99")
-    private int age;
+    private Integer age;
 
     @Pattern(regexp = "/^(19|20)\\d{2}-(1[0-2]|0?[1-9])-(0?[1-9]|[1-2][0-9]|3[0-1])$/", message = "Birthday format is not right")
     private String birthday;

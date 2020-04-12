@@ -3,6 +3,8 @@ package com.boyuan.delivery.service;
 import com.boyuan.delivery.common.SecurityUtils;
 import com.boyuan.delivery.common.ValidationUtils;
 import com.boyuan.delivery.constant.CommonConstant;
+import com.boyuan.delivery.enumeration.CommonResult;
+import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.mapper.UserMapper;
 import com.boyuan.delivery.model.BynUser;
 import com.boyuan.delivery.model.UserRole;
@@ -33,57 +35,43 @@ public class UserServiceImpl implements UserService {
      * BCryptPasswordEncoder is default type of passwordEncoder
      * As daoAuthenticationProvider use BCryptPasswordEncoder to compare user input password and stored password
      * Hence, we need to use same type passwordEncoder to do password encrypt when create new user
+     *
      * @param user
      */
-    public int createUser(BynUser user) {
-        if(!this.validatorUserInfo(user)){
-            return CommonConstant.Status.ERROR;
+    @Override
+    public ResultInfo createUser(BynUser user) {
+        if (!ValidationUtils.validatorObjInfo(user)) {
+            return CommonResult.VALIDATION_ERROR;
         }
 
+        //Encrypt password
         String encryptPwd = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptPwd);
         //Add basic user role
         user.setUserRole(UserRole.builder().roleId(CommonConstant.UserRole.USER_ROLE_ID).build());
         int result = userMapper.insertUser(user);
 
-        if(result > 0){
-            return CommonConstant.Status.SUCCESS;
+        if (result <= 0) {
+            return CommonResult.CREATE_ERROR;
         }
 
-        return CommonConstant.Status.ERROR;
-    }
-
-
-    /**
-     * Validate user field
-     * @param user
-     * @return true: user is legal; false: user is not legal
-     */
-    private boolean validatorUserInfo(BynUser user) {
-        SecurityUtils.trimStringFieldOrSetNull(user);
-
-        ValidationResult result = ValidationUtils.validateEntity(user);
-        if(result.isHasErrors()){
-            logger.error("User validation ERROR: " + result.getErrorMsg().toString());
-            return false;
-        }
-
-        return true;
+        return CommonResult.SUCCESS;
     }
 
     @Cacheable("users")
-    public BynUser getUserByUserName(String username){
-        logger.info("Get user from DB username: "+ username);
+    @Override
+    public BynUser getUserByUserName(String username) {
+        logger.info("Get user from DB username: " + username);
         return this.userMapper.getUserByUserName(username);
     }
 
-
+    @Override
     @Cacheable("salt")
-    public String getSalt(){
+    public String getSalt() {
         return "123456ef";
     }
 
-
+    @Override
     @CacheEvict(cacheNames = "users")
     public void deleteUserLoginInfo(String username) {}
 

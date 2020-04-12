@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
@@ -24,22 +25,22 @@ public class Order {
     private Long orderId;
 
     @NotNull
-    private int orderStatus;
+    private Integer orderStatus;
 
     /**
      * where does this order come from
      * like 58, baidu and so on.
      */
     @NotNull
-    private int orderSource;
+    private Integer orderSource;
 
     @NotNull
-    private int orderType;
+    private Integer orderType;
 
-    private long adminUserId;
+    private Long adminUserId;
 
     @NotNull
-    private int carType;
+    private Integer carType;
 
     @NotBlank
     private String carName;
@@ -49,13 +50,13 @@ public class Order {
     /**
      * Source location
      */
-    @NotNull
+    @NotBlank
     private String fromLocation;
 
     /**
      * Destination
      */
-    @NotNull
+    @NotBlank
     private String toLocation;
 
     /**

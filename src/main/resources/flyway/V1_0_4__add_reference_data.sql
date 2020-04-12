@@ -28,4 +28,8 @@ INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, catego
 INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('SUV', 'SUV', 'SUV', 1, 5);
 INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Other', 'OTHER', '其他', 2, 5);
 
+-- is active
+INSERT INTO reference_category(category_id, category_name, category_key, category_description) VALUES (7, 'Is Active', 'IS_ACTIVE', '是否存在');
 
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Active', 'ACTIVE', '存在', 1, 7);
+INSERT INTO reference_xref(ref_name, ref_key, ref_description, ref_value, category_id) VALUES ('Inactive', 'INACTIVE', '不存在', 0, 7);

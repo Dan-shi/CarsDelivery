@@ -37,34 +37,34 @@ public class AdminUIController {
         return AdminUrlMapping.ADMIN_PREFIX + AdminUrlMapping.ADMIN_LOGIN;
     }
 
-    @PostMapping("login")
-    public Result adminLogin(String userName, String password) {
-        if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
-            JSONObject result = new JSONObject();
-            result.put("message", "Username or password doesn't right");
-            return ResultUtils.buildResult(CommonConstant.Status.ERROR, result);
-        }
+//    @PostMapping("login")
+//    public Result adminLogin(String userName, String password) {
+//        if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
+//            JSONObject result = new JSONObject();
+//            result.put("message", "Username or password doesn't right");
+//            return ResultUtils.buildResult(CommonConstant.Status.ERROR, result);
+//        }
+//
+//        UserDetails adminUser = jwtUserService.loadAdminUserByUsername(userName);
+//        if (adminUser == null) {
+//            JSONObject result = new JSONObject();
+//            result.put("message", "There is no according admin user in system");
+//            return ResultUtils.buildResult(CommonConstant.Status.ERROR, result);
+//        }
+//
+//        //Verify user password
+//        String encryptSalt = passwordEncoder.encode(adminUser.getPassword());
+//        if (adminUser.getPassword().equals(encryptSalt)) {
+//
+//            String token = this.jwtUserService.saveUserLoginInfo(adminUser);
+//            JSONObject result = new JSONObject();
+//            result.put("token", token);
+//            return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, result);
+//        } else {
+//            JSONObject result = new JSONObject();
+//            result.put("message", "Username or password doesn't right");
+//            return ResultUtils.buildResult(CommonConstant.Status.ERROR, result);
+//        }
 
-        UserDetails adminUser = jwtUserService.loadAdminUserByUsername(userName);
-        if (adminUser == null) {
-            JSONObject result = new JSONObject();
-            result.put("message", "There is no according admin user in system");
-            return ResultUtils.buildResult(CommonConstant.Status.ERROR, result);
-        }
-
-        //Verify user password
-        String encryptSalt = passwordEncoder.encode(adminUser.getPassword());
-        if (adminUser.getPassword().equals(encryptSalt)) {
-
-            String token = this.jwtUserService.saveUserLoginInfo(adminUser);
-            JSONObject result = new JSONObject();
-            result.put("token", token);
-            return ResultUtils.buildResult(CommonConstant.Status.SUCCESS, result);
-        } else {
-            JSONObject result = new JSONObject();
-            result.put("message", "Username or password doesn't right");
-            return ResultUtils.buildResult(CommonConstant.Status.ERROR, result);
-        }
-
-    }
+//    }
 }

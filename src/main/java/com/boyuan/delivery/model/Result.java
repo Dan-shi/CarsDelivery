@@ -19,6 +19,8 @@ public class Result {
 
     int resultCode;
 
+    String resultMessage;
+
     Object resultBody;
 
     Timestamp returnTime;

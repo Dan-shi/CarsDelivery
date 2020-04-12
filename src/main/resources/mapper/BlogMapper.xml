@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~  Copyright 2020 北京渤远物流. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boyuan.delivery.mapper.BlogMapper">
+
+    <resultMap id="BlogModelMap" type="com.boyuan.delivery.model.Blog">
+        <id column="blog_id" jdbcType="BIGINT" property="blogId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
+        <result column="blog_type" jdbcType="INTEGER" property="blogType"/>
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <insert id="createBlog" parameterType="com.boyuan.delivery.model.Blog" useGeneratedKeys="true" keyProperty="blogId">
+        insert into blog (title, description, author, image_url, blog_type, is_active, content)
+        values (#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR},
+        #{blogType,jdbcType=INTEGER}, #{isActive,jdbcType=BOOLEAN}, #{content,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateBlog" parameterType="com.boyuan.delivery.model.Blog">
+        UPDATE blog
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title != null">title = #{title,jdbcType=VARCHAR},</if>
+            <if test="description != null">description = #{description,jdbcType=VARCHAR},</if>
+            <if test="author != null">author = #{author,jdbcType=VARCHAR},</if>
+            <if test="imageUrl != null">image_url = #{imageUrl,jdbcType=VARCHAR},</if>
+            <if test="blogType != null">blog_type = #{blogType,jdbcType=INTEGER},</if>
+            <if test="isActive != null">is_active = #{isActive,jdbcType=BOOLEAN},</if>
+            <if test="content != null">content = #{content,jdbcType=LONGVARCHAR},</if>
+        </trim>
+        WHERE blog_id=#{blogId, jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteBlogById" parameterType="java.lang.Long">
+        update blog
+        set is_active = false
+        where blog_id = #{blogId,jdbcType=BIGINT}
+    </update>
+
+    <select id="getBlogById" parameterType="java.lang.Long" resultMap="BlogModelMap">
+        select blog_id, title, description, author, imageUrl, blogType, content, create_time, update_time
+        from user
+        where blog_id = #{blogId,jdbcType=VARCHAR}
+    </select>
+</mapper>

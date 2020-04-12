@@ -4,18 +4,20 @@
 
 package com.boyuan.delivery.service;
 
-import com.boyuan.delivery.common.SecurityUtils;
 import com.boyuan.delivery.common.ValidationUtils;
-import com.boyuan.delivery.constant.CommonConstant;
+import com.boyuan.delivery.enumeration.CommonResult;
+import com.boyuan.delivery.enumeration.OrderResult;
+import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.mapper.CarOrderMapper;
 import com.boyuan.delivery.model.Order;
-import com.boyuan.delivery.model.ValidationResult;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
 public class CarOrderServiceImpl implements CarOrderService {
 
     protected final Log logger = LogFactory.getLog(CarOrderServiceImpl.class);
@@ -24,61 +26,51 @@ public class CarOrderServiceImpl implements CarOrderService {
     @Autowired
     private CarOrderMapper carOrderMapper;
 
+    @Autowired
+    private OrderCache orderCache;
+
     @Override
-    public int createOrder(Order order) {
-        if (!this.validatorOrderInfo(order)) {
-            return CommonConstant.Status.ERROR;
+    public ResultInfo createOrder(Order order) {
+        if (!ValidationUtils.validatorObjInfo(order)) {
+            return CommonResult.VALIDATION_ERROR;
         }
 
-        if (this.carOrderMapper.createOrder(order) > 0) {
-            return CommonConstant.Status.SUCCESS;
+        if (this.orderCache.getOrderFromCache(order) != null) {
+            return OrderResult.ORDER_EXIST;
         }
 
-        return CommonConstant.Status.ERROR;
+        if (this.carOrderMapper.createOrder(order) <= 0) {
+            return CommonResult.CREATE_ERROR;
+        }
+
+        this.orderCache.putOrderToCache(order);
+        return CommonResult.SUCCESS;
     }
 
     @Override
-    public int updateOrder(Order order) {
-        if (!this.validatorOrderInfo(order) || order.getOrderId() == null) {
-            return CommonConstant.Status.ERROR;
+    public ResultInfo updateOrder(Order order) {
+        if (!ValidationUtils.validatorObjInfo(order) || order.getOrderId() == null) {
+            return CommonResult.VALIDATION_ERROR;
         }
 
-        if (this.carOrderMapper.updateOrder(order) > 0) {
-            return CommonConstant.Status.SUCCESS;
+        if (this.carOrderMapper.updateOrder(order) <= 0) {
+            return CommonResult.UPDATE_ERROR;
         }
 
-        return CommonConstant.Status.ERROR;
+        return CommonResult.SUCCESS;
     }
 
     @Override
-    public int deleteOrderById(long orderId) {
-        if (this.carOrderMapper.deleteOrderById(orderId) > 0) {
-            return CommonConstant.Status.SUCCESS;
+    public ResultInfo deleteOrderById(long orderId) {
+        if (this.carOrderMapper.deleteOrderById(orderId) <= 0) {
+            return CommonResult.DELETE_ERROR;
         }
 
-        return CommonConstant.Status.ERROR;
+        return CommonResult.SUCCESS;
     }
 
     @Override
     public Order getOrderById(long orderId) {
         return this.getOrderById(orderId);
-    }
-
-    /**
-     * Validate order field
-     *
-     * @param order
-     * @return true: order is legal; false: order is not legal
-     */
-    private boolean validatorOrderInfo(Order order) {
-        SecurityUtils.trimStringFieldOrSetNull(order);
-
-        ValidationResult result = ValidationUtils.validateEntity(order);
-        if (result.isHasErrors()) {
-            logger.error("Order validation ERROR: " + result.getErrorMsg().toString());
-            return false;
-        }
-
-        return true;
     }
 }
