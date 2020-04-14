@@ -24,7 +24,7 @@ CREATE TABLE car_order (
   order_status int(2) NOT NULL,
   order_source int(2) NOT NULL,
   order_type int(2) NOT NULL,
-  admin_id bigint NOT NULL,
+  admin_id bigint,
   car_type int(2) NOT NULL,
   car_name varchar(50) NOT NULL,
   price varchar(20),

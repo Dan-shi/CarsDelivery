@@ -32,6 +32,7 @@ public class Order {
     @NotNull
     private Integer orderSource;
 
+    @NotNull
     private Integer orderType;
 
     private Long adminUserId;

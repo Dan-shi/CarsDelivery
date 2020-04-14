@@ -166,7 +166,7 @@ public class EmailServiceImpl implements EmailService {
      * @return
      */
     private String buildSubject(Order order) {
-        return "渤远物流 新的订单: 从" + order.getFromLocation() + "到" + order.getToLocation();
+        return "渤远物流 新的订单: 从" + order.getFromLocation() + " 到 " + order.getToLocation();
     }
 
     /**

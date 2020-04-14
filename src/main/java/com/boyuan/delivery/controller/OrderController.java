@@ -88,7 +88,7 @@ public class OrderController {
      */
     @Secured(UserRole.ADMIN)
     @GetMapping("delete")
-    public Result deleteOrder(@PathVariable(value = "orderId") Long orderId) {
+    public Result deleteOrder(@RequestParam(value = "orderId") Long orderId) {
 
         try {
             ResultInfo result = this.carOrderService.deleteOrderById(orderId);
@@ -108,7 +108,7 @@ public class OrderController {
      */
     @Secured(UserRole.USER)
     @GetMapping("getOrder")
-    public Result getOrderById(@PathVariable(value = "orderId") Long orderId) {
+    public Result getOrderById(@RequestParam(value = "orderId") Long orderId) {
         try {
             return ResultUtils.buildResultWithBody(this.carOrderService.getOrderById(orderId));
         } catch (Exception e) {

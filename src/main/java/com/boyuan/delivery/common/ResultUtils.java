@@ -39,7 +39,8 @@ public class ResultUtils {
      * @return
      */
     public static Result buildErrorResult(String message) {
-        return buildResult(CommonResult.UNEXPECTED_ERROR.getCode(), message, null);
+        //TODO replace message with proper field
+        return buildResult(CommonResult.UNEXPECTED_ERROR.getCode(), CommonResult.UNEXPECTED_ERROR.getMessage(), null);
     }
 
     /**

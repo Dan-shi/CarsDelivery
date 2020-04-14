@@ -71,7 +71,7 @@ public class BlogController {
      */
     @Secured(UserRole.ADMIN)
     @GetMapping("delete")
-    public Result deleteBlog(@PathVariable(value = "blogId") Long blogId) {
+    public Result deleteBlog(@RequestParam(value = "blogId") Long blogId) {
 
         try {
             return ResultUtils.buildResultByResultInfo(this.blogService.deleteBlogById(blogId));
@@ -90,7 +90,7 @@ public class BlogController {
      */
     @Secured(UserRole.USER)
     @GetMapping("getBlog")
-    public Result getBlogById(@PathVariable(value = "blogId") Long blogId) {
+    public Result getBlogById(@RequestParam(value = "blogId") Long blogId) {
         try {
             return ResultUtils.buildResultWithBody(this.blogService.getBlogById(blogId));
         } catch (Exception e) {
@@ -123,7 +123,7 @@ public class BlogController {
      */
     @Secured(UserRole.USER)
     @GetMapping("getBlogListByPage")
-    public Result getBlogListByPage(@PathVariable(value = "pageNum") int pageNum) {
+    public Result getBlogListByPage(@RequestParam(value = "pageNum") int pageNum) {
         try {
             return ResultUtils.buildResultWithBody(this.blogService.getBlogListByPage(pageNum, CommonConstant.Page.limit));
         } catch (Exception e) {
@@ -140,7 +140,7 @@ public class BlogController {
      */
     @Secured(UserRole.USER)
     @GetMapping("getBlogListByBlogId")
-    public Result getBlogListByBlogId(@PathVariable(value = "blogId") long lastBlogId) {
+    public Result getBlogListByBlogId(@RequestParam(value = "blogId") long lastBlogId) {
         try {
             return ResultUtils.buildResultWithBody(this.blogService.getBlogListByBlogId(lastBlogId, CommonConstant.Page.limit));
         } catch (Exception e) {
