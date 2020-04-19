@@ -12,11 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 600px)" href="/css/mcss.css"/>
     <link rel="stylesheet" type="text/css" media="screen and (min-width: 600px)" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/loading.css">
+    <link rel="stylesheet" href="/css/alert.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="/js/jquery-1.7.2.min.js"></script>
     <script src="/js/html5zoo.js"></script>
     <script src="/js/lovelygallery.js"></script>
     <script src="/js/common.js"></script>
+    <script src="/js/loading.js"></script>
+    <script src="/js/alert.js"></script>
 
     <title>首页</title>
     <script type="text/javascript">
@@ -66,11 +70,13 @@
 </head>
 
 <body onload="MM_preloadImages('/images/anniu_22.png')">
+<!-- 遮罩层DIV -->
+<div id="overlay" class="overlay"></div>
 <div class="top">
     <div class="db">
         <div class="pcdb">
             <div class="pcdb_l">您好欢迎来到渤远物流！！！专业提供轿车托运服务</div>
-            <div class="pcdb_r"><a href="#">加入收藏</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">设为首页</a></div>
+            <div class="pcdb_r"><a href="#" onclick="javascript:window.external.addFavorite('http://www.boyuan.com','渤远物流')" title="收藏本站到收藏夹">加入收藏</a></div>
         </div>
     </div>
     <div class="clear"></div>
@@ -137,11 +143,11 @@
                 <div class="baijia_nr">
                     <ul>
                         <li>
-                            <input  type="text" id="carName" placeholder="请填写车型"/>
+                            <input type="text" id="carName" placeholder="请填写车型"/>
                         </li>
                         <li>
                             <select  type="text" id="carType" value="请选择车型">
-                                <option>请选择车型</option>
+                                <option value="">请选择车型</option>
                                 <option value="0">轿车</option>
                                 <option value="1">SUV</option>
                                 <option value="2">皮卡</option>
@@ -151,7 +157,7 @@
                         </li>
                         <li>
                             <select id="fromLocPro" name="pro">
-                                <option>-请填写出发城市-</option>
+                                <option value="">-出发省份-</option>
                                 <option>北京市</option>
                                 <option>上海市</option>
                                 <option>天津市</option>
@@ -185,12 +191,12 @@
                                 <option>新疆维吾尔族自治区</option>
                             </select>
                             <select id="fromLocCity" name="city">
-                                <option>城市</option>
+                                <option value="">城市</option>
                             </select>
                         </li>
                         <li>
                             <select id="toLocPro" name="pro">
-                                <option>-请填写到达城市-</option>
+                                <option value="">-到达省份-</option>
                                 <option>北京市</option>
                                 <option>上海市</option>
                                 <option>天津市</option>
@@ -224,14 +230,14 @@
                                 <option>新疆维吾尔族自治区</option>
                             </select>
                             <select id="toLocCity" name="city">
-                                <option>城市</option>
+                                <option value="">城市</option>
                             </select>
                         </li>
                         <li>
-                            <input type="text" id="cusName" placeholder="请填写您的姓名 -- 选填">
+                            <input type="text" id="cusName" placeholder="姓名--选填">
                         </li>
                         <li>
-                            <input type="text" id="cusPhone" placeholder="请填写您的电话"/>
+                            <input type="text" id="cusPhone" placeholder="电话"/>
                         </li>
                         <li>
                             <input type="text" id="description" placeholder="留言"/>
@@ -482,7 +488,7 @@
                         <div class="ty_tp"><img src="/images/icon_36.jpg"/></div>
                         <div class="ty_bt">安全第一原则</div>
                         <div class="ty_wz">标准化车辆入场、检查、<br/>
-                            装卸、驾驶操作，、<br/>
+                            装卸、驾驶操作<br/>
                             用心做好每一公里服务细节
                         </div>
                     </div>
@@ -851,14 +857,14 @@
                     <div style="text-align:center; font-size:12px; line-height:30px; color:#999;">AM:08:00-PM22:00</div>
                     <div class="custom_service">
                         <p>
-                            <a href="#"><img src="/images/an_06.jpg"/></a>
+                            <a href="/boyuan/makeOrder"><img src="/images/an_06.jpg"/></a>
                         </p>
                     </div>
 
                     <div class="other">
                         <p><img src="/images/fw_10.jpg"/></p>
                     </div>
-                    <div class="side_zx"><a href="#">15秒获取报价</a></div>
+                    <div class="side_zx"><a href="/boyuan/makeOrder">15秒获取报价</a></div>
 
                     <div class="msgserver">
                         <p><img src="/images/fw_14.jpg"/></p>
@@ -870,7 +876,7 @@
         </div>
         <div class="show_btn"><span>在线客服</span></div>
     </div>
-    <script type="text/javascript" src="js/lrtk.js"></script>
+    <script type="text/javascript" src="/js/lrtk.js"></script>
     <!-- 代码 结束 -->
     <script type="text/javascript">
         $(function () {

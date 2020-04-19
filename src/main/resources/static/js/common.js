@@ -2,63 +2,63 @@
  *  Copyright 2020 北京渤远物流. All Rights Reserved.
  */
 
-var host = "http://localhost:8080/"
+var host = "http://localhost:8080/";
+var Ealt = new Eject()
 
 function submitOrder() {
 	//get value from page
 	var carName = document.getElementById("carName").value;
 	var carType = document.getElementById("carType").value;
-	var fromLoc = document.getElementById("fromLocPro").value + " - " + document.getElementById("fromLocCity").value;
-	var toLoc = document.getElementById("toLocPro").value + " - " + document.getElementById("toLocCity").value;
+	var fromPro = document.getElementById("fromLocPro").value;
+	var fromCity = document.getElementById("fromLocCity").value;
+	var toPro = document.getElementById("toLocPro").value;
+	var toCity = document.getElementById("toLocCity").value;
 	var cusName = document.getElementById("cusName").value;
 	var cusPhone = document.getElementById("cusPhone").value;
 	var description = document.getElementById("description").value;
 
+	var fromLoc = fromPro + "-" + fromCity;
+	var toLoc = toPro + "-" + toCity;
+
 	//value check
 	var errorMsg = "";
 	if (isEmpty(carName)) {
-		errorMsg = errorMsg + "请填写车型/n";
+		errorMsg = errorMsg + "请填写车型</br>";
 	}
 
 	if (isEmpty(carType)) {
-		errorMsg = errorMsg + "请填写出发城市/n";
+		errorMsg = errorMsg + "请选择车型</br>";
 	}
 
-	if (isEmpty(fromLoc)) {
-		errorMsg = errorMsg + "请填写到达城市/n";
+	if (isEmpty(fromPro)) {
+		errorMsg = errorMsg + "请选择出发省份</br>";
 	}
 
-	if (isEmpty(toLoc)) {
-		errorMsg = errorMsg + "请填写车型/n";
+	if (isEmpty(fromCity)) {
+		errorMsg = errorMsg + "请选择出发城市</br>";
+	}
+
+	if (isEmpty(toPro)) {
+		errorMsg = errorMsg + "请选择到达省份</br>";
+	}
+
+	if (isEmpty(toCity)) {
+		errorMsg = errorMsg + "请选择到达城市</br>";
 	}
 
 	if (isEmpty(cusPhone)) {
-		errorMsg = errorMsg + "请填写您的电话/n";
+		errorMsg = errorMsg + "请填写您的电话</br>";
 	}
 
 	if (!isEmpty(cusPhone) && !isPhoneNum(cusPhone)) {
-		errorMsg = errorMsg + "请填写正确的电话格式/n";
+		errorMsg = errorMsg + "请填写正确的电话格式</br>";
 	}
 
 	if (!isEmpty(errorMsg)) {
 		//show model return
+		showAlert('输入错误', errorMsg);
 		return;
 	}
-
-	// {
-	//     "orderStatus" : 0,
-	//     "orderSource" : 0,
-	//     "orderType" : 0,
-	//     "adminUserId" : 1,
-	//     "carType" : 1,
-	//     "carName" : "test",
-	//     "fromLocation" : "大连",
-	//     "toLocation": "哈尔滨",
-	//     "cusPhone": "18624377683",
-	//     "cusName": "蛋哥哥",
-	//     "isActive": true,
-	//     "description":"蛋哥哥留言"
-	// }
 
 	//order model format
 	var order = {
@@ -73,6 +73,8 @@ function submitOrder() {
 		description: description
 	};
 
+    showLoading();
+
 	//Build order model
 	$.ajax({
 		url: host + "order/create", // 目标资源
@@ -83,10 +85,44 @@ function submitOrder() {
 		dataType: "json", // 服务器响应的数据类型
 		type: "POST", // 请求方式
 		success: function(data) {
+			showToast('下单成功');
 			console.log(data)
+		},
+		complete: function(XMLHttpRequest, textStatus) {
+			hideLoading();
+		},
+		error: function() {
+			showToast('请求错误');
 		}
 	});
 
+}
+
+//show alert
+function showAlert(title, message) {
+    Ealt.Ealert({
+        title: title,
+        message: message
+    })
+}
+
+//show confirm model
+function showConfirm(title, message, success, cancel) {
+    Ealt.Econfirm({
+        title: title,
+        message: message,
+        define: function() {
+            success();
+        },
+        cancel: function() {
+            cancel();
+        }
+    })
+}
+
+//show toast
+function showToast(message) {
+    Ealt.Etoast(message, 3) //默认三秒
 }
 
 function isPhoneNum(phone) {
@@ -105,6 +141,54 @@ function isEmpty(obj) {
 	} else {
 		return false;
 	}
+}
+
+function showLoading() {
+
+	showOverlay();
+	/**
+	 * 参数：支持字符串以及对象传参
+	 * 传值为字符串 默认第一种样式，提示文字为默认loading...
+	 * 传值为对象时
+	 * 1.type 类型，只支持五种，可扩展  必填项
+	 * 2.tip  提示文字  非必填
+	 * 3.showTip 是否显示提示文字，默认为true  非必填
+	 * 使用方法
+	 * loading.showLoading()
+	 * loading.hideLoading()
+	 */
+	loading.showLoading({
+		type: 5,
+		showTip: false
+	})
+
+}
+
+/**
+ * Hide loading
+ */
+function hideLoading() {
+	hideOverlay();
+	loading.hideLoading();
+}
+
+/**
+ * 显示遮罩层
+ */
+function showOverlay() {
+	// 遮罩层宽高分别为页面内容的宽高
+	$('.overlay').css({
+		'height': $(document).height(),
+		'width': $(document).width()
+	});
+	$('.overlay').show();
+}
+
+/**
+ * Hide overlay
+ */
+function hideOverlay() {
+	$('.overlay').hide();
 }
 
 //city select
@@ -186,3 +270,75 @@ $(document).ready(function(e) {
 		}
 	});
 });
+
+/**
+ *
+ * @authors liningning
+ * @date    2019-08-07 15:32:21
+ * @version $Id$
+ */
+function Eject(){
+    var _this = this;
+    // 全屏遮罩背景
+    var qback = $('<div class="qback"></div>')
+    // alert提示窗
+    _this.Ealert = function(obj){
+        var alertBox = $('<div class="alertBox"></div>')
+        var alertHead = $('<div class="alertHead">'+obj.title+'</div>')
+        var alertMes = $('<div class="alertMes">'+obj.message+'</div>')
+        var alertBtn = $('<span class="alertBtn">确定</span>').on('click',function(){
+            qback.remove();
+            alertBox.remove();
+        })
+        alertBox.append(alertHead);
+        alertBox.append(alertMes);
+        alertBox.append(alertBtn);
+        qback.append(alertBox);
+        $('body').append(qback);
+        alertBox.css({'marginTop':-alertBox.outerHeight()/2+'px'});
+    }
+    // confirm弹窗
+    _this.Econfirm = function(obj){
+        var confirmBox = $('<div class="alertBox"></div>')
+        var confirmHead = $('<div class="alertHead">'+obj.title+'</div>')
+        var confirmMes = $('<div class="alertMes">'+obj.message+'</div>')
+        var confirmBtn = $('<span class="ConBtn">确定</span>').on('click',function(){
+            qback.remove()
+            confirmBox.remove()
+            setTimeout(function(){
+                obj.define()
+            },100)
+        })
+        var confirmcancel = $('<span class="cancel">取消</span>').on('click',function(){
+            qback.remove()
+            confirmBox.remove()
+            setTimeout(function(){
+                obj.cancel()
+            },100)
+        })
+        confirmBox.append(confirmHead);
+        confirmBox.append(confirmMes);
+        confirmBox.append(confirmBtn);
+        confirmBox.append(confirmcancel);
+        qback.append(confirmBox);
+        $('body').append(qback);
+        confirmBox.css({'marginTop':-confirmBox.outerHeight()/2+'px'});
+    },
+        // toast提示
+        _this.Etoast = function(mes,time){
+            var timer= null;
+            var ToastBox = $('<div class="ToastBox">'+mes+'</div>')
+            qback.append(ToastBox);
+            $('body').append(qback);
+            ToastBox.css({'marginTop':-ToastBox.outerHeight()/2+'px'});
+            clearInterval(timer)
+            timer = setInterval(function(){
+                time--
+                if(time<=0){
+                    clearInterval(timer)
+                    qback.remove()
+                    ToastBox.remove()
+                }
+            },1000)
+        }
+}

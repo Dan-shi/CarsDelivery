@@ -2,244 +2,281 @@
   ~  Copyright 2020 北京渤远物流. All Rights Reserved.
   -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>渤远运车，您身边的运车专家</title>
-<meta name="keywords" content="渤远运车" />
-<meta name="description" content="您身边的运车专家" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" media="screen and (max-device-width: 600px)" href="css/mcss.css" /> 
-<link rel="stylesheet" type="text/css" media="screen and (min-width: 600px)" href="css/style.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script src="js/jquery-1.7.2.min.js"></script>
-<script src="js/html5zoo.js"></script>
-<script src="js/lovelygallery.js"></script>
+    <title>渤远运车，您身边的运车专家</title>
+    <meta name="keywords" content="渤远运车"/>
+    <meta name="description" content="您身边的运车专家"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 600px)" href="/css/mcss.css"/>
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 600px)" href="/css/style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script src="/js/html5zoo.js"></script>
+    <script src="/js/lovelygallery.js"></script>
 
-<title>托运案例</title>
-<script type="text/javascript">
-function MM_swapImgRestore() { //v3.0
-  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
-}
-function MM_preloadImages() { //v3.0
-  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
-    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
-    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
-}
+    <title>托运案例</title>
+    <script type="text/javascript">
+        function MM_swapImgRestore() { //v3.0
+            var i, x, a = document.MM_sr;
+            for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++) x.src = x.oSrc;
+        }
 
-function MM_findObj(n, d) { //v4.01
-  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-  if(!x && d.getElementById) x=d.getElementById(n); return x;
-}
+        function MM_preloadImages() { //v3.0
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+                var i, j = d.MM_p.length, a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+                    if (a[i].indexOf("#") != 0) {
+                        d.MM_p[j] = new Image;
+                        d.MM_p[j++].src = a[i];
+                    }
+            }
+        }
 
-function MM_swapImage() { //v3.0
-  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
-   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
-}
-</script>
+        function MM_findObj(n, d) { //v4.01
+            var p, i, x;
+            if (!d) d = document;
+            if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                d = parent.frames[n.substring(p + 1)].document;
+                n = n.substring(0, p);
+            }
+            if (!(x = d[n]) && d.all) x = d.all[n];
+            for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+            for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+            if (!x && d.getElementById) x = d.getElementById(n);
+            return x;
+        }
+
+        function MM_swapImage() { //v3.0
+            var i, j = 0, x, a = MM_swapImage.arguments;
+            document.MM_sr = new Array;
+            for (i = 0; i < (a.length - 2); i += 3)
+                if ((x = MM_findObj(a[i])) != null) {
+                    document.MM_sr[j++] = x;
+                    if (!x.oSrc) x.oSrc = x.src;
+                    x.src = a[i + 2];
+                }
+        }
+    </script>
 </head>
 
 <body onload="MM_preloadImages('images/anniu_22.png')">
 <div class="top">
-<div class="db">
-	<div class="pcdb">
-    	<div class="pcdb_l">您好欢迎来到渤远物流！！！专业提供轿车托运服务</div>
-        <div class="pcdb_r"><a href="#">加入收藏</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">设为首页</a></div>
+    <div class="db">
+        <div class="pcdb">
+            <div class="pcdb_l">您好欢迎来到渤远物流！！！专业提供轿车托运服务</div>
+            <div class="pcdb_r"><a href="#"
+                                   onclick="javascript:window.external.addFavorite('http://www.boyuan.com','渤远物流')"
+                                   title="收藏本站到收藏夹">加入收藏</a></div>
+        </div>
     </div>
-</div>
-<div class="clear"></div>
-<div class="dingbu">
-	<div class="dingbu_a"><img src="images/index_09.jpg" /></div>
-    <div class="dingbu_b"><img src="images/index_10.jpg" /></div>
-    <div class="dingbu_c"><img src="images/index_11.jpg" /></div>
-    <div class="dingbu_d"><img src="images/index_12.jpg" /></div>	
-</div>
-<div class="clear"></div>
-<div class="nav">
-	<ul>
-    	<li><a href="#">首页</a></li>
-        <li><a href="#">托运必读</a></li>
-        <li><a href="#">在线询价</a></li>
-        <li><a href="#">托运案例</a></li>
-        <li><a href="#">关于我们</a></li>
-    </ul>
-</div>
+    <div class="clear"></div>
+    <div class="dingbu">
+        <div class="dingbu_a"><img src="/images/index_09.jpg"/></div>
+        <div class="dingbu_b"><img src="/images/index_10.jpg"/></div>
+        <div class="dingbu_c"><img src="/images/index_11.jpg"/></div>
+        <div class="dingbu_d"><img src="/images/index_12.jpg"/></div>
+    </div>
+    <div class="clear"></div>
+    <div class="nav">
+        <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="#">托运必读</a></li>
+            <li><a href="/boyuan/makeOrder">在线询价</a></li>
+            <li><a href="/boyuan/cases">托运案例</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </div>
 </div>
 <div class="clear"></div>
 <!--手机端top-->
 <div class="mtop">
-<script type="text/javascript" src="js/script.js"></script>
-<div class="sp_header">
-  <div class="sp_logo"><a href="#"><img src="images/mindex_09.jpg" alt=""></a></div>
-  <div class="sp_nav"> <span></span> <span></span> <span></span> </div>
-</div>
-<div class="sjj_nav">
-  <ul>
-   <li><a href="#">首页</a></li>
-   <li><a href="#">托运必读</a></li>
-   <li><a href="#">15秒获取报价</a></li>
-   <li><a href="#">托运案例</a></li>
-   <li><a href="#">关于我们</a></li>
-  </ul>
-</div>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <div class="sp_header">
+        <div class="sp_logo"><a href="#"><img src="/images/mindex_09.jpg" alt=""></a></div>
+        <div class="sp_nav"><span></span> <span></span> <span></span></div>
+    </div>
+    <div class="sjj_nav">
+        <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="#">托运必读</a></li>
+            <li><a href="/boyuan/makeOrder">15秒获取报价</a></li>
+            <li><a href="/boyuan/cases">托运案例</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </div>
 </div>
 <!--top_wap-->
 <div class="clear"></div>
 <!--banner start-->
 <div class="banner">
-<!-- 轮播图 -->
-<div class="pics_wrap">
-	<div id="html5zoo-1">
-		<ul class="html5zoo-slides" style="display:none;">
-			<li><a href="#"><img src="images/index_20.jpg"/></a></li>
-			<li><a href="#"><img src="images/index_20.jpg"/></a></li>
-			<li><a href="#"><img src="images/index_20.jpg"/></a></li>
-			<li><a href="#"><img src="images/index_20.jpg"/></a></li>
-		</ul>
-	</div>
-</div>
-<!-- 轮播图结束 -->
+    <!-- 轮播图 -->
+    <div class="pics_wrap">
+        <div id="html5zoo-1">
+            <ul class="html5zoo-slides" style="display:none;">
+                <li><a href="#"><img src="/images/index_20.jpg"/></a></li>
+                <li><a href="#"><img src="/images/index_20.jpg"/></a></li>
+                <li><a href="#"><img src="/images/index_20.jpg"/></a></li>
+                <li><a href="#"><img src="/images/index_20.jpg"/></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 轮播图结束 -->
 </div>
 <!--banner end-->
-<div class="clear"></div> 
+<div class="clear"></div>
 <!--托运必读-->
 <div class="center">
-	<div class="center_gps">
-    	<ul>
-        	<li><a href="#">关于我们</a></li>
+    <div class="center_gps">
+        <ul>
+            <li><a href="#">关于我们</a></li>
         </ul>
     </div>
     <div class="about">
-    	<p><img src="images/gy_03.jpg" /></p>
-        <P><img src="images/gy_06.jpg" /></P>
+        <p><img src="/images/gy_03.jpg"/></p>
+        <P><img src="/images/gy_06.jpg"/></P>
         <P>
-        	&nbsp;&nbsp;&nbsp;&nbsp;北京渤远物流有限公司简称（渤远运车）是一家专业从事汽车托运的物流企业，公司专注运营全国范围内私家车托运，二手车托运，巡展试驾车辆托运，主机厂保密车型托运，试验车托运，返乡团体车辆运输及自驾游车辆运输。
+            &nbsp;&nbsp;&nbsp;&nbsp;北京渤远物流有限公司简称（渤远运车）是一家专业从事汽车托运的物流企业，公司专注运营全国范围内私家车托运，二手车托运，巡展试驾车辆托运，主机厂保密车型托运，试验车托运，返乡团体车辆运输及自驾游车辆运输。
 
-       公司成立于2016年，总部位于北京顺义现代汽车第二工厂附近，经过多年努力发展经营，目前以设立32个省会级城市办事处，128个地方市级合作网点，325条重点城市专线，建立起遍布全国的整车汽车运输网络。</P>
+            公司成立于2016年，总部位于北京顺义现代汽车第二工厂附近，经过多年努力发展经营，目前以设立32个省会级城市办事处，128个地方市级合作网点，325条重点城市专线，建立起遍布全国的整车汽车运输网络。</P>
 
-      <P> &nbsp;&nbsp;&nbsp;&nbsp;公司管理团队均为从事商品车物流多年的管理人才，拥有丰富的商品车物流管理经验，依托管理团队的丰富运营经验，先进的网络团队信息基础，超前的服务理念及遍布全国的物流服务网络布局，可为全国汽车商家及私家车用户提供更加快捷，更加省钱，更加方便，更加安全的服务，得到了广大车主的支持与信任。</P>
+        <P> &nbsp;&nbsp;&nbsp;&nbsp;公司管理团队均为从事商品车物流多年的管理人才，拥有丰富的商品车物流管理经验，依托管理团队的丰富运营经验，先进的网络团队信息基础，超前的服务理念及遍布全国的物流服务网络布局，可为全国汽车商家及私家车用户提供更加快捷，更加省钱，更加方便，更加安全的服务，得到了广大车主的支持与信任。</P>
 
-       <p>&nbsp;&nbsp;&nbsp;&nbsp;公司目前自有正规轿运车逾70台，全国可调配正规轿运车超过500台，均为国家标准正规化运营车辆，不超载运行。保证承运车辆安全送达，让客户安心放心。我公司本着诚信第一，客户至上的服务态度为宗旨，竭诚为新老客户服务。</p>
-        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;公司目前自有正规轿运车逾70台，全国可调配正规轿运车超过500台，均为国家标准正规化运营车辆，不超载运行。保证承运车辆安全送达，让客户安心放心。我公司本着诚信第一，客户至上的服务态度为宗旨，竭诚为新老客户服务。</p>
+
     </div>
-   <div class="clear"></div>
+    <div class="clear"></div>
 </div>
 <!--托运必读-->
 <div class="clear"></div>
 <!--footer_start-->
 <div class="footer">
-<div class="footer-top">
-<div class="footer-top-in">
-<h1>友情链接<span>FRIENDSHIP LINK</span></h1>
-<div class="link_nr">
-	<ul>
-    	<li><a href="https://b.maihaoche.com/" target= _black><img src="images/link_link_03.png" /></a></li>
-        <li><a href="http://baoxian.pingan.com/" target= _black><img src="images/link_link_06.png" /></a></li>
-        <li><a href="https://www.tangeche.com/" target= _black><img src="images/link_link_08.png" /></a></li>
-        <li><a href="http://www.tuanche.com/" target= _black><img src="images/link_link_10.png" /></a></li>
-        <li><a href="http://yxt.easypass.cn/" target= _black><img src="images/link_link_12.png" /></a></li>
-        <li><a href="https://www.xin.com/" target= _black><img src="images/link_link_14.png" /></a></li>
-        <li><a href="https://www.guazi.com/" target= _black><img src="images/link_link_16.png" /></a></li>
-        <li><a href="https://www.maodou.com/" target= _black><img src="images/link_link_19.png" /></a></li>
-        <li><a href="http://car.bitauto.com/" target= _black><img src="images/link_link_21.png" /></a></li>
-    </ul>
+    <div class="footer-top">
+        <div class="footer-top-in">
+            <h1>友情链接<span>FRIENDSHIP LINK</span></h1>
+            <div class="link_nr">
+                <ul>
+                    <li><a href="https://b.maihaoche.com/" target=_black><img src="/images/link_link_03.png"/></a></li>
+                    <li><a href="http://baoxian.pingan.com/" target=_black><img src="/images/link_link_06.png"/></a>
+                    </li>
+                    <li><a href="https://www.tangeche.com/" target=_black><img src="/images/link_link_08.png"/></a></li>
+                    <li><a href="http://www.tuanche.com/" target=_black><img src="/images/link_link_10.png"/></a></li>
+                    <li><a href="http://yxt.easypass.cn/" target=_black><img src="/images/link_link_12.png"/></a></li>
+                    <li><a href="https://www.xin.com/" target=_black><img src="/images/link_link_14.png"/></a></li>
+                    <li><a href="https://www.guazi.com/" target=_black><img src="/images/link_link_16.png"/></a></li>
+                    <li><a href="https://www.maodou.com/" target=_black><img src="/images/link_link_19.png"/></a></li>
+                    <li><a href="http://car.bitauto.com/" target=_black><img src="/images/link_link_21.png"/></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/footer-top-->
+    <div class="footer-btm">
+        <div class="footer-btm-lt">北京渤远物流有限公司专注经营全国范围内私家车托运、商品车运输、巡展车托运、试验车运输等车辆运输业务<br/>
+            主要经营城市：哈尔滨，长春，沈阳，北京，广州，深圳，海口，三亚，成都，重庆，西藏，新疆等全国大中小城市...
+        </div>
+        <div class="footer-btm-rt"><i class="wow tada infinite">服务热线：</i> <span>400-6566-856 </span></div>
+    </div>
 </div>
+<div style=" width:100%; height:50px;  background:#333;font-size:1.0em;color:#a0a0a0;text-align:center;">版权所有
+    京ICP备16036127号 渤远物流运车
 </div>
-</div>
-<!--/footer-top-->
-<div class="footer-btm">
-<div class="footer-btm-lt">北京渤远物流有限公司专注经营全国范围内私家车托运、商品车运输、巡展车托运、试验车运输等车辆运输业务<br />
-主要经营城市：哈尔滨，长春，沈阳，北京，广州，深圳，海口，三亚，成都，重庆，西藏，新疆等全国大中小城市...</div>
-<div class="footer-btm-rt"><i class="wow tada infinite">服务热线：</i> <span>400-6566-856 </span></div>
-</div>
-</div>
-<div style=" width:100%; height:50px;  background:#333;font-size:1.0em;color:#a0a0a0;text-align:center;">版权所有 京ICP备16036127号 渤远物流运车</div>
 <!--/footer-->
 <div class="clear"></div>
 <div id="leftsead">
-	<ul>
-		<li><a href="#"><img src="images/ll04.png" width="131" height="49" class="hides"/><img src="images/l04.png" width="47" height="49" class="shows" /></a></li>
-		<li><a href="#"><img src="images/ll05.png" width="131" height="49" class="hides"/><img src="images/l05.png" width="47" height="49" class="shows" /></a></li>
-		<li><a id="top_btn"><img src="images/ll06.png" width="131" height="49" class="hides"/><img src="images/l06.png" width="47" height="49" class="shows" /></a></li>
-	</ul>
+    <ul>
+        <li><a href="#"><img src="/images/ll04.png" width="131" height="49" class="hides"/><img src="/images/l04.png"
+                                                                                                width="47" height="49"
+                                                                                                class="shows"/></a></li>
+        <li><a href="#"><img src="/images/ll05.png" width="131" height="49" class="hides"/><img src="/images/l05.png"
+                                                                                                width="47" height="49"
+                                                                                                class="shows"/></a></li>
+        <li><a id="top_btn"><img src="/images/ll06.png" width="131" height="49" class="hides"/><img
+                src="/images/l06.png" width="47" height="49" class="shows"/></a></li>
+    </ul>
 </div><!--leftsead end-->
 
 
 <script type="text/javascript">
-$(document).ready(function(){
+    $(document).ready(function () {
 
-	$("#leftsead a").hover(function(){
-		if($(this).prop("className")=="youhui"){
-			$(this).children("img.hides").show();
-		}else{
-			$(this).children("img.hides").show();
-			$(this).children("img.shows").hide();
-			$(this).children("img.hides").animate({marginRight:'0px'},'slow'); 
-		}
-	},function(){ 
-		if($(this).prop("className")=="youhui"){
-			$(this).children("img.hides").hide('slow');
-		}else{
-			$(this).children("img.hides").animate({marginRight:'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
-		}
-	});
+        $("#leftsead a").hover(function () {
+            if ($(this).prop("className") == "youhui") {
+                $(this).children("img.hides").show();
+            } else {
+                $(this).children("img.hides").show();
+                $(this).children("img.shows").hide();
+                $(this).children("img.hides").animate({marginRight: '0px'}, 'slow');
+            }
+        }, function () {
+            if ($(this).prop("className") == "youhui") {
+                $(this).children("img.hides").hide('slow');
+            } else {
+                $(this).children("img.hides").animate({marginRight: '-143px'}, 'slow', function () {
+                    $(this).hide();
+                    $(this).next("img.shows").show();
+                });
+            }
+        });
 
-	$("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({scrollTop: 0}, 200);});
+        $("#top_btn").click(function () {
+            if (scroll == "off") return;
+            $("html,body").animate({scrollTop: 0}, 200);
+        });
 
-});
+    });
 </script>
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
 
 
+    <!-- 代码 开始 -->
+    <div class="scrollsidebar" id="scrollsidebar">
+        <div class="side_content">
+            <div class="side_list">
+                <div class="side_title"><a title="隐藏" class="close_btn"><span>关闭</span></a></div>
+                <div class="side_center">
+                    <div class="side_tp"><img src="/images/kf_03.jpg"/></div>
+                    <div class="side_wz">
+                        7×14H专人服务
+                    </div>
+                    <div style="text-align:center; font-size:12px; line-height:30px; color:#999;">AM:08:00-PM22:00</div>
+                    <div class="custom_service">
+                        <p>
+                            <a href="/boyuan/makeOrder"><img src="/images/an_06.jpg"/></a>
+                        </p>
+                    </div>
 
+                    <div class="other">
+                        <p><img src="/images/fw_10.jpg"/></p>
+                    </div>
+                    <div class="side_zx"><a href="/boyuan/makeOrder>15秒获取报价</a></div>
 
-<!-- 代码 开始 -->
-<div class="scrollsidebar" id="scrollsidebar">
-    <div class="side_content">
-        <div class="side_list">
-            <div class="side_title"><a title="隐藏" class="close_btn"><span>关闭</span></a></div>
-            <div class="side_center"> 
-            <div class="side_tp"><img src="images/kf_03.jpg" /></div> 
-            <div class="side_wz">
-            	7×14H专人服务
-            </div>
-            <div style="text-align:center; font-size:12px; line-height:30px; color:#999;">AM:08:00-PM22:00</div>          	
-              <div class="custom_service">
-                    <p>
-                       <a href="#"><img src="images/an_06.jpg" /></a>
-                    </p>
-                </div> 
-            
-              <div class="other">
-                    <p><img src="images/fw_10.jpg" /></p>
+                    <div class="msgserver">
+                        <p><img src="/images/fw_14.jpg"/></p>
+                        <p style=" color:#666; line-height:30px;">添加客服微信</p>
+                    </div>
                 </div>
-                <div class="side_zx"><a href="#">15秒获取报价</a></div>
-                
-                <div class="msgserver">
-                    <p><img src="images/fw_14.jpg" /></p>
-                    <p style=" color:#666; line-height:30px;">添加客服微信</p>
-                </div>
+                <div class="side_bottom"></div>
             </div>
-            <div class="side_bottom"></div>
         </div>
+        <div class="show_btn"><span>在线客服</span></div>
     </div>
-    <div class="show_btn"><span>在线客服</span></div>
+    <script type="text/javascript" src="/js/lrtk.js"></script>
+    <!-- 代码 结束 -->
+    <script type="text/javascript">
+        $(function () {
+            $("#scrollsidebar").fix({
+                float: 'right',	//default.left or right
+                //minStatue : true,
+                skin: 'green',	//default.gray or blue
+                durationTime: 600
+            });
+        });
+    </script>
 </div>
-<script type="text/javascript" src="js/lrtk.js"></script>
-<!-- 代码 结束 -->
-<script type="text/javascript"> 
-$(function() { 
-	$("#scrollsidebar").fix({
-		float : 'right',	//default.left or right
-		//minStatue : true,
-		skin : 'green',	//default.gray or blue
-		durationTime : 600
-	});
-});
-</script>
-
 </body>
 </html>

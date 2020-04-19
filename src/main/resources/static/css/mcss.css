@@ -180,7 +180,7 @@ abbr, acronym {
 .tuoyunnr ul li{ width:30%; height:120px;float:left; margin-left:10px;}
 .tuoyunnr ul li a{ color:#333;}.tuoyunnr ul li a:hover{color:#f08519;}
 .dian{ width:36px; height:36px; background:#ead584; border-radius:18px; text-align:center; line-height:36px; margin:15px auto; font-weight:bolder;}
-.diannr{ width:100%;  display:block; text-align:center; font-size:14px; line-height:30px;}
+.diannr{ width:100%;  color: black; display:block; text-align:center; font-size:14px; line-height:30px;}
 .mask3{width:100%;height:480px; /* 高度是变量 */position: absolute;left: 0;top: 0; /* top是变量 */}
 .mask3{
      animation: animate 6s ;
