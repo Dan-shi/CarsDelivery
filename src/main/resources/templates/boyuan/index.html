@@ -76,7 +76,9 @@
     <div class="db">
         <div class="pcdb">
             <div class="pcdb_l">您好欢迎来到渤远物流！！！专业提供轿车托运服务</div>
-            <div class="pcdb_r"><a href="#" onclick="javascript:window.external.addFavorite('http://www.boyuan.com','渤远物流')" title="收藏本站到收藏夹">加入收藏</a></div>
+            <div class="pcdb_r"><a href="#"
+                                   onclick="javascript:window.external.addFavorite('http://www.boyuan.com','渤远物流')"
+                                   title="收藏本站到收藏夹">加入收藏</a></div>
         </div>
     </div>
     <div class="clear"></div>
@@ -90,7 +92,7 @@
     <div class="nav">
         <ul>
             <li><a href="#">首页</a></li>
-            <li><a href="#">托运必读</a></li>
+            <li><a href="/boyuan/news">托运必读</a></li>
             <li><a href="/boyuan/makeOrder">在线询价</a></li>
             <li><a href="/boyuan/cases">托运案例</a></li>
             <li><a href="/boyuan/about">关于我们</a></li>
@@ -108,7 +110,7 @@
     <div class="sjj_nav">
         <ul>
             <li><a href="#">首页</a></li>
-            <li><a href="#">托运必读</a></li>
+            <li><a href="/boyuan/news">托运必读</a></li>
             <li><a href="/boyuan/makeOrder">在线询价</a></li>
             <li><a href="/boyuan/cases">托运案例</a></li>
             <li><a href="/boyuan/about">关于我们</a></li>
@@ -146,7 +148,7 @@
                             <input type="text" id="carName" placeholder="请填写车型"/>
                         </li>
                         <li>
-                            <select  type="text" id="carType" value="请选择车型">
+                            <select type="text" id="carType" value="请选择车型">
                                 <option value="">请选择车型</option>
                                 <option value="0">轿车</option>
                                 <option value="1">SUV</option>
@@ -190,6 +192,7 @@
                                 <option>青海省</option>
                                 <option>新疆维吾尔族自治区</option>
                             </select>
+                            <span id="proSpan"><img src="/images/index_23.jpg"/></span>
                             <select id="fromLocCity" name="city">
                                 <option value="">城市</option>
                             </select>
@@ -229,9 +232,11 @@
                                 <option>青海省</option>
                                 <option>新疆维吾尔族自治区</option>
                             </select>
+                            <span id="toProSpan"><img src="/images/index_23.jpg"/></span>
                             <select id="toLocCity" name="city">
                                 <option value="">城市</option>
                             </select>
+
                         </li>
                         <li>
                             <input type="text" id="cusName" placeholder="姓名--选填">
@@ -333,48 +338,66 @@
         <div class="tuoyunti">标准运车流程，一站式门到门服务</div>
         <div class="tuoyunnr">
             <ul>
-                <li><div>
-                    <div class="dian">01</div>
-                    <div class="diannr">签订运输协议</div>
-                </div></li>
-                <li><div>
-                    <div class="dian">02</div>
-                    <div class="diannr">购买商品保险</div>
-                </div></li>
-                <li><div>
-                    <div class="dian">03</div>
-                    <div class="diannr">专业司机装车</div>
-                </div></li>
-                <li><div>
-                    <div class="dian">04</div>
-                    <div class="diannr">验车双方确认</div>
-                </div></li>
-                <li><div>
-                    <div class="dian">05</div>
-                    <div class="diannr">司机与收车人<br/>
-                        核实身份信息
+                <li>
+                    <div>
+                        <div class="dian">01</div>
+                        <div class="diannr">签订运输协议</div>
                     </div>
-                </div></li>
-                <li><div>
-                    <div class="dian">06</div>
-                    <div class="diannr">确认交车地点</div>
-                </div></li>
-                <li><div>
-                    <div class="dian">07</div>
-                    <div class="diannr">完成检验<br/>
-                        支付司机运费
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">02</div>
+                        <div class="diannr">购买商品保险</div>
                     </div>
-                </div></li>
-                <li><div>
-                    <div class="dian">08</div>
-                    <div class="diannr">随同车辆合法证件<br/>
-                        行驶证复印件钥匙
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">03</div>
+                        <div class="diannr">专业司机装车</div>
                     </div>
-                </div></li>
-                <li><div>
-                    <div class="dian">09</div>
-                    <div class="diannr">完成</div>
-                </div></li>
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">04</div>
+                        <div class="diannr">验车双方确认</div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">05</div>
+                        <div class="diannr">司机与收车人<br/>
+                            核实身份信息
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">06</div>
+                        <div class="diannr">确认交车地点</div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">07</div>
+                        <div class="diannr">完成检验<br/>
+                            支付司机运费
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">08</div>
+                        <div class="diannr">随同车辆合法证件<br/>
+                            行驶证复印件钥匙
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <div class="dian">09</div>
+                        <div class="diannr">完成</div>
+                    </div>
+                </li>
 
             </ul>
         </div>
@@ -770,7 +793,8 @@
             <div class="link_nr">
                 <ul>
                     <li><a href="https://b.maihaoche.com/" target=_black><img src="/images/link_link_03.png"/></a></li>
-                    <li><a href="http://baoxian.pingan.com/" target=_black><img src="/images/link_link_06.png"/></a></li>
+                    <li><a href="http://baoxian.pingan.com/" target=_black><img src="/images/link_link_06.png"/></a>
+                    </li>
                     <li><a href="https://www.tangeche.com/" target=_black><img src="/images/link_link_08.png"/></a></li>
                     <li><a href="http://www.tuanche.com/" target=_black><img src="/images/link_link_10.png"/></a></li>
                     <li><a href="http://yxt.easypass.cn/" target=_black><img src="/images/link_link_12.png"/></a></li>
@@ -798,15 +822,16 @@
 <div id="leftsead">
     <ul>
         <li><a href="#"><img src="/images/ll04.png" width="131" height="49" class="hides"/><img src="/images/l04.png"
-                                                                                               width="47" height="49"
-                                                                                               class="shows"/></a></li>
+                                                                                                width="47" height="49"
+                                                                                                class="shows"/></a></li>
         <li><a href="#"><img src="/images/ll05.png" width="131" height="49" class="hides"/><img src="/images/l05.png"
-                                                                                               width="47" height="49"
-                                                                                               class="shows"/></a></li>
-        <li><a id="top_btn"><img src="/images/ll06.png" width="131" height="49" class="hides"/><img src="/images/l06.png"
-                                                                                                   width="47"
-                                                                                                   height="49"
-                                                                                                   class="shows"/></a>
+                                                                                                width="47" height="49"
+                                                                                                class="shows"/></a></li>
+        <li><a id="top_btn"><img src="/images/ll06.png" width="131" height="49" class="hides"/><img
+                src="/images/l06.png"
+                width="47"
+                height="49"
+                class="shows"/></a>
         </li>
     </ul>
 </div><!--leftsead end-->

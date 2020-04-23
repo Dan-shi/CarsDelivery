@@ -282,7 +282,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 }
 
 .baijia_nr li {
-    width: 170px;
+    width: 135px;
     height: 28px;
     line-height: 28px;
     border-right: 1px #CCCCCC solid;
@@ -293,7 +293,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     height: 28px;
     line-height: 28px;
     color: #999;
-    width: 155px;
+    width: 120px;
     margin-left: 12px;
 }
 
@@ -314,7 +314,6 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 }
 
 .baijia_nr li select {
-    width: 155px;
     color: #999;
     line-height: 28px;
     padding-left: 12px;
@@ -444,7 +443,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     position: absolute;
     bottom: 60px;
     left: 0;
-    color: # #FFF;
+    color: #FFF;
     align: center;
 }
 
@@ -1129,7 +1128,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     font-size: 14px;
     color: #666;
     line-height: 24px;
-    background: url(../images/line1.jpg) right center no-repeat
+    /*background: url(../images/line1.jpg) right center no-repeat*/
 }
 
 .footer-btm-rt {
@@ -1558,7 +1557,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 }
 
 .xj_lb_sj {
-    width: 210px;
+    width: 340px;
     float: left;
     height: 35px;
     line-height: 35px;
@@ -1605,6 +1604,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 
 .lianjie {
     width: 300px;
+    display: block;
     height: 45px;
     background: #f08519;
     color: #FFF;
@@ -1817,4 +1817,36 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 
 .next a:hover {
     color: #f08519;
+}
+
+#fromLocPro {
+    float: left;
+    width: 60%;
+    border-right: 1px #CCCCCC solid;
+}
+
+#fromLocCity {
+    width: 40%;
+    float: right;
+}
+
+#toLocPro {
+    float: left;
+    width: 60%;
+    border-right: 1px #CCCCCC solid;
+}
+
+#toLocCity {
+    width: 40%;
+    float: right;
+}
+
+
+#toProSpan {
+    display: none;
+}
+
+
+#proSpan {
+    display: none;
 }
