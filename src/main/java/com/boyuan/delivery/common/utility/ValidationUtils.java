@@ -2,7 +2,7 @@
  *  Copyright 2020 北京渤远物流. All Rights Reserved.
  */
 
-package com.boyuan.delivery.common;
+package com.boyuan.delivery.common.utility;
 
 
 import com.boyuan.delivery.model.ValidationResult;

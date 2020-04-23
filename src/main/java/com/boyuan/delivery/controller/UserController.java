@@ -1,6 +1,6 @@
 package com.boyuan.delivery.controller;
 
-import com.boyuan.delivery.common.ResultUtils;
+import com.boyuan.delivery.common.utility.ResultUtils;
 import com.boyuan.delivery.constant.CommonConstant.UserRole;
 import com.boyuan.delivery.model.BynUser;
 import com.boyuan.delivery.model.Result;

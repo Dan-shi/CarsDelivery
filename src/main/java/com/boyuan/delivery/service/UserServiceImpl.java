@@ -1,6 +1,6 @@
 package com.boyuan.delivery.service;
 
-import com.boyuan.delivery.common.ValidationUtils;
+import com.boyuan.delivery.common.utility.ValidationUtils;
 import com.boyuan.delivery.enumeration.CommonResult;
 import com.boyuan.delivery.enumeration.ResultInfo;
 import com.boyuan.delivery.enumeration.UserRoleInfo;
