@@ -8,38 +8,41 @@
 
     <resultMap id="OrderModelMap" type="com.boyuan.delivery.model.Order">
         <id column="order_id" jdbcType="BIGINT" property="orderId"/>
-        <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
-        <result column="order_source" jdbcType="INTEGER" property="orderSource" />
-        <result column="order_type" jdbcType="INTEGER" property="orderType" />
-        <result column="admin_id" jdbcType="BIGINT" property="adminUserId" />
-        <result column="car_type" jdbcType="INTEGER" property="carType" />
-        <result column="car_name" jdbcType="VARCHAR" property="carName" />
-        <result column="price" jdbcType="VARCHAR" property="price" />
-        <result column="from_location" jdbcType="VARCHAR" property="fromLocation" />
-        <result column="to_location" jdbcType="VARCHAR" property="toLocation" />
-        <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
-        <result column="cus_phone" jdbcType="VARCHAR" property="cusPhone" />
-        <result column="description" jdbcType="VARCHAR" property="description" />
-        <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus"/>
+        <result column="order_source" jdbcType="INTEGER" property="orderSource"/>
+        <result column="order_type" jdbcType="INTEGER" property="orderType"/>
+        <result column="admin_id" jdbcType="BIGINT" property="adminUserId"/>
+        <result column="cus_id" jdbcType="BIGINT" property="cusId"/>
+        <result column="car_type" jdbcType="INTEGER" property="carType"/>
+        <result column="car_name" jdbcType="VARCHAR" property="carName"/>
+        <result column="price" jdbcType="VARCHAR" property="price"/>
+        <result column="from_location" jdbcType="VARCHAR" property="fromLocation"/>
+        <result column="to_location" jdbcType="VARCHAR" property="toLocation"/>
+        <result column="cus_name" jdbcType="VARCHAR" property="cusName"/>
+        <result column="cus_phone" jdbcType="VARCHAR" property="cusPhone"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
-    <insert id="createOrder" parameterType="com.boyuan.delivery.model.Order" useGeneratedKeys="true" keyProperty="orderId">
-        insert into car_order (order_status, order_source, order_type, admin_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, description)
-        values (#{orderStatus,jdbcType=INTEGER}, #{orderSource,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{adminUserId,jdbcType=BIGINT},
+    <insert id="createOrder" parameterType="com.boyuan.delivery.model.Order" useGeneratedKeys="true"
+            keyProperty="orderId">
+        insert into car_order (order_status, order_source, order_type, admin_id, cus_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, description)
+        values (#{orderStatus,jdbcType=INTEGER}, #{orderSource,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{adminUserId,jdbcType=BIGINT}, #{cusId,jdbcType=BIGINT},
         #{carType,jdbcType=INTEGER}, #{carName,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{fromLocation,jdbcType=VARCHAR},#{toLocation,jdbcType=VARCHAR},
         #{cusName,jdbcType=VARCHAR}, #{cusPhone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
         )
     </insert>
 
-    <update id="updateOrder"  parameterType="com.boyuan.delivery.model.Order">
+    <update id="updateOrder" parameterType="com.boyuan.delivery.model.Order">
         UPDATE car_order
         <trim prefix="set" suffixOverrides=",">
             <if test="orderStatus != null">order_status = #{orderStatus,jdbcType=INTEGER},</if>
             <if test="orderSource != null">order_source = #{orderSource,jdbcType=INTEGER},</if>
             <if test="orderType != null">order_type = #{orderType,jdbcType=INTEGER},</if>
             <if test="adminUserId != null">admin_id = #{adminUserId,jdbcType=BIGINT},</if>
+            <if test="cusId != null">cus_id = #{cusId,jdbcType=BIGINT},</if>
             <if test="carType != null">car_type = #{carType,jdbcType=INTEGER},</if>
             <if test="carName != null">car_name = #{carName,jdbcType=VARCHAR},</if>
             <if test="price != null">price = #{price,jdbcType=VARCHAR},</if>
@@ -60,9 +63,9 @@
     </update>
 
     <select id="getOrderById" parameterType="java.lang.Long" resultMap="OrderModelMap">
-        select user_id, user_name, password, phone, sex, age, birthday, role_id, create_time, update_time
-        from user
-        where user_name = #{username,jdbcType=VARCHAR}
+        select order_id, order_status, order_source, order_type, admin_id, cus_id, car_type, car_name, price, from_location, to_location, cus_name, cus_phone, is_active, description, create_time, update_time
+        from car_order
+        where order_id = #{orderId,jdbcType=BIGINT}
     </select>
 
 </mapper>

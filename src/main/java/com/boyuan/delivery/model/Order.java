@@ -37,6 +37,8 @@ public class Order {
 
     private Long adminUserId;
 
+    private Long cusId;
+
     @NotNull
     private Integer carType;
 

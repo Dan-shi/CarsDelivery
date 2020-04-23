@@ -25,6 +25,7 @@ CREATE TABLE car_order (
   order_source int(2) NOT NULL,
   order_type int(2) NOT NULL,
   admin_id bigint,
+  cus_id bigint,
   car_type int(2) NOT NULL,
   car_name varchar(50) NOT NULL,
   price varchar(20),
@@ -37,7 +38,8 @@ CREATE TABLE car_order (
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
   PRIMARY KEY (order_id),
-  FOREIGN KEY (admin_id) REFERENCES admin_user(admin_id)
+  FOREIGN KEY (admin_id) REFERENCES user(user_id),
+  FOREIGN KEY (cus_id) REFERENCES user(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- location history table

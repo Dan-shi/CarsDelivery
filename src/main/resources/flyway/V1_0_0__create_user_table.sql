@@ -8,6 +8,7 @@ CREATE TABLE user (
   age int(3),
   birthday varchar(20),
   role_id bigint NOT NULL,
+  is_active boolean NOT NULL default 1,
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
   PRIMARY KEY (user_id)

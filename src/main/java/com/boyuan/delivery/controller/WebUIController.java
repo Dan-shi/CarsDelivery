@@ -46,4 +46,5 @@ public class WebUIController {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS_DETAIL;
     }
+
 }

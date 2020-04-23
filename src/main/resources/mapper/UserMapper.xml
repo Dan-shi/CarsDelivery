@@ -2,26 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.boyuan.delivery.mapper.UserMapper">
     <resultMap id="UserModelMap" type="com.boyuan.delivery.model.BynUser">
-        <id column="user_id" jdbcType="BIGINT" property="userId" />
-        <result column="user_name" jdbcType="VARCHAR" property="userName" />
-        <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="phone" jdbcType="VARCHAR" property="phone" />
-        <result column="sex" jdbcType="INTEGER" property="sex" />
-        <result column="age" jdbcType="INTEGER" property="age" />
-        <result column="birthday" jdbcType="VARCHAR" property="birthday" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-        <association column="role_id" property="userRole" select="com.boyuan.delivery.mapper.UserRoleMapper.getUserRoleByRoleId" />
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <association column="role_id" property="userRole"
+                     select="com.boyuan.delivery.mapper.UserRoleMapper.getUserRoleByRoleId"/>
     </resultMap>
 
     <select id="getUserByUserName" parameterType="java.lang.String" resultMap="UserModelMap">
 
-        select user_id, user_name, password, phone, sex, age, birthday, role_id, create_time, update_time
+        select user_id, user_name, password, phone, sex, age, birthday, role_id, is_active, create_time, update_time
         from user
         where user_name = #{username,jdbcType=VARCHAR}
     </select>
 
-    <insert id="insertUser" parameterType="com.boyuan.delivery.model.BynUser" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="insertUser" parameterType="com.boyuan.delivery.model.BynUser" useGeneratedKeys="true"
+            keyProperty="userId">
 
         insert into user (user_name, password, phone, sex, age, birthday, role_id)
         values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
