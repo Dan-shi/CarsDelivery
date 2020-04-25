@@ -13,6 +13,15 @@ public class CommonConstant {
          * Login page
          */
         public static final String ADMIN_LOGIN = "adminLogin";
+
+        /**
+         * Order management
+         */
+        public static final String ADMIN_ORDER = "orders";
+        /**
+         * Blog and case management
+         */
+        public static final String ADMIN_PAPER = "papers";
     }
 
     /**
