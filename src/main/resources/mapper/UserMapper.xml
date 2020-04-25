@@ -17,10 +17,16 @@
     </resultMap>
 
     <select id="getUserByUserName" parameterType="java.lang.String" resultMap="UserModelMap">
-
         select user_id, user_name, password, phone, sex, age, birthday, role_id, is_active, create_time, update_time
         from user
         where user_name = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getUserByPhone" parameterType="java.lang.String" resultMap="UserModelMap">
+
+        select user_id, user_name, password, phone, sex, age, birthday, role_id, is_active, create_time, update_time
+        from user
+        where phone = #{phone,jdbcType=VARCHAR}
     </select>
 
     <insert id="insertUser" parameterType="com.boyuan.delivery.model.BynUser" useGeneratedKeys="true"

@@ -18,9 +18,9 @@ public interface BlogMapper {
 
     Blog getBlogById(long blogId);
 
-    int getPageCount(int limit);
+    int getPageCount(int blogType, int limit);
 
-    List<Blog> getBlogListByPage(int offset, int limit);
+    List<Blog> getBlogsByPage(int blogType, int offset, int limit);
 
-    List<Blog> getBlogListByBlogId(long lastBlogId, int limit);
+    List<Blog> getBlogsByBlogId(int blogType, long lastBlogId, int limit);
 }

@@ -20,7 +20,7 @@ import java.util.Date;
  */
 public class JwtRefreshSuccessHandler implements AuthenticationSuccessHandler {
 	
-	private static final int tokenRefreshInterval = 300;  //刷新间隔5分钟
+	private static final int tokenRefreshInterval = 6000;  //刷新间隔5分钟
 	
 	private JwtUserService jwtUserService;
 	

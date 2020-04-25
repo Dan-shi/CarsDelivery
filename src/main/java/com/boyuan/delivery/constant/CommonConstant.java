@@ -19,9 +19,14 @@ public class CommonConstant {
          */
         public static final String ADMIN_ORDER = "orders";
         /**
-         * Blog and case management
+         * News management
          */
-        public static final String ADMIN_PAPER = "papers";
+        public static final String ADMIN_NEWS = "news";
+
+        /**
+         * Case management
+         */
+        public static final String ADMIN_CASE = "cases";
     }
 
     /**

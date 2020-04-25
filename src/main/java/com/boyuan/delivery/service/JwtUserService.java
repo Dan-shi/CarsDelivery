@@ -35,6 +35,9 @@ public class JwtUserService implements UserDetailsService {
          * salt = redisTemplate.opsForValue().get("token:"+username);
          */
         UserDetails user = loadUserByUsername(username);
+        if (user == null) {
+            return null;
+        }
         //将salt放到password字段返回
         return User.builder().username(user.getUsername()).password(salt).authorities(user.getAuthorities()).build();
     }
@@ -65,6 +68,9 @@ public class JwtUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         BynUser user = this.userService.getUserByUserName(username);
+        if (user == null) {
+            return null;
+        }
         return User.builder().username(user.getUserName()).password(user.getPassword()).roles(user.getUserRole().getRoleKey()).build();
     }
 

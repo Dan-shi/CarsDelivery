@@ -22,9 +22,9 @@
     </resultMap>
     <insert id="createAdminUser" parameterType="com.boyuan.delivery.model.AdminUser" useGeneratedKeys="true" keyProperty="adUserId">
 
-        insert into admin_user (admin_name, password, email, phone, sex, age, birthday, role_id, is_active)
+        insert into admin_user (admin_name, password, email, phone, sex, age, birthday, role_id)
         values (#{adUserName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-        #{sex,jdbcType=INTEGER},#{age,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR}, #{userRole.roleId,jdbcType=BIGINT}, #{isActive,jdbcType=BOOLEAN}
+        #{sex,jdbcType=INTEGER},#{age,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR}, #{userRole.roleId,jdbcType=BIGINT}
         )
     </insert>
 

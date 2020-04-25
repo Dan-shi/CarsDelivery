@@ -1,12 +1,7 @@
 package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.constant.CommonConstant.UserRole;
-import com.boyuan.delivery.service.AdminUserService;
-import com.boyuan.delivery.service.JwtUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,14 +37,26 @@ public class AdminUIController {
     }
 
     /**
-     * Blog and case management
+     * News management
      *
      * @param model
      * @return
      */
     @Secured(UserRole.ADMIN)
-    @GetMapping("paper")
-    public String adminPaperPage(Model model) {
-        return AdminUrlMapping.ADMIN_PREFIX + AdminUrlMapping.ADMIN_PAPER;
+    @GetMapping("news")
+    public String adminBlogPage(Model model) {
+        return AdminUrlMapping.ADMIN_PREFIX + AdminUrlMapping.ADMIN_NEWS;
+    }
+
+    /**
+     * Case management
+     *
+     * @param model
+     * @return
+     */
+    @Secured(UserRole.ADMIN)
+    @GetMapping("case")
+    public String adminCasePage(Model model) {
+        return AdminUrlMapping.ADMIN_PREFIX + AdminUrlMapping.ADMIN_CASE;
     }
 }

@@ -3,6 +3,8 @@ package com.boyuan.delivery;
 import com.boyuan.delivery.common.utility.JsonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 class DeliveryApplicationTests {
@@ -23,6 +25,14 @@ class DeliveryApplicationTests {
                 "            <p>&nbsp;&nbsp;&nbsp;&nbsp;公司目前自有正规轿运车逾70台，全国可调配正规轿运车超过500台，均为国家标准正规化运营车辆，不超载运行。保证承运车辆安全送达，让客户安心放心。我公司本着诚信第一，客户至上的服务态度为宗旨，竭诚为新老客户服务。</p>";
 
         System.out.println(JsonUtils.serialize(content));
+    }
+
+    @Test
+    public void encryptPassword(){
+        //Encrypt password
+        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        String encryptPwd = passwordEncoder.encode("");
+        System.out.println(encryptPwd);
     }
 
 

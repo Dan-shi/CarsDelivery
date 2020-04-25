@@ -85,7 +85,7 @@ const CommonUtils = {
      * 显示遮罩层
      */
     showOverlay() {
-        var overlay = $('<div id="overlay" class="overlay"></div>');
+        var overlay = $('<div id="bynOverlay" class="overlay"></div>');
         // 遮罩层宽高分别为页面内容的宽高
         overlay.css({
             'height': $(document).height(),
@@ -99,7 +99,7 @@ const CommonUtils = {
      * Hide overlay
      */
     hideOverlay() {
-        $('.overlay').hide();
+        $("#bynOverlay").remove();
     }
 
 }

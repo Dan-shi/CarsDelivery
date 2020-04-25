@@ -19,9 +19,9 @@ public interface BlogService {
 
     Blog getBlogById(long blogId);
 
-    int getPageCount(int limit);
+    int getPageCount(int blogType, int limit);
 
-    List<Blog> getBlogListByPage(int pageNum, int limit);
+    List<Blog> getBlogsByPage(int blogType, int pageNum, int limit);
 
-    List<Blog> getBlogListByBlogId(long lastBlogId, int limit);
+    List<Blog> getBlogsByBlogId(int blogType, long lastBlogId, int limit);
 }

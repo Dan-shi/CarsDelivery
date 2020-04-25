@@ -27,7 +27,6 @@ public class Blog {
     @NotBlank
     private String description;
 
-    @NotBlank
     private String author;
 
     /**

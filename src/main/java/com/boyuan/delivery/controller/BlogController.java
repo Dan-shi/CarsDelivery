@@ -107,9 +107,9 @@ public class BlogController {
      */
     @Secured(UserRole.USER)
     @GetMapping("getPageCount")
-    public Result getPageCount() {
+    public Result getPageCount(@RequestParam(value = "blogType") int blogType) {
         try {
-            return ResultUtils.buildResultWithBody(this.blogService.getPageCount(CommonConstant.Page.limit));
+            return ResultUtils.buildResultWithBody(this.blogService.getPageCount(blogType, CommonConstant.Page.limit));
         } catch (Exception e) {
             logger.error("Get page count error", e);
             return ResultUtils.buildErrorResult(e.getMessage());
@@ -122,10 +122,10 @@ public class BlogController {
      * @return
      */
     @Secured(UserRole.USER)
-    @GetMapping("getBlogListByPage")
-    public Result getBlogListByPage(@RequestParam(value = "pageNum") int pageNum) {
+    @GetMapping("getBlogsByPage")
+    public Result getBlogsByPage(@RequestParam(value = "blogType") int blogType, @RequestParam(value = "pageNum") int pageNum) {
         try {
-            return ResultUtils.buildResultWithBody(this.blogService.getBlogListByPage(pageNum, CommonConstant.Page.limit));
+            return ResultUtils.buildResultWithBody(this.blogService.getBlogsByPage(blogType, pageNum, CommonConstant.Page.limit));
         } catch (Exception e) {
             logger.error("Get blog by page number error", e);
             return ResultUtils.buildErrorResult(e.getMessage());
@@ -139,10 +139,10 @@ public class BlogController {
      * @return
      */
     @Secured(UserRole.USER)
-    @GetMapping("getBlogListByBlogId")
-    public Result getBlogListByBlogId(@RequestParam(value = "blogId") long lastBlogId) {
+    @GetMapping("getBlogsByBlogId")
+    public Result getBlogsByBlogId(@RequestParam(value = "blogType") int blogType, @RequestParam(value = "blogId") long lastBlogId) {
         try {
-            return ResultUtils.buildResultWithBody(this.blogService.getBlogListByBlogId(lastBlogId, CommonConstant.Page.limit));
+            return ResultUtils.buildResultWithBody(this.blogService.getBlogsByBlogId(blogType, lastBlogId, CommonConstant.Page.limit));
         } catch (Exception e) {
             logger.error("Get blog by last blog id error", e);
             return ResultUtils.buildErrorResult(e.getMessage());

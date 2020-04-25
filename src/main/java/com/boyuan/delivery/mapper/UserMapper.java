@@ -6,6 +6,8 @@ public interface UserMapper {
 
     BynUser getUserByUserName(String username);
 
+    BynUser getUserByPhone(String phone);
+
     int insertUser(BynUser user);
 
 }

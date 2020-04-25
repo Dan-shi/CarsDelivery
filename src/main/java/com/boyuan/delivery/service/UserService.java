@@ -28,6 +28,15 @@ public interface UserService {
      */
     BynUser getUserByUserName(String username);
 
+
+    /**
+     * Get user by phone number
+     *
+     * @param phone
+     * @return
+     */
+    BynUser getUserByPhone(String phone);
+
     /**
      * Delete user login cache
      *

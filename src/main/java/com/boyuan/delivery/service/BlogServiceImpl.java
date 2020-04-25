@@ -69,26 +69,26 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public int getPageCount(int limit) {
-        return this.blogMapper.getPageCount(limit);
+    public int getPageCount(int blogType, int limit) {
+        return this.blogMapper.getPageCount(blogType, limit);
     }
 
     @Override
-    public List<Blog> getBlogListByPage(int pageNum, int limit) {
+    public List<Blog> getBlogsByPage(int blogType, int pageNum, int limit) {
         if (pageNum < 0 || limit < 0) {
-            this.logger.error("getBlogListByPage parameter error");
+            this.logger.error("getBlogsByPage parameter error");
             return new ArrayList<>();
         }
-        return this.blogMapper.getBlogListByPage(pageNum * limit, limit);
+        return this.blogMapper.getBlogsByPage(blogType, pageNum * limit, limit);
     }
 
     @Override
-    public List<Blog> getBlogListByBlogId(long lastBlogId, int limit) {
+    public List<Blog> getBlogsByBlogId(int blogType, long lastBlogId, int limit) {
         if (lastBlogId < 0 || limit < 0) {
-            this.logger.error("getBlogListByBlogId parameter error");
+            this.logger.error("getBlogsByBlogId parameter error");
             return new ArrayList<>();
         }
-        return this.blogMapper.getBlogListByBlogId(lastBlogId, limit);
+        return this.blogMapper.getBlogsByBlogId(blogType, lastBlogId, limit);
     }
 
 }

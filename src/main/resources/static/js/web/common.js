@@ -5,6 +5,9 @@
 var host = "http://localhost:8080/";
 
 function submitOrder() {
+    CommonUtils.showToast('请求错误');
+    CommonUtils.showLoading();
+    CommonUtils.hideLoading();
     //get value from page
     var carName = document.getElementById("carName").value;
     var carType = document.getElementById("carType").value;
@@ -21,41 +24,41 @@ function submitOrder() {
 
     //value check
     var errorMsg = "";
-    if (isEmpty(carName)) {
+    if (CommonUtils.isEmpty(carName)) {
         errorMsg = errorMsg + "请填写车型</br>";
     }
 
-    if (isEmpty(carType)) {
+    if (CommonUtils.isEmpty(carType)) {
         errorMsg = errorMsg + "请选择车型</br>";
     }
 
-    if (isEmpty(fromPro)) {
+    if (CommonUtils.isEmpty(fromPro)) {
         errorMsg = errorMsg + "请选择出发省份</br>";
     }
 
-    if (isEmpty(fromCity)) {
+    if (CommonUtils.isEmpty(fromCity)) {
         errorMsg = errorMsg + "请选择出发城市</br>";
     }
 
-    if (isEmpty(toPro)) {
+    if (CommonUtils.isEmpty(toPro)) {
         errorMsg = errorMsg + "请选择到达省份</br>";
     }
 
-    if (isEmpty(toCity)) {
+    if (CommonUtils.isEmpty(toCity)) {
         errorMsg = errorMsg + "请选择到达城市</br>";
     }
 
-    if (isEmpty(cusPhone)) {
+    if (CommonUtils.isEmpty(cusPhone)) {
         errorMsg = errorMsg + "请填写您的电话</br>";
     }
 
-    if (!isEmpty(cusPhone) && !isPhoneNum(cusPhone)) {
+    if (!CommonUtils.isEmpty(cusPhone) && !CommonUtils.isPhoneNum(cusPhone)) {
         errorMsg = errorMsg + "请填写正确的电话格式</br>";
     }
 
-    if (!isEmpty(errorMsg)) {
+    if (!CommonUtils.isEmpty(errorMsg)) {
         //show model return
-        showAlert('输入错误', errorMsg);
+        CommonUtils.showAlert('输入错误', errorMsg);
         return;
     }
 
@@ -72,7 +75,7 @@ function submitOrder() {
         description: description
     };
 
-    showLoading();
+    CommonUtils.showLoading();
 
     //Build order model
     $.ajax({
@@ -85,117 +88,23 @@ function submitOrder() {
         type: "POST", // 请求方式
         success: function (data) {
             if (data.resultCode == 100) {
-                showToast('下单成功');
+                CommonUtils.showToast('下单成功');
             } else if (data.resultCode == -201) {
-                showToast('订单已存在, 请勿重复提交');
+                CommonUtils.showToast('订单已存在, 请勿重复提交');
             } else {
-                showToast('下单失败, 请稍后再试');
+                CommonUtils.showToast('下单失败, 请稍后再试');
             }
             console.log(data)
         },
         complete: function (XMLHttpRequest, textStatus) {
-            hideLoading();
+            CommonUtils.hideLoading();
         },
         error: function () {
-            showToast('请求错误');
+            CommonUtils.showToast('请求错误');
         }
     });
 
 }
-
-//show alert
-function showAlert(title, message) {
-    Eject.Ealert({
-        title: title,
-        message: message
-    })
-}
-
-//show confirm model
-function showConfirm(title, message, success, cancel) {
-    Eject.Econfirm({
-        title: title,
-        message: message,
-        define: function () {
-            success();
-        },
-        cancel: function () {
-            cancel();
-        }
-    })
-}
-
-//show toast
-function showToast(message) {
-    Eject.Etoast(message, 3) //默认三秒
-}
-
-function isPhoneNum(phone) {
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-    if (!myreg.test(phone)) {
-        return false;
-    }
-    return true;
-}
-
-
-//判断字符是否为空的方法
-function isEmpty(obj) {
-    if (typeof obj == "undefined" || obj == null || obj == "") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function showLoading() {
-
-    showOverlay();
-    /**
-     * 参数：支持字符串以及对象传参
-     * 传值为字符串 默认第一种样式，提示文字为默认loading...
-     * 传值为对象时
-     * 1.type 类型，只支持五种，可扩展  必填项
-     * 2.tip  提示文字  非必填
-     * 3.showTip 是否显示提示文字，默认为true  非必填
-     * 使用方法
-     * loading.showLoading()
-     * loading.hideLoading()
-     */
-    loading.showLoading({
-        type: 5,
-        showTip: false
-    })
-
-}
-
-/**
- * Hide loading
- */
-function hideLoading() {
-    hideOverlay();
-    loading.hideLoading();
-}
-
-/**
- * 显示遮罩层
- */
-function showOverlay() {
-    // 遮罩层宽高分别为页面内容的宽高
-    $('.overlay').css({
-        'height': $(document).height(),
-        'width': $(document).width()
-    });
-    $('.overlay').show();
-}
-
-/**
- * Hide overlay
- */
-function hideOverlay() {
-    $('.overlay').hide();
-}
-
 //city select
 try {
     var sf = new Array();

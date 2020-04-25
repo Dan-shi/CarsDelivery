@@ -37,6 +37,8 @@ CREATE TABLE car_order (
   description varchar(255),
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
+  INDEX(cus_phone),
+  INDEX(order_status),
   PRIMARY KEY (order_id),
   FOREIGN KEY (admin_id) REFERENCES user(user_id),
   FOREIGN KEY (cus_id) REFERENCES user(user_id)

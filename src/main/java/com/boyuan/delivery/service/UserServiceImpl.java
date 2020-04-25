@@ -62,14 +62,23 @@ public class UserServiceImpl implements UserService {
         return this.userMapper.getUserByUserName(username);
     }
 
+    @Cacheable("customer")
+    @Override
+    public BynUser getUserByPhone(String phone) {
+        logger.info("Get user from DB phone: " + phone);
+        return this.userMapper.getUserByPhone(phone);
+    }
+
+
     @Override
     @Cacheable("salt")
     public String getSalt() {
-        return "123456ef";
+        return "boyuan66688";
     }
 
     @Override
     @CacheEvict(cacheNames = "users")
-    public void deleteUserLoginInfo(String username) {}
+    public void deleteUserLoginInfo(String username) {
+    }
 
 }
