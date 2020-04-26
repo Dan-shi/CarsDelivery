@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -88,7 +89,7 @@ public class BlogController {
      * @param blogId
      * @return
      */
-    @Secured(UserRole.USER)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("getBlog")
     public Result getBlogById(@RequestParam(value = "blogId") Long blogId) {
         try {
@@ -105,11 +106,12 @@ public class BlogController {
      *
      * @return
      */
-    @Secured(UserRole.USER)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("getPageCount")
-    public Result getPageCount(@RequestParam(value = "blogType") int blogType) {
+    public Result getPageCount(@RequestParam(value = "isActive") boolean isActive,
+                               @RequestParam(value = "blogType") int blogType) {
         try {
-            return ResultUtils.buildResultWithBody(this.blogService.getPageCount(blogType, CommonConstant.Page.limit));
+            return ResultUtils.buildResultWithBody(this.blogService.getPageCount(isActive, blogType, CommonConstant.Page.limit));
         } catch (Exception e) {
             logger.error("Get page count error", e);
             return ResultUtils.buildErrorResult(e.getMessage());
@@ -121,11 +123,13 @@ public class BlogController {
      *
      * @return
      */
-    @Secured(UserRole.USER)
-    @GetMapping("getBlogsByPage")
-    public Result getBlogsByPage(@RequestParam(value = "blogType") int blogType, @RequestParam(value = "pageNum") int pageNum) {
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @GetMapping("getBlogsPage")
+    public Result getBlogsPage(@RequestParam(value = "isActive") boolean isActive,
+                               @RequestParam(value = "blogType") int blogType,
+                               @RequestParam(value = "pageNum") int pageNum) {
         try {
-            return ResultUtils.buildResultWithBody(this.blogService.getBlogsByPage(blogType, pageNum, CommonConstant.Page.limit));
+            return ResultUtils.buildResultWithBody(this.blogService.getBlogsPage(isActive, blogType, pageNum, CommonConstant.Page.limit));
         } catch (Exception e) {
             logger.error("Get blog by page number error", e);
             return ResultUtils.buildErrorResult(e.getMessage());
@@ -138,11 +142,13 @@ public class BlogController {
      * @param lastBlogId
      * @return
      */
-    @Secured(UserRole.USER)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("getBlogsByBlogId")
-    public Result getBlogsByBlogId(@RequestParam(value = "blogType") int blogType, @RequestParam(value = "blogId") long lastBlogId) {
+    public Result getBlogsByBlogId(@RequestParam(value = "isActive") boolean isActive,
+                                   @RequestParam(value = "blogType") int blogType,
+                                   @RequestParam(value = "blogId") long lastBlogId) {
         try {
-            return ResultUtils.buildResultWithBody(this.blogService.getBlogsByBlogId(blogType, lastBlogId, CommonConstant.Page.limit));
+            return ResultUtils.buildResultWithBody(this.blogService.getBlogsPageByBlogId(isActive, blogType, lastBlogId, CommonConstant.Page.limit));
         } catch (Exception e) {
             logger.error("Get blog by last blog id error", e);
             return ResultUtils.buildErrorResult(e.getMessage());

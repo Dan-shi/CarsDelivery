@@ -147,6 +147,9 @@ try {
     alert(e);
 }
 
+/**
+ * Load city and province list
+ */
 $(document).ready(function (e) {
     $("#fromLocPro").change(function () {
         try {

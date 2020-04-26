@@ -5,6 +5,7 @@
 package com.boyuan.delivery.mapper;
 
 import com.boyuan.delivery.model.Blog;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,9 +19,25 @@ public interface BlogMapper {
 
     Blog getBlogById(long blogId);
 
-    int getPageCount(int blogType, int limit);
+    int getPageCount(boolean isActive, int blogType, int limit);
 
-    List<Blog> getBlogsByPage(int blogType, int offset, int limit);
+    int getAllPageCount(int blogType, int limit);
 
-    List<Blog> getBlogsByBlogId(int blogType, long lastBlogId, int limit);
+    List<Blog> getBlogsPage(@Param("isActive") boolean isActive,
+                            @Param("blogType") int blogType,
+                            @Param("offset") int offset,
+                            @Param("limit") int limit);
+
+    List<Blog> getAllBlogsPage(@Param("blogType") int blogType,
+                               @Param("offset") int offset,
+                               @Param("limit") int limit);
+
+    List<Blog> getBlogsPageByBlogId(@Param("isActive") boolean isActive,
+                                    @Param("blogType") int blogType,
+                                    @Param("lastBlogId") long lastBlogId,
+                                    @Param("limit") int limit);
+
+    List<Blog> getAllBlogsByBlogId(@Param("blogType") int blogType,
+                                   @Param("lastBlogId") long lastBlogId,
+                                   @Param("limit") int limit);
 }

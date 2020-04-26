@@ -31,7 +31,7 @@ class DeliveryApplicationTests {
     public void encryptPassword(){
         //Encrypt password
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        String encryptPwd = passwordEncoder.encode("");
+        String encryptPwd = passwordEncoder.encode("boyuan123");
         System.out.println(encryptPwd);
     }
 

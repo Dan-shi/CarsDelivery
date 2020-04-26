@@ -10,8 +10,7 @@ CREATE TABLE blog (
   content text NOT NULL,
   create_time timestamp NOT NULL default current_timestamp,
   update_time timestamp NOT NULL default current_timestamp on update current_timestamp,
-  INDEX(blog_type),
-  INDEX(is_active),
+  INDEX(blog_type, is_active),
   PRIMARY KEY (blog_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

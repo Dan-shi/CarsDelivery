@@ -18,6 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,7 +38,7 @@ public class OrderController {
      * @param order
      * @return
      */
-    @Secured(UserRole.USER)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping("create")
     public Result createOrder(@RequestBody Order order) {
 
@@ -106,7 +107,7 @@ public class OrderController {
      * @param orderId
      * @return
      */
-    @Secured(UserRole.USER)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("getOrder")
     public Result getOrderById(@RequestParam(value = "orderId") Long orderId) {
         try {
