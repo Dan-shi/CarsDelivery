@@ -5,7 +5,9 @@
 package com.boyuan.delivery.enumeration;
 
 public enum UserResult implements ResultInfo {
-    USER_EXIST(-301, "USER_EXIST");
+    USER_EXIST(-301, "USER_EXIST"),
+
+    USER_NOT_MATCH(-302, "USER_NOT_MATCH");
 
     private int code;
 

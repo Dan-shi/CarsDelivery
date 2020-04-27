@@ -10,5 +10,7 @@ import java.util.List;
 
 public interface UserPermissionMapper {
 
+    List<UserPermission> getPermissionsById(long id);
+
     List<UserPermission> getPermissionsByRoleId(long roleId);
 }

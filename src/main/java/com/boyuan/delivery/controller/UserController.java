@@ -1,7 +1,7 @@
 package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.utility.ResultUtils;
-import com.boyuan.delivery.constant.CommonConstant.UserRole;
+import com.boyuan.delivery.constant.CommonConstant.Permission;
 import com.boyuan.delivery.enumeration.UserResult;
 import com.boyuan.delivery.model.BynUser;
 import com.boyuan.delivery.model.Result;
@@ -38,11 +38,31 @@ public class UserController {
      * @param userName
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.ADMIN)
     @GetMapping("name")
-    public Result getUserByUserName(@RequestParam(value = "userName") String userName) {
+    public Result getUserByName(@RequestParam(value = "name") String userName) {
 
         try {
+            return ResultUtils.buildResultWithBody(this.userService.getUserByUserName(userName));
+        } catch (Exception e) {
+            logger.error("getUserByUserName error", e);
+            return ResultUtils.buildErrorResult(e.getMessage());
+        }
+
+    }
+
+    /**
+     * Get user by user name
+     *
+     * @param userName
+     * @return
+     */
+    @Secured(Permission.USER)
+    @GetMapping("userName")
+    public Result getCurrentUserByName(@RequestParam(value = "userName") String userName) {
+
+        try {
+            //TODO if token is not match user name then return prompt
             return ResultUtils.buildResultWithBody(this.userService.getUserByUserName(userName));
         } catch (Exception e) {
             logger.error("getUserByUserName error", e);
@@ -57,7 +77,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.USER)
     @PostMapping("create")
     public Result createUser(@RequestBody BynUser user) {
 

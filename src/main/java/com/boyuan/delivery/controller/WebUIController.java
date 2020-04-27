@@ -11,38 +11,74 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WebUIController {
+    /**
+     * Index page
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_INDEX;
     }
 
+    /**
+     * Make order page
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/boyuan/makeOrder")
-    public String makeOrder(Model model){
+    public String makeOrder(Model model) {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_ORDER;
     }
 
+    /**
+     * About boyuan page
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/boyuan/about")
-    public String about(Model model){
+    public String about(Model model) {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_ABOUT;
     }
 
+    /**
+     * Deliver cases page
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/boyuan/cases")
-    public String cases(Model model){
+    public String cases(Model model) {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_CASES;
     }
 
+    /**
+     * News page
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/boyuan/news")
-    public String news(Model model){
+    public String news(Model model) {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS;
     }
 
+    /**
+     * News detail page
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/boyuan/newsDetail")
-    public String newsDetail(Model model){
+    public String newsDetail(Model model) {
         model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS_DETAIL;
     }

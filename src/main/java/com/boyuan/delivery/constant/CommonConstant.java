@@ -70,6 +70,36 @@ public class CommonConstant {
     }
 
     /**
+     * User permission
+     */
+    public static class Permission {
+        /**
+         * View permission
+         */
+        public static final String VIEW = "VIEW";
+
+        /**
+         * Admin permission
+         */
+        public static final String ADMIN = "ADMIN";
+
+        /**
+         * Search permission
+         */
+        public static final String SEARCH = "SEARCH";
+
+        /**
+         * Create order
+         */
+        public static final String CREATE_ORDER = "CREATE_ORDER";
+
+        /**
+         * Could view own user info and register
+         */
+        public static final String USER = "USER";
+    }
+
+    /**
      * Page setting
      */
     public static class Page {

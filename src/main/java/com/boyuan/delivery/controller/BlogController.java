@@ -6,7 +6,7 @@ package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.utility.ResultUtils;
 import com.boyuan.delivery.constant.CommonConstant;
-import com.boyuan.delivery.constant.CommonConstant.UserRole;
+import com.boyuan.delivery.constant.CommonConstant.Permission;
 import com.boyuan.delivery.model.Blog;
 import com.boyuan.delivery.model.Result;
 import com.boyuan.delivery.service.BlogService;
@@ -32,7 +32,7 @@ public class BlogController {
      * @param blog
      * @return
      */
-    @Secured(UserRole.ADMIN)
+    @Secured(Permission.ADMIN)
     @PostMapping("create")
     public Result createBlog(@RequestBody Blog blog) {
 
@@ -51,7 +51,7 @@ public class BlogController {
      * @param blog
      * @return
      */
-    @Secured(UserRole.ADMIN)
+    @Secured(Permission.ADMIN)
     @PostMapping("update")
     public Result updateBlog(@RequestBody Blog blog) {
 
@@ -70,7 +70,7 @@ public class BlogController {
      * @param blogId
      * @return
      */
-    @Secured(UserRole.ADMIN)
+    @Secured(Permission.ADMIN)
     @GetMapping("delete")
     public Result deleteBlog(@RequestParam(value = "blogId") Long blogId) {
 
@@ -89,7 +89,7 @@ public class BlogController {
      * @param blogId
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.VIEW)
     @GetMapping("getBlog")
     public Result getBlogById(@RequestParam(value = "blogId") Long blogId) {
         try {
@@ -106,7 +106,7 @@ public class BlogController {
      *
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.VIEW)
     @GetMapping("getPageCount")
     public Result getPageCount(@RequestParam(value = "isActive") boolean isActive,
                                @RequestParam(value = "blogType") int blogType) {
@@ -123,7 +123,7 @@ public class BlogController {
      *
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.VIEW)
     @GetMapping("getBlogsPage")
     public Result getBlogsPage(@RequestParam(value = "isActive") boolean isActive,
                                @RequestParam(value = "blogType") int blogType,
@@ -142,7 +142,7 @@ public class BlogController {
      * @param lastBlogId
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.VIEW)
     @GetMapping("getBlogsByBlogId")
     public Result getBlogsByBlogId(@RequestParam(value = "isActive") boolean isActive,
                                    @RequestParam(value = "blogType") int blogType,

@@ -23,8 +23,6 @@ public class UserPermission {
 
     private String permissionValue;
 
-    private Long roleId;
-
     private Date createTime;
 
     private Date updateTime;

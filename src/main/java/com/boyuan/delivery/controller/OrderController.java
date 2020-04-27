@@ -5,7 +5,7 @@
 package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.common.utility.ResultUtils;
-import com.boyuan.delivery.constant.CommonConstant.UserRole;
+import com.boyuan.delivery.constant.CommonConstant.Permission;
 import com.boyuan.delivery.enumeration.CommonResult;
 import com.boyuan.delivery.enumeration.OrderStatus;
 import com.boyuan.delivery.enumeration.OrderType;
@@ -38,7 +38,7 @@ public class OrderController {
      * @param order
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.CREATE_ORDER)
     @PostMapping("create")
     public Result createOrder(@RequestBody Order order) {
 
@@ -67,7 +67,7 @@ public class OrderController {
      * @param order
      * @return
      */
-    @Secured(UserRole.ADMIN)
+    @Secured(Permission.ADMIN)
     @PostMapping("update")
     public Result updateOrder(@RequestBody Order order) {
 
@@ -87,7 +87,7 @@ public class OrderController {
      * @param orderId
      * @return
      */
-    @Secured(UserRole.ADMIN)
+    @Secured(Permission.ADMIN)
     @GetMapping("delete")
     public Result deleteOrder(@RequestParam(value = "orderId") Long orderId) {
 
@@ -107,7 +107,7 @@ public class OrderController {
      * @param orderId
      * @return
      */
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Secured(Permission.SEARCH)
     @GetMapping("getOrder")
     public Result getOrderById(@RequestParam(value = "orderId") Long orderId) {
         try {

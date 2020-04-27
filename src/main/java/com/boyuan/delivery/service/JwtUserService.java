@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.boyuan.delivery.model.AdminUser;
 import com.boyuan.delivery.model.BynUser;
+import com.boyuan.delivery.model.UserPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Since webSecurity cannot autowire beans, if we add cacheable annotation to any method in this class, bean conflict will occur.
@@ -71,7 +74,10 @@ public class JwtUserService implements UserDetailsService {
         if (user == null) {
             return null;
         }
-        return User.builder().username(user.getUserName()).password(user.getPassword()).roles(user.getUserRole().getRoleKey()).build();
+        List<String> permissions = user.getUserRole().getUserPermissions().stream().map(UserPermission::getPermissionKey).collect(Collectors.toList());
+        assert permissions != null && permissions.size() > 0;
+        System.out.println("permission:  "+permissions.toArray(new String[permissions.size()])[2]);
+        return User.builder().username(user.getUserName()).password(user.getPassword()).roles(permissions.toArray(new String[permissions.size()])).build();
     }
 
     public void deleteUserLoginInfo(String username) {

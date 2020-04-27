@@ -7,20 +7,27 @@
 <mapper namespace="com.boyuan.delivery.mapper.UserPermissionMapper">
 
     <resultMap id="UserPermissionMap" type="com.boyuan.delivery.model.UserPermission">
-        <id column="per_id" jdbcType="BIGINT" property="permissionId" />
-        <result column="per_name" jdbcType="VARCHAR" property="permissionName" />
-        <result column="per_key" jdbcType="VARCHAR" property="permissionKey" />
-        <result column="per_description" jdbcType="VARCHAR" property="permissionDescription" />
-        <result column="per_value" jdbcType="VARCHAR" property="permissionValue" />
-        <result column="role_id" jdbcType="BIGINT" property="roleId" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <id column="per_id" jdbcType="BIGINT" property="permissionId"/>
+        <result column="per_name" jdbcType="VARCHAR" property="permissionName"/>
+        <result column="per_key" jdbcType="VARCHAR" property="permissionKey"/>
+        <result column="per_description" jdbcType="VARCHAR" property="permissionDescription"/>
+        <result column="per_value" jdbcType="VARCHAR" property="permissionValue"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
+
+    <select id="getPermissionsById" parameterType="java.lang.Long" resultMap="UserPermissionMap">
+
+        select per_id, per_name, per_key, per_description, per_value, create_time, update_time
+        from user_permission
+        where per_id = #{id,jdbcType=BIGINT}
+    </select>
 
     <select id="getPermissionsByRoleId" parameterType="java.lang.Long" resultMap="UserPermissionMap">
 
-        select per_id, per_name, per_key, per_description, per_value, role_id, create_time, update_time
-        from user_permission
+        select p.per_id, per_name, per_key, per_description, per_value, p.create_time, p.update_time
+        from user_permission p
+        left join role_permission_xref xref on p.per_id = xref.per_id
         where role_id = #{roleId,jdbcType=BIGINT}
     </select>
 </mapper>
