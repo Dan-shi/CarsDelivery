@@ -29,7 +29,7 @@ INSERT INTO user_permission (per_id, per_name, per_key, per_description, per_val
 INSERT INTO user_permission (per_id, per_name, per_key, per_description, per_value) VALUES (2, 'Admin', 'ADMIN', 'Admin', 'Admin');
 INSERT INTO user_permission (per_id, per_name, per_key, per_description, per_value) VALUES (3, 'Search', 'SEARCH', 'Search', 'Search');
 INSERT INTO user_permission (per_id, per_name, per_key, per_description, per_value) VALUES (4, 'Create Order', 'CREATE_ORDER', 'Create Order', 'Create Order');
-INSERT INTO user_permission (per_id, per_name, per_key, per_description, per_value) VALUES (4, 'User', 'USER', 'Could get own user info and register', 'User');
+INSERT INTO user_permission (per_id, per_name, per_key, per_description, per_value) VALUES (5, 'User', 'USER', 'Could get own user info and register', 'User');
 
 -- user permission table
 CREATE TABLE role_permission_xref (
