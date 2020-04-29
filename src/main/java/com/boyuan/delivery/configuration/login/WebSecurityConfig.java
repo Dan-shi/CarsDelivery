@@ -54,8 +54,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		        .antMatchers("/user/**").hasRole("USER")
 				//登录页面不用权限
 				.antMatchers(HttpMethod.GET, "/admin/login").permitAll()
-				//订单创建不用权限
-				.antMatchers(HttpMethod.POST, "/order/create").permitAll()
 		        .anyRequest().authenticated()
 		        .and()
 		    .csrf().disable()

@@ -3,26 +3,34 @@
  */
 
 const CommonUtils = {
-    /**
-     * show alert
-     * @param title
-     * @param message
-     */
-    showAlert(title, message) {
-        Eject.Ealert({
-            title: title,
-            message: message
-        })
-    },
+    loginDefaultUser() {
+        var defaultUser = {
+            username: "tourist",
+            password: "123456"
+        };
 
-    /**
-     * show toast
-     * @param message
-     */
-    showToast(message) {
-        Eject.Etoast(message, 3) //默认三秒
-    },
 
+        //Build order model
+        $.ajax({
+            url: host + "user/login", // 目标资源
+            cache: false, //true 如果当前请求有缓存的话，直接使用缓存。如果该属性设置为 false，则每次都会向服务器请求
+            async: false, //默认是true，即为异步方式
+            data: JSON.stringify(defaultUser),
+            contentType: "application/json",
+            dataType: "json", // 服务器响应的数据类型
+            type: "POST", // 请求方式
+            success: function (data, status, xhr) {
+                if (xhr.status == 200) {
+                    sessionStorage.setItem("isLogin", true);
+                    console.log(data)
+                }
+            },
+            error: function () {
+                CommonUtils.showToast('请求错误, 请重试!');
+                console.log("Tourist login error");
+            }
+        });
+    },
 
     /**
      * 判断字符是否为空的方法
@@ -48,6 +56,25 @@ const CommonUtils = {
             return false;
         }
         return true;
+    },
+    /**
+     * show alert
+     * @param title
+     * @param message
+     */
+    showAlert(title, message) {
+        Eject.Ealert({
+            title: title,
+            message: message
+        })
+    },
+
+    /**
+     * show toast
+     * @param message
+     */
+    showToast(message) {
+        Eject.Etoast(message, 3) //默认三秒
     },
 
     /**

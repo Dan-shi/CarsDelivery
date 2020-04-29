@@ -75,7 +75,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> getBlogsPage(boolean isActive, int blogType, int pageNum, int limit) {
-        if (pageNum < 0 || limit < 0) {
+        if (pageNum <= 0 || limit < 0) {
             this.logger.error("getBlogsPage parameter error");
             return new ArrayList<>();
         }

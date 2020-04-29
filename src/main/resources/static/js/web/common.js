@@ -5,9 +5,6 @@
 var host = "http://localhost:8080/";
 
 function submitOrder() {
-    CommonUtils.showToast('请求错误');
-    CommonUtils.showLoading();
-    CommonUtils.hideLoading();
     //get value from page
     var carName = document.getElementById("carName").value;
     var carType = document.getElementById("carType").value;
@@ -76,6 +73,10 @@ function submitOrder() {
     };
 
     CommonUtils.showLoading();
+    var isLogin = sessionStorage.getItem("isLogin");
+    if (!isLogin) {
+        CommonUtils.loginDefaultUser();
+    }
 
     //Build order model
     $.ajax({
@@ -105,6 +106,7 @@ function submitOrder() {
     });
 
 }
+
 //city select
 try {
     var sf = new Array();
