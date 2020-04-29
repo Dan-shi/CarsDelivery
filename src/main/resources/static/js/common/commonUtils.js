@@ -26,7 +26,7 @@ const CommonUtils = {
                 }
             },
             error: function () {
-                CommonUtils.showToast('请求错误, 请重试!');
+                this.showToast('请求错误, 请重试!');
                 console.log("Tourist login error");
             }
         });
