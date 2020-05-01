@@ -4,6 +4,8 @@
 
 const CommonUtils = {
     loginDefaultUser() {
+        sessionStorage.setItem("isLogin", false);
+
         var defaultUser = {
             username: "tourist",
             password: "123456"
@@ -21,7 +23,7 @@ const CommonUtils = {
             type: "POST", // 请求方式
             success: function (data, status, xhr) {
                 if (xhr.status == 200) {
-                    sessionStorage.setItem("isLogin", true);
+                    sessionStorage.setItem("isLogin", "true");
                     console.log(data)
                 }
             },
@@ -56,6 +58,22 @@ const CommonUtils = {
             return false;
         }
         return true;
+    },
+
+    /**
+     * Hold up current thread
+     * @param time millisecond
+     * @param message
+     */
+    sleep(time, message) {
+        console.log(message);
+        var now = new Date();
+        var exitTime = now.getTime() + time;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime)
+                return;
+        }
     },
     /**
      * show alert

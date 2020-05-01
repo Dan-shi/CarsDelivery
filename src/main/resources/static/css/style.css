@@ -432,7 +432,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     cursor: hand;
     text-align: center;
     color: #FFF;
-    line-height: 36px;
+    line-height: 30px;
     font-size: 14px;
     width: 215px;
     height: 72px;
@@ -1066,9 +1066,23 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     line-height: 30px;
 }
 
+.wenti .idxNewsTitle {
+    height: 30px;
+    display: block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
 .daan {
     font-size: 14px;
     line-height: 30px;
+}
+
+.daan .idxNewsDesc {
+    height: 60px;
+    display: block;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .gengduo {

@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,12 +18,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     protected final Log logger = LogFactory.getLog(UserController.class);
-
-    //@TODO add init binder to secure input parameter
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder) {
-//        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-//    }
 
     /**
      * User service
@@ -57,7 +50,7 @@ public class UserController {
      * @param userName
      * @return
      */
-    @Secured(Permission.USER)
+    @Secured(Permission.VIEW_USER)
     @GetMapping("userName")
     public Result getCurrentUserByName(@RequestParam(value = "userName") String userName) {
 
@@ -77,7 +70,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @Secured(Permission.USER)
+    @Secured(Permission.CREATE_USER)
     @PostMapping("create")
     public Result createUser(@RequestBody BynUser user) {
 

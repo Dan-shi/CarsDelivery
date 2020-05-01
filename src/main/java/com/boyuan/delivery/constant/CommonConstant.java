@@ -96,7 +96,12 @@ public class CommonConstant {
         /**
          * Could view own user info and register
          */
-        public static final String USER = "USER";
+        public static final String VIEW_USER = "VIEW_USER";
+
+        /**
+         * Register a new user
+         */
+        public static final String CREATE_USER = "CREATE_USER";
     }
 
     /**
