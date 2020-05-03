@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -35,6 +34,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
     @Override
     public ResultInfo createUser(BynUser user) {
         if (!ValidationUtils.validatorObjInfo(user)) {
@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
         return "boyuan66688";
     }
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
     @Override
     @CacheEvict(cacheNames = "users")
     public void deleteUserLoginInfo(String username) {

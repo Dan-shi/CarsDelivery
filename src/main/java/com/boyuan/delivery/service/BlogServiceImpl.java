@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 500)
 public class BlogServiceImpl implements BlogService {
 
     protected final Log logger = LogFactory.getLog(BlogServiceImpl.class);
@@ -29,6 +28,7 @@ public class BlogServiceImpl implements BlogService {
     private BlogMapper blogMapper;
 
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 500)
     @Override
     public ResultInfo createBlog(Blog blog) {
         if (!ValidationUtils.validatorObjInfo(blog)) {
@@ -42,6 +42,7 @@ public class BlogServiceImpl implements BlogService {
         return CommonResult.SUCCESS;
     }
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 500)
     @Override
     public ResultInfo updateBlog(Blog blog) {
         if (!ValidationUtils.validatorObjInfo(blog) || blog.getBlogId() == null) {
@@ -55,6 +56,7 @@ public class BlogServiceImpl implements BlogService {
         return CommonResult.SUCCESS;
     }
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 500)
     @Override
     public ResultInfo deleteBlogById(long blogId) {
         if (this.blogMapper.deleteBlogById(blogId) <= 0) {

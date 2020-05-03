@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
 public class CarOrderServiceImpl implements CarOrderService {
 
     protected final Log logger = LogFactory.getLog(CarOrderServiceImpl.class);
@@ -29,6 +28,7 @@ public class CarOrderServiceImpl implements CarOrderService {
     @Autowired
     private OrderCache orderCache;
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
     @Override
     public ResultInfo createOrder(Order order) {
         if (!ValidationUtils.validatorObjInfo(order)) {
@@ -47,6 +47,7 @@ public class CarOrderServiceImpl implements CarOrderService {
         return CommonResult.SUCCESS;
     }
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
     @Override
     public ResultInfo updateOrder(Order order) {
         if (!ValidationUtils.validatorObjInfo(order) || order.getOrderId() == null) {
@@ -60,6 +61,7 @@ public class CarOrderServiceImpl implements CarOrderService {
         return CommonResult.SUCCESS;
     }
 
+    @Transactional(rollbackFor = {RuntimeException.class, Error.class, Exception.class}, timeout = 300)
     @Override
     public ResultInfo deleteOrderById(long orderId) {
         if (this.carOrderMapper.deleteOrderById(orderId) <= 0) {
