@@ -12,6 +12,7 @@ import com.boyuan.delivery.model.Blog;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -89,6 +90,12 @@ public class BlogServiceImpl implements BlogService {
             return new ArrayList<>();
         }
         return this.blogMapper.getBlogsPageByBlogId(isActive, blogType, lastBlogId, limit);
+    }
+
+    @Cacheable("blogsIdx")
+    @Override
+    public List<Blog> getBlogsIdx(int blogType) {
+        return this.blogMapper.getBlogsIdx(blogType);
     }
 
 }

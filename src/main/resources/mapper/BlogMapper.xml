@@ -100,4 +100,12 @@
         from blog
         where blog_type = #{blogType, jdbcType=INTEGER}
     </select>
+
+    <select id="getBlogsIdx" resultMap="BlogModelMap">
+      select blog_id, title
+      from blog
+      where blog_type = #{blogType, jdbcType=INTEGER}
+      and is_active = true
+      order by update_time desc
+    </select>
 </mapper>

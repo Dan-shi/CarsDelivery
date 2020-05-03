@@ -5,6 +5,7 @@
 package com.boyuan.delivery.controller;
 
 import com.boyuan.delivery.constant.CommonConstant;
+import com.boyuan.delivery.constant.CommonConstant.BlogType;
 import com.boyuan.delivery.constant.CommonConstant.WebUrlMapping;
 import com.boyuan.delivery.model.Blog;
 import com.boyuan.delivery.service.BlogService;
@@ -63,7 +64,7 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/cases")
     public String cases(Model model) {
-        List<Blog> cases = this.blogService.getBlogsPage(true, 1, 1, CommonConstant.Page.limit);
+        List<Blog> cases = this.blogService.getBlogsPage(true, BlogType.CASES, 1, CommonConstant.Page.limit);
         model.addAttribute("cases", cases);
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_CASES;
     }
@@ -76,7 +77,7 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/news")
     public String news(Model model) {
-        List<Blog> news = this.blogService.getBlogsPage(true, 0, 1, 6);
+        List<Blog> news = this.blogService.getBlogsPage(true, BlogType.NEWS, 1, 6);
         // As thymeleaf will convert date time
         model.addAttribute("news", news);
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS;
@@ -91,7 +92,20 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/newsDetail")
     public String newsDetail(@RequestParam(value = "blogId") Long blogId, Model model) {
-        Blog blog = blogService.getBlogById(blogId);
+        assert blogId != null;
+        Blog blog = this.blogService.getBlogById(blogId);
+        List<Blog> blogsIdx = this.blogService.getBlogsIdx(blog.getBlogType());
+        //find current blog index
+        Blog currentBlog = blogsIdx.stream().filter(e -> blogId.equals(e.getBlogId())).findFirst().get();
+        int curIdx = blogsIdx.indexOf(currentBlog);
+        //set last blog index
+        if (curIdx > 0) {
+            model.addAttribute("lastBlog", blogsIdx.get(curIdx - 1));
+        }
+        //set nex blog index
+        if (blogsIdx.size() > (curIdx + 1)) {
+            model.addAttribute("nextBlog", blogsIdx.get(curIdx + 1));
+        }
         model.addAttribute("blog", blog);
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS_DETAIL;
     }

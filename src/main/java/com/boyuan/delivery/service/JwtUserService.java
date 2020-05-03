@@ -76,7 +76,6 @@ public class JwtUserService implements UserDetailsService {
         }
         List<String> permissions = user.getUserRole().getUserPermissions().stream().map(UserPermission::getPermissionKey).collect(Collectors.toList());
         assert permissions != null && permissions.size() > 0;
-        System.out.println("permission:  "+permissions.toArray(new String[permissions.size()])[2]);
         return User.builder().username(user.getUserName()).password(user.getPassword()).roles(permissions.toArray(new String[permissions.size()])).build();
     }
 

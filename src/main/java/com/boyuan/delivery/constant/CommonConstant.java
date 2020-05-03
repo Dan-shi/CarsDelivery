@@ -115,4 +115,18 @@ public class CommonConstant {
         public static final int limit = 8;
     }
 
+    /**
+     * Blog type
+     */
+    public static class BlogType {
+        /**
+         * News type
+         */
+        public static final int NEWS = 0;
+
+        /**
+         * Cases type
+         */
+        public static final int CASES = 1;
+    }
 }

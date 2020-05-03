@@ -24,4 +24,6 @@ public interface BlogService {
     List<Blog> getBlogsPage(boolean isActive, int blogType, int pageNum, int limit);
 
     List<Blog> getBlogsPageByBlogId(boolean isActive, int blogType, long lastBlogId, int limit);
+
+    List<Blog> getBlogsIdx(int blogType);
 }
