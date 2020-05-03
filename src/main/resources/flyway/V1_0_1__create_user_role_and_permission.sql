@@ -57,7 +57,6 @@ INSERT INTO role_permission_xref (role_id, per_id) VALUES (3, 1);
 INSERT INTO role_permission_xref (role_id, per_id) VALUES (3, 4);
 INSERT INTO role_permission_xref (role_id, per_id) VALUES (1, 5);
 INSERT INTO role_permission_xref (role_id, per_id) VALUES (2, 5);
-INSERT INTO role_permission_xref (role_id, per_id) VALUES (3, 5);
 INSERT INTO role_permission_xref (role_id, per_id) VALUES (1, 6);
 INSERT INTO role_permission_xref (role_id, per_id) VALUES (3, 6);
 

@@ -70,7 +70,9 @@
     <div class="db">
         <div class="pcdb">
             <div class="pcdb_l">您好欢迎来到渤远物流！！！专业提供轿车托运服务</div>
-            <div class="pcdb_r"><a href="#" onclick="javascript:window.external.addFavorite('http://www.boyuan.com','渤远物流')" title="收藏本站到收藏夹">加入收藏</a></div>
+            <div class="pcdb_r"><a href="#"
+                                   onclick="javascript:window.external.addFavorite('http://www.boyuan.com','渤远物流')"
+                                   title="收藏本站到收藏夹">加入收藏</a></div>
         </div>
     </div>
     <div class="clear"></div>
@@ -137,116 +139,37 @@
     </div>
     <div class="anli_lb">
         <ul>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
+            <li th:each="blog,stat : ${cases}">
+                <div class="anlitp">
+                    <a th:href="@{'/boyuan/newsDetail?blogId='+${blog.blogId}}">
+                        <img th:src="@{'/images/cases/cases_'+${stat.index + 1}+'.jpg'}"/>
+                        <span>查看案例<br/>服务热线：400-6566-856</span>
+                    </a>
+                </div>
                 <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
+                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;"
+                         th:text="${blog.title}">
                         案例展示
                     </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
+                    <div style="font-size:14px; line-height:20px; padding:10px; text-align: center; height: 70px; overflow: hidden;">
+                        <a th:href="@{'/boyuan/newsDetail?blogId='+${blog.blogId}}" th:text="${blog.description}">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
                     </div>
                 </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
-            </li>
-            <li>
-                <div class="anlitp"><a href="#"><img src="/images/tp_19.jpg"/><span>从北京到广州轿车托运邓先生<br/>
-运单号：YF0088856***</span></a></div>
-                <div class="anlinr">
-                    <div style=" width:100%; text-align:center;font-size:18px; font-weight:bolder; line-height:35px;">
-                        案例展示
-                    </div>
-                    <div style=" font-size:14px; line-height:20px; padding:5px;"><a href="#">案例内容案例内容案例内容案例内容案例内容案例内容案例内容例内容案</a>
-                    </div>
-                </div>
-
             </li>
         </ul>
     </div>
     <div class=" clear"></div>
-    <div class="yema">
-        <ul>
-            <li style=" width:75px; height:30px; border:#CCC 1px solid;"><a href="#">&lt;&nbsp;上一页</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">1</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">2</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">3</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">4</a></li>
-            <li><a href="#">...</a></li>
-            <li style=" width:75px; height:30px; border:#CCC 1px solid;"><a href="#">下一页&nbsp;&gt;</a></li>
-        </ul>
-    </div>
+    <!--<div class="yema">-->
+    <!--<ul>-->
+    <!--<li style=" width:75px; height:30px; border:#CCC 1px solid;"><a href="#">&lt;&nbsp;上一页</a></li>-->
+    <!--<li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">1</a></li>-->
+    <!--<li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">2</a></li>-->
+    <!--<li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">3</a></li>-->
+    <!--<li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">4</a></li>-->
+    <!--<li><a href="#">...</a></li>-->
+    <!--<li style=" width:75px; height:30px; border:#CCC 1px solid;"><a href="#">下一页&nbsp;&gt;</a></li>-->
+    <!--</ul>-->
+    <!--</div>-->
 </div>
 <!--托运必读-->
 <div class="clear"></div>
@@ -267,15 +190,16 @@
 <div id="leftsead">
     <ul>
         <li><a href="#"><img src="/images/ll04.png" width="131" height="49" class="hides"/><img src="/images/l04.png"
-                                                                                               width="47" height="49"
-                                                                                               class="shows"/></a></li>
+                                                                                                width="47" height="49"
+                                                                                                class="shows"/></a></li>
         <li><a href="#"><img src="/images/ll05.png" width="131" height="49" class="hides"/><img src="/images/l05.png"
-                                                                                               width="47" height="49"
-                                                                                               class="shows"/></a></li>
-        <li><a id="top_btn"><img src="/images/ll06.png" width="131" height="49" class="hides"/><img src="/images/l06.png"
-                                                                                                   width="47"
-                                                                                                   height="49"
-                                                                                                   class="shows"/></a>
+                                                                                                width="47" height="49"
+                                                                                                class="shows"/></a></li>
+        <li><a id="top_btn"><img src="/images/ll06.png" width="131" height="49" class="hides"/><img
+                src="/images/l06.png"
+                width="47"
+                height="49"
+                class="shows"/></a>
         </li>
     </ul>
 </div><!--leftsead end-->

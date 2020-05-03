@@ -4,10 +4,10 @@
 
 var host = "http://localhost:8080/";
 
-function loadBlog(type) {
+function loadBlog(type, pageNum) {
 
     $.ajax({
-        url: host + "blog/getBlogsPage?isActive=true&blogType=" + type + "&pageNum=1", // 目标资源
+        url: host + "blog/getBlogsPage?isActive=true&blogType=" + type + "&pageNum=" + pageNum, // 目标资源
         cache: false, //true 如果当前请求有缓存的话，直接使用缓存。如果该属性设置为 false，则每次都会向服务器请求
         async: false, //默认是true，即为异步方式
         contentType: "application/json",
@@ -65,7 +65,7 @@ function getNewsElement(blog) {
     var day = createTime.substring(8, 10);
     var yearMonth = createTime.substring(0, 7).replace('-', '.');
 
-    return $('<li class="xwl"><a href="' + "/boyuan/newsDetail?" + blog.blogId + '">' +
+    return $('<li class="xwl"><a href="' + "/boyuan/newsDetail?blogId=" + blog.blogId + '">' +
         '<ol class="riqi">' + day + '<br/><span style=" color:#ccc; font-size:14px;">' + yearMonth + '</span></ol>' +
         '<ol class="wenti"><span class="idxNewsTitle">' + blog.title + '</span></ol>' +
         '<ol class="daan"><span class="idxNewsDesc">' + blog.description + '</span></ol>' +
@@ -74,7 +74,7 @@ function getNewsElement(blog) {
 
 function getCaseElement(blog, i) {
     var imageUrl = "/images/cases/cases_" + i + ".jpg";
-    var href = "/boyuan/newsDetail?" + blog.blogId;
+    var href = "/boyuan/newsDetail?blogId=" + blog.blogId;
     return $('<li>' +
         '<div class="anlitp"><a href="' + href + '">' +
         '<img src="' + imageUrl + '"/><span>查看案例<br />服务热线：400-6566-856</span>' +
@@ -96,14 +96,14 @@ $(document).ready(function (e) {
         CommonUtils.loginDefaultUser();
     }
     for (i = 0; i < 3; i++) {
-        loadBlog(0);
+        loadBlog(0, 1);
         if (sessionStorage.getItem("isLoginError") == "true") {
             sessionStorage.setItem("isLoginError", "false");
             CommonUtils.loginDefaultUser();
             CommonUtils.sleep(300, "Login retry");
             continue;
         }
-        loadBlog(1);
+        loadBlog(1, 1);
         break;
     }
 

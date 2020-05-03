@@ -16,6 +16,10 @@
     <script src="/js/jquery-1.7.2.min.js"></script>
     <script src="/js/web/html5zoo.js"></script>
     <script src="/js/web/lovelygallery.js"></script>
+    <script src="/js/web/news.js"></script>
+    <script src="/js/common/commonUtils.js"></script>
+    <script src="/js/common/loading.js"></script>
+    <script src="/js/common/alert.js"></script>
 
     <title>托运必读</title>
     <script type="text/javascript">
@@ -133,61 +137,26 @@
 <div class="center">
     <div class="center_gps">
         <ul>
-            <li><a href="#">托运必读</a></li>
-            <li><a href="#">常见问题</a></li>
-            <li><a href="#">客户评价</a></li>
+            <li><a>托运必读</a></li>
         </ul>
     </div>
     <div class="new_liebiao">
-        <ul>
-            <li><a href="#">
-                <ol class="riqia">08<br/><span style=" color:#ccc; font-size:14px;">2020.01</span></ol>
-                <ol class="wentia">私家车托运比自己托运到底贵不贵？</ol>
-                <ol class="daana">
-                    私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵
-                </ol>
-            </a>
+        <ul id="newsList">
+            <li th:each="blog,stat : ${news}">
+                <a th:href="@{'/boyuan/newsDetail?blogId='+${blog.blogId}}">
+                    <ol class="riqia">
+                        <span th:text="${#dates.day(blog.createTime)}">08</span><br/>
+                        <span style=" color:#ccc; font-size:14px;"
+                              th:text="|${#dates.year(blog.createTime)}.${#dates.month(blog.createTime)}|">2020.01</span>
+                    </ol>
+                    <ol class="wentia" th:text="${blog.title}"/>
+                    <ol class="daana" th:text="${blog.description}"/>
+                </a>
             </li>
-            <li><a href="#">
-                <ol class="riqia">08<br/><span style=" color:#ccc; font-size:14px;">2020.01</span></ol>
-                <ol class="wentia">私家车托运比自己托运到底贵不贵？</ol>
-                <ol class="daana">
-                    私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵
-                </ol>
-            </a>
-            </li>
-            <li><a href="#">
-                <ol class="riqia">08<br/><span style=" color:#ccc; font-size:14px;">2020.01</span></ol>
-                <ol class="wentia">私家车托运比自己托运到底贵不贵？</ol>
-                <ol class="daana">私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵</ol>
-            </a>
-            </li>
-            <li><a href="#">
-                <ol class="riqia">08<br/><span style=" color:#ccc; font-size:14px;">2020.01</span></ol>
-                <ol class="wentia">私家车托运比自己托运到底贵不贵？</ol>
-                <ol class="daana">私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵</ol>
-            </a>
-            </li>
-            <li><a href="#">
-                <ol class="riqia">08<br/><span style=" color:#ccc; font-size:14px;">2020.01</span></ol>
-                <ol class="wentia">私家车托运比自己托运到底贵不贵？</ol>
-                <ol class="daana">私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵私家车托运比自己托运到底贵不贵</ol>
-            </a>
-            </li>
-
-
         </ul>
     </div>
     <div class="yema">
-        <ul>
-            <li style=" width:75px; height:30px; border:#CCC 1px solid;"><a href="#">&lt;&nbsp;上一页</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">1</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">2</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">3</a></li>
-            <li style=" width:30px; height:30px; border:#CCC 1px solid;"><a href="#">4</a></li>
-            <li><a href="#">...</a></li>
-            <li style=" width:75px; height:30px; border:#CCC 1px solid;"><a href="#">下一页&nbsp;&gt;</a></li>
-        </ul>
+        <ul id="pages"></ul>
     </div>
 </div>
 <!--托运必读-->

@@ -19,7 +19,9 @@ public interface BlogMapper {
 
     Blog getBlogById(long blogId);
 
-    int getPageCount(boolean isActive, int blogType, int limit);
+    int getPageCount(@Param("isActive")boolean isActive,
+                     @Param("blogType")int blogType,
+                     @Param("limit")int limit);
 
     int getAllPageCount(int blogType, int limit);
 

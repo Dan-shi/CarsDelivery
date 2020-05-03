@@ -1698,7 +1698,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     height: 30px;
 }
 
-.yema ul li {
+.yema li {
     float: left;
     margin-left: 5px;
     margin-right: 5px;
@@ -1706,7 +1706,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     text-align: center;
 }
 
-.yema ul li a {
+.yema li a {
     color: #666;
     line-height: 30px;
     text-decoration: none;
@@ -1714,14 +1714,22 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     display: block;
 }
 
-.yema ul li a:hover {
+.yema li a:hover {
     display: block;
     background: #c01920;
     color: #FFF;
     text-align: center;
 }
 
-/*新闻*/
+.yema ul li a.active {
+    display: block;
+    background: #c01920;
+    color: #FFF;
+    text-align: center;
+}
+
+
+    /*新闻*/
 .new_liebiao {
     width: 1200px;
     height: auto !important;

@@ -1496,6 +1496,13 @@ abbr, acronym {
     text-align: center;
 }
 
+.yema ul li a.active {
+    display: block;
+    background: #c01920;
+    color: #FFF;
+    text-align: center;
+}
+
 /*新闻*/
 .new_liebiao {
     width: 98%;

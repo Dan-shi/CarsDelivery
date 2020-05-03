@@ -4,13 +4,24 @@
 
 package com.boyuan.delivery.controller;
 
+import com.boyuan.delivery.constant.CommonConstant;
 import com.boyuan.delivery.constant.CommonConstant.WebUrlMapping;
+import com.boyuan.delivery.model.Blog;
+import com.boyuan.delivery.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class WebUIController {
+
+    @Autowired
+    private BlogService blogService;
+
     /**
      * Index page
      *
@@ -19,7 +30,6 @@ public class WebUIController {
      */
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_INDEX;
     }
 
@@ -31,7 +41,6 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/makeOrder")
     public String makeOrder(Model model) {
-        model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_ORDER;
     }
 
@@ -43,7 +52,6 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/about")
     public String about(Model model) {
-        model.addAttribute("msg", "index");
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_ABOUT;
     }
 
@@ -55,7 +63,8 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/cases")
     public String cases(Model model) {
-        model.addAttribute("msg", "index");
+        List<Blog> cases = this.blogService.getBlogsPage(true, 1, 1, CommonConstant.Page.limit);
+        model.addAttribute("cases", cases);
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_CASES;
     }
 
@@ -67,19 +76,23 @@ public class WebUIController {
      */
     @GetMapping("/boyuan/news")
     public String news(Model model) {
-        model.addAttribute("msg", "index");
+        List<Blog> news = this.blogService.getBlogsPage(true, 0, 1, 6);
+        // As thymeleaf will convert date time
+        model.addAttribute("news", news);
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS;
     }
 
     /**
      * News detail page
      *
+     * @param blogId
      * @param model
      * @return
      */
     @GetMapping("/boyuan/newsDetail")
-    public String newsDetail(Model model) {
-        model.addAttribute("msg", "index");
+    public String newsDetail(@RequestParam(value = "blogId") Long blogId, Model model) {
+        Blog blog = blogService.getBlogById(blogId);
+        model.addAttribute("blog", blog);
         return WebUrlMapping.WEB_PREFIX + WebUrlMapping.WEB_NEWS_DETAIL;
     }
 

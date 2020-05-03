@@ -112,7 +112,7 @@ public class CommonConstant {
         /**
          * Page size
          */
-        public static final int limit = 10;
+        public static final int limit = 8;
     }
 
 }
