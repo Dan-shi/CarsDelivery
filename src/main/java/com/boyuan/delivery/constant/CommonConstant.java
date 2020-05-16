@@ -52,6 +52,8 @@ public class CommonConstant {
 
         public static final String WEB_NEWS_DETAIL = "newsDetail";
 
+        public static final String WEB_ERROR = "error";
+
     }
 
     /**
