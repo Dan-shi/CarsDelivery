@@ -146,6 +146,8 @@ function getNewsElement(blog) {
  * Load news list and case list
  */
 $(document).ready(function (e) {
+    //set up token header
+    CommonUtils.authorizationSetup();
     var isLogin = sessionStorage.getItem("isLogin");
     if (!(isLogin == "true")) {
         CommonUtils.loginDefaultUser();

@@ -1,7 +1,11 @@
 package com.boyuan.delivery.configuration;
 
+import org.apache.tomcat.util.http.LegacyCookieProcessor;
+import org.apache.tomcat.util.http.Rfc6265CookieProcessor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
@@ -20,13 +24,15 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class CommonConfig {
 
     @Bean
-    public CacheManager caffeineCacheManager(){
+    public CacheManager caffeineCacheManager() {
         return new CaffeineCacheManager();
     }
 
     @Bean
     @ConfigurationProperties(prefix = "boyuan")
-    public CommonConfigProperties commonConfigProperties(){return new CommonConfigProperties();}
+    public CommonConfigProperties commonConfigProperties() {
+        return new CommonConfigProperties();
+    }
 
     @Bean
     public TaskExecutor taskExecutor() {
@@ -48,4 +54,19 @@ public class CommonConfig {
         return executor;
     }
 
+    /**
+     * Fix error:
+     * A cookie header was received [:language=en; path=/] that contained an invalid cookie
+     * <p>
+     * Fix by using legacy cookie processor
+     *
+     * @return
+     */
+    @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> cookieProcessorCustomizer() {
+        return factory -> factory.addContextCustomizers(
+                context -> context.setCookieProcessor(new Rfc6265CookieProcessor()),
+                context -> context.setCookieProcessor(new LegacyCookieProcessor())
+        );
+    }
 }

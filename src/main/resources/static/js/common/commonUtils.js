@@ -5,13 +5,10 @@
 const CommonUtils = {
     loginDefaultUser() {
         sessionStorage.setItem("isLogin", false);
-
         var defaultUser = {
             username: "tourist",
             password: "123456"
         };
-
-
         //Build order model
         $.ajax({
             url: host + "user/login", // 目标资源
@@ -24,14 +21,31 @@ const CommonUtils = {
             success: function (data, status, xhr) {
                 if (xhr.status == 200) {
                     sessionStorage.setItem("isLogin", "true");
-                    console.log(data)
+                    //set token
+                    sessionStorage.setItem("token", xhr.getResponseHeader('Authorization'));
+                    CommonUtils.authorizationSetup();
+                    console.log(data);
                 }
             },
             error: function () {
-                this.showToast('请求错误, 请重试!');
+                CommonUtils.showToast('请求错误, 请重试!');
                 console.log("Tourist login error");
             }
         });
+    },
+
+    authorizationSetup() {
+        var token = sessionStorage.getItem("token");
+        if (!token) {
+            return;
+        }
+        $.ajaxSetup({
+            //发送请求前触发
+            beforeSend: function (xhr) {
+                //可以设置自定义标头
+                xhr.setRequestHeader('Authorization', "Bearer " + token);
+            },
+        })
     },
 
     /**
