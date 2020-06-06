@@ -2,8 +2,6 @@
  *  Copyright 2020 北京渤远物流. All Rights Reserved.
  */
 
-var host = "http://localhost:8080/";
-
 function submitOrder() {
     //get value from page
     var carName = document.getElementById("carName").value;

@@ -2,8 +2,6 @@
  *  Copyright 2020 北京渤远物流. All Rights Reserved.
  */
 
-var host = "http://localhost:8080/";
-
 function submitBlog(type) {
     var title = document.getElementById("title").value;
     var descr = document.getElementById("description").value;

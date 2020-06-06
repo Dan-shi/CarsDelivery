@@ -2,6 +2,8 @@
  *  Copyright 2020 北京渤远物流. All Rights Reserved.
  */
 
+// const host = "http://localhost:8080/";
+const host = "http://http://154.8.157.218:8080/";
 const CommonUtils = {
     loginDefaultUser() {
         sessionStorage.setItem("isLogin", false);
