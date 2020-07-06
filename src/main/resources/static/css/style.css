@@ -1769,11 +1769,15 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     margin-top: 30px;
     font-size: 18px;
     line-height: 30px;
+    height: 30px;
+    overflow: hidden;
 }
 
 .daana {
     font-size: 14px;
     line-height: 30px;
+    height: 60px;
+    overflow: hidden;
 }
 
 /*关于我们*/

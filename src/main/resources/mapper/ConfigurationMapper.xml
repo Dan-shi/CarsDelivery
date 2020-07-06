@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~  Copyright 2020 北京渤远物流. All Rights Reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boyuan.delivery.mapper.ConfigurationMapper">
+    <resultMap id="ConfigurationModelMap" type="com.boyuan.delivery.model.Configuration">
+        <id column="config_id" jdbcType="BIGINT" property="configId"/>
+        <result column="config_name" jdbcType="VARCHAR" property="configName"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="config_key" jdbcType="VARCHAR" property="configKey"/>
+        <result column="config_value" jdbcType="VARCHAR" property="configValue"/>
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="getConfigByKey" parameterType="java.lang.String" resultMap="ConfigurationModelMap">
+        select config_id, config_name, description, config_key, config_value, is_active, description, create_time, update_time
+        from configuration
+        where config_key = #{configKey,jdbcType=BIGINT}
+    </select>
+</mapper>
