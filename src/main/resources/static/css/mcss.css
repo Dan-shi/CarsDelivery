@@ -343,7 +343,7 @@ abbr, acronym {
 /*baojia*/
 .baojia {
     width: 95%;
-    height: 500px;
+    height: 650px;
     margin: 15px auto;
     position: relative;
     border-bottom: solid 1px #CCCCCC;
@@ -366,7 +366,7 @@ abbr, acronym {
 
 .baojia_b {
     width: 100%;
-    height: 400px;
+    height: 500px;
 }
 
 .baojia_b_l {
@@ -424,9 +424,9 @@ abbr, acronym {
 }
 
 .baijia_nr li select {
-    width: 200px;
+    width: 93%;
     color: #999;
-    line-height: 28px;
+    line-height: 100%;
     padding-left: 12px;
 }
 
@@ -475,7 +475,7 @@ abbr, acronym {
 
 .mask {
     width: 100%;
-    height: 500px; /* 高度是变量 */
+    height: 650px; /* 高度是变量 */
     position: absolute;
     left: 0;
     top: 0; /* top是变量 */
@@ -530,7 +530,7 @@ abbr, acronym {
 
 .anli_lb {
     width: 100%;
-    height: 355px;
+    height: 500px;
     margin: 20px auto;
 }
 
@@ -1639,36 +1639,4 @@ abbr, acronym {
     line-height: 40px;
     float: left;
     margin-left: 2%;
-}
-
-#fromLocPro {
-    float: left;
-    line-height: 40px;
-    width: 50%;
-}
-
-#fromLocCity {
-    width: 40%;
-    line-height: 40px;
-    float: right;
-}
-
-#toLocPro {
-    float: left;
-    width: 50%;
-    line-height: 40px;
-}
-
-#toLocCity {
-    width: 40%;
-    line-height: 40px;
-    float: right;
-}
-
-#citySpan {
-    float: right;
-}
-
-#toCitySpan {
-    float: right;
 }
