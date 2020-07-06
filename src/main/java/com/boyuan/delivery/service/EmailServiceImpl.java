@@ -190,10 +190,6 @@ public class EmailServiceImpl implements EmailService {
                 "<td>" + order.getCusPhone() + "</td>\n" +
                 "</tr>\n" +
                 "<tr>\n" +
-                "<td>客户姓名</td>\n" +
-                "<td>" + order.getCusName() == null ? "" : order.getCusName() + "</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
                 "<td>订单来源</td>\n" +
                 "<td>" + getOrderSource(order.getOrderSource()) + "</td>\n" +
                 "</tr>\n" +
@@ -212,10 +208,6 @@ public class EmailServiceImpl implements EmailService {
                 "<tr>\n" +
                 "<td>车辆名字</td>\n" +
                 "<td>" + order.getCarName() + "</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td>留言</td>\n" +
-                "<td>" + order.getDescription() == null ? "" : order.getDescription() + "</td>\n" +
                 "</tr>\n" +
                 "</table>";
 
