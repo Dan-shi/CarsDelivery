@@ -343,7 +343,7 @@ abbr, acronym {
 /*baojia*/
 .baojia {
     width: 95%;
-    height: 650px;
+    height: 500px;
     margin: 15px auto;
     position: relative;
     border-bottom: solid 1px #CCCCCC;
@@ -366,7 +366,7 @@ abbr, acronym {
 
 .baojia_b {
     width: 100%;
-    height: 500px;
+    height: 420px;
 }
 
 .baojia_b_l {
@@ -475,7 +475,7 @@ abbr, acronym {
 
 .mask {
     width: 100%;
-    height: 650px; /* 高度是变量 */
+    height: 500px; /* 高度是变量 */
     position: absolute;
     left: 0;
     top: 0; /* top是变量 */
@@ -530,7 +530,7 @@ abbr, acronym {
 
 .anli_lb {
     width: 100%;
-    height: 500px;
+    height: 550px;
     margin: 20px auto;
 }
 
@@ -665,7 +665,6 @@ abbr, acronym {
     background: #f08519;
     border-radius: 5px;
     margin: 0px auto;
-    margin-top: 60px;
     line-height: 45px;
     text-align: center;
 }

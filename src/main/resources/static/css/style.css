@@ -282,7 +282,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 }
 
 .baijia_nr li {
-    width: 100px;
+    width: 180px;
     height: 28px;
     line-height: 28px;
     border-right: 1px #CCCCCC solid;
@@ -324,21 +324,24 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     height: 6px;
 }
 
-#carTypeLi {
-    width: 80px;
+#cusPhone {
+    border-right : none;
 }
-#fromLocProLi{
-    width: 150px;
-}
-#fromLocCityLi{
-    width: 140px;
-}
-#toLocProLi{
-    width: 150px;
-}
-#toLocCityLi{
-    width: 140px;
-}
+/*#carTypeLi {*/
+/*    width: 100px;*/
+/*}*/
+/*#fromLocProLi{*/
+/*    width: 150px;*/
+/*}*/
+/*#fromLocCityLi{*/
+/*    width: 140px;*/
+/*}*/
+/*#toLocProLi{*/
+/*    width: 150px;*/
+/*}*/
+/*#toLocCityLi{*/
+/*    width: 140px;*/
+/*}*/
 .zhanwei {
     display: none;
 }

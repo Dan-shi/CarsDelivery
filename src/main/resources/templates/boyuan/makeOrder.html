@@ -148,11 +148,6 @@
             <div class="xunjia_liebiao">
                 <ul>
                     <li>
-                        <div class="xj_lb_wz">托运车型：<span>*</span></div>
-                        <div class="xj_lb_bd"><input type="text" id="carName" placeholder="请填写车型"/></div>
-                    </li>
-                    <div class="clear"></div>
-                    <li>
                         <div class="xj_lb_wz">车型类型：<span>*</span></div>
                         <div class="xj_lb_bd">
                             <select type="text" id="carType" value="请选择车型">
@@ -167,10 +162,10 @@
                     </li>
                     <div class="clear"></div>
                     <li>
-                        <div class="xj_lb_wz">始发地：<span>*</span></div>
+                        <div class="xj_lb_wz">始发省份：<span>*</span></div>
                         <div class="xj_lb_bd">
                             <select id="fromLocPro" name="pro">
-                                <option value="">-出发省份-</option>
+                                <option value="">请选择省份</option>
                                 <option>北京市</option>
                                 <option>上海市</option>
                                 <option>天津市</option>
@@ -203,17 +198,25 @@
                                 <option>青海省</option>
                                 <option>新疆维吾尔族自治区</option>
                             </select>
-                            <select id="fromLocCity" name="city">
-                                <option value="">城市</option>
-                            </select>
+                            <span><img src="/images/index_23.jpg"/></span>
                         </div>
                     </li>
                     <div class="clear"></div>
                     <li>
-                        <div class="xj_lb_wz">目的地：<span>*</span></div>
+                        <div class="xj_lb_wz">始发城市：<span>*</span></div>
+                        <div class="xj_lb_bd">
+                            <select id="fromLocCity" name="city">
+                                <option value="">请选择城市</option>
+                            </select>
+                            <span><img src="/images/index_23.jpg"/></span>
+                        </div>
+                    </li>
+                    <div class="clear"></div>
+                    <li>
+                        <div class="xj_lb_wz">目的省份：<span>*</span></div>
                         <div class="xj_lb_bd">
                             <select id="toLocPro" name="pro">
-                                <option value="">-到达省份-</option>
+                                <option value="">请选择省份</option>
                                 <option>北京市</option>
                                 <option>上海市</option>
                                 <option>天津市</option>
@@ -246,30 +249,25 @@
                                 <option>青海省</option>
                                 <option>新疆维吾尔族自治区</option>
                             </select>
-                            <select id="toLocCity" name="city">
-                                <option value="">城市</option>
-                            </select>
+                            <span><img src="/images/index_23.jpg"/></span>
                         </div>
                     </li>
                     <div class="clear"></div>
                     <li>
-                        <div class="xj_lb_wz">客户姓名:</div>
-                        <div class="xj_lb_bd"><input type="text" id="cusName" placeholder="姓名--选填"></div>
+                        <div class="xj_lb_wz">目的城市：<span>*</span></div>
+                        <div class="xj_lb_bd">
+                            <select id="toLocCity" name="city">
+                                <option value="">请选择城市</option>
+                            </select>
+                            <span><img src="/images/index_23.jpg"/></span>
+                        </div>
                     </li>
                     <div class="clear"></div>
                     <li>
                         <div class="xj_lb_wz">手机号码：<span>*</span></div>
                         <div class="xj_lb_sj"><input type="text" id="cusPhone" placeholder="电话"/><span><img
                                 src="/images/xunjia_14.jpg"/></span></div>
-                        <!--<div class="xj_lb_yzm"><a href="#">获取验证码</a></div>-->
                     </li>
-                    <div class="clear"></div>
-                    <!--<li>-->
-                    <!--<div class="xj_lb_wz">验证码：<span>*</span></div>-->
-                    <!--<div class="xj_lb_bd"><input name="请输入验证码" type="text" value="请输入验证码"/></div>-->
-                    <!--</li>-->
-                    <div class="xj_lb_wz">客户留言:</div>
-                    <div class="xj_lb_bd"><input type="text" id="description" placeholder="留言"/></div>
                     <div class="clear"></div>
                     <li>
                         <button class="lianjie" onclick="submitOrder()"><a>15秒获取报价</a></button>
